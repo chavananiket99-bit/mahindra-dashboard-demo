@@ -1,0 +1,2114 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Mahindra Tooling Tracker</title>
+    <link
+      rel="stylesheet"
+      href="https://fontsstorage.blob.core.windows.net/html/css/georama.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --red: #a9153d;
+        --navy: #071b2d;
+        --ink: #243746;
+        --muted: #71818d;
+        --bg: #f3f6f8;
+        --border: #dce4e9;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "Georama-Regular", Arial, sans-serif;
+        font-size: 12px;
+      }
+      .topbar {
+        height: 68px;
+        background: #fff;
+        border-bottom: 2px solid #a9153d;
+        box-shadow: 0 1px 5px rgba(7, 27, 45, 0.06);
+      }
+      .header-inner {
+        height: 68px;
+      }
+      .mahindra-logo img {
+        width: 170px;
+        height: auto;
+      }
+      .top-menu {
+        display: flex;
+        gap: 4px;
+        align-items: center;
+      }
+      .top-menu a {
+        color: #465967;
+        text-decoration: none;
+        padding: 11px 16px;
+        border-radius: 6px;
+        font-size: 12px;
+        font-weight: 700;
+      }
+      .top-menu a:hover,
+      .top-menu a.active {
+        background: #f5eaf0;
+        color: var(--red);
+      }
+      .top-menu a.active {
+        box-shadow: inset 0 -2px 0 var(--red);
+      }
+      .profile-btn {
+        border: 0;
+        background: transparent;
+        color: var(--ink);
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        padding: 5px 7px;
+      }
+      .avatar {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: #a9153d;
+        color: #fff;
+        display: grid;
+        place-items: center;
+        font-weight: 800;
+        font-size: 11px;
+      }
+      .profile-name {
+        font-size: 12px;
+        font-weight: 800;
+        text-align: left;
+      }
+      .profile-role {
+        font-size: 11px;
+        color: #7b8993;
+      }
+      .dropdown-menu {
+        border: 1px solid var(--border);
+        box-shadow: 0 8px 24px #071b2d22;
+        border-radius: 8px;
+      }
+      .dropdown-item {
+        font-size: 12px;
+        padding: 9px 14px;
+      }
+      .page {
+        padding: 24px 28px 40px;
+        max-width: 1700px;
+        margin: auto;
+      }
+      .page-title {
+        font-size: 23px;
+        font-weight: 800;
+        color: var(--navy);
+        margin: 0;
+      }
+      .sub {
+        font-size: 11px;
+        color: var(--muted);
+        margin-top: 5px;
+      }
+      .accent {
+        height: 3px;
+        width: 45px;
+        background: var(--red);
+        border-radius: 3px;
+        margin-top: 9px;
+      }
+      .filter-card,
+      .table-card {
+        background: #fff;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        box-shadow: 0 2px 9px #071b2d0c;
+        margin-bottom: 14px;
+      }
+      .filter-card {
+        padding: 15px 17px;
+      }
+      .filter-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr auto;
+        gap: 11px;
+        align-items: end;
+      }
+      .filter-label {
+        font-size: 10px;
+        text-transform: uppercase;
+        font-weight: 800;
+        color: #687a87;
+        margin-bottom: 5px;
+      }
+      .filter-control {
+        height: 36px;
+        font-size: 12px;
+      }
+      .apply,
+      .tool-btn {
+        height: 34px;
+        border: 1px solid #d7e0e5;
+        background: #fff;
+        border-radius: 6px;
+        color: #617481;
+        font-size: 10px;
+        padding: 0 11px;
+        font-weight: 700;
+      }
+      .apply {
+        background: var(--red);
+        color: #fff;
+        border-color: var(--red);
+      }
+      .table-head {
+        padding: 15px 17px 11px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .table-head-toolbar {
+        gap: 18px;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+      .table-title {
+        font-size: 16px;
+        font-weight: 800;
+        color: var(--navy);
+      }
+      .table-meta {
+        font-size: 10px;
+        color: #7a8994;
+      }
+      .table-tools {
+        display: flex;
+        gap: 7px;
+        flex-wrap: wrap;
+      }
+      .engineering-table-wrap {
+        width: 100%;
+        overflow: auto;
+        background: #fff;
+        border-top: 1px solid var(--border);
+        scrollbar-width: thin;
+      }
+      .engineering-table {
+        display: flex;
+        width: 100%;
+        min-width: 900px;
+        align-items: stretch;
+        background: #fff;
+      }
+      .engineering-section {
+        display: flex;
+        flex: 0 0 48px;
+        min-width: 48px;
+        overflow: hidden;
+        background: #fff;
+        border-right: 1px solid var(--border);
+        transition: flex-basis 0.2s ease;
+      }
+      .engineering-section.expanded {
+        flex: 1 1 0;
+        min-width: 0;
+      }
+      .section-vertical-bar {
+        flex: 0 0 48px;
+        width: 48px;
+        padding: 12px 5px;
+        border: 0;
+        border-right: 1px solid var(--border);
+        background: #eef2f5;
+        color: #405463;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+      }
+      .vertical-text {
+        writing-mode: vertical-rl;
+        transform: rotate(180deg);
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: 0.5px;
+        white-space: nowrap;
+      }
+      .vertical-icon {
+        font-size: 14px;
+      }
+      .engineering-section.expanded .section-vertical-bar,
+      .engineering-table.show-all-mode .section-vertical-bar {
+        display: none;
+      }
+      .section-content {
+        flex: 1 1 auto;
+        min-width: 0;
+        background: #fff;
+        overflow-x: auto;
+      }
+      .engineering-section:not(.expanded) .section-content {
+        display: none;
+      }
+      .section-header {
+        min-height: 48px;
+        padding: 7px 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        background: #f1f4f6;
+        color: #344b5a;
+        border-bottom: 1px solid var(--border);
+        font-size: 11px;
+        font-weight: 800;
+        white-space: nowrap;
+      }
+      .engineering-section.expanded .section-header {
+        border-top: 2px solid var(--red);
+      }
+      .section-head-actions {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+      .icon-btn,
+      .section-collapse {
+        width: 29px;
+        height: 28px;
+        flex-shrink: 0;
+        display: grid;
+        place-items: center;
+        border: 1px solid #d5dfe5;
+        border-radius: 5px;
+        background: #fff;
+        color: #526672;
+        cursor: pointer;
+      }
+      .icon-btn:hover,
+      .section-collapse:hover {
+        background: #f6eaf0;
+        color: var(--red);
+      }
+      .section-content table {
+        width: 100%;
+        border-collapse: collapse;
+        table-layout: auto;
+      }
+      .section-content th {
+        height: 43px;
+        padding: 8px 10px;
+        background: #f5f7f9;
+        color: #536777;
+        border: 1px solid #e0e6eb;
+        font-size: 11px;
+        line-height: 1.3;
+        font-weight: 800;
+        text-transform: uppercase;
+        white-space: nowrap;
+      }
+      .section-content td {
+        height: 40px;
+        padding: 8px 10px;
+        background: #fff;
+        color: #405463;
+        border: 1px solid #e8edf0;
+        font-size: 12px;
+        white-space: nowrap;
+      }
+      .section-content tbody tr:nth-child(even) td {
+        background: #fafbfc;
+      }
+      .section-content tbody tr:hover td {
+        background: #f1f5f8;
+      }
+      .engineering-table.show-all-mode {
+        width: max-content;
+        min-width: 100%;
+        align-items: stretch;
+      }
+      .engineering-table.show-all-mode .engineering-section {
+        flex: 0 0 auto;
+        width: max-content;
+        min-width: 0;
+        overflow: visible;
+      }
+      .engineering-table.show-all-mode .section-content {
+        flex: 0 0 auto;
+        width: max-content;
+        min-width: 0;
+      }
+      .engineering-table.show-all-mode .section-content table {
+        width: max-content;
+        min-width: 100%;
+      }
+      .engineering-table.show-all-mode .section-content th,
+      .engineering-table.show-all-mode .section-content td {
+        white-space: nowrap;
+      }
+      .table-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 11px 17px;
+        color: #7a8994;
+        font-size: 12px;
+      }
+      .stage-action-btn {
+        border: 1px solid var(--red);
+        color: var(--red);
+        background: white;
+        border-radius: 5px;
+        padding: 5px 9px;
+        font-size: 10px;
+        font-weight: 700;
+        white-space: nowrap;
+      }
+      .stage-action-btn:disabled {
+        border-color: #d8e0e6;
+        color: #a0aab3;
+        background: #f5f7f9;
+        cursor: not-allowed;
+      }
+      .modal-title {
+        font-weight: 800;
+        color: var(--navy);
+      }
+      .modal-header {
+        border-top: 3px solid var(--red);
+      }
+      .page-title-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 16px;
+      }
+      .title {
+        font-weight: 800;
+        color: var(--navy);
+      }
+      .title-accent {
+        height: 3px;
+        width: 45px;
+        background: var(--red);
+        border-radius: 3px;
+        margin-top: 9px;
+      }
+      .table-toolbar-controls {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 10px;
+        flex: 1 1 620px;
+        min-width: 0;
+      }
+      .global-search-wrap {
+        position: relative;
+        flex: 1 1 260px;
+        max-width: 370px;
+        min-width: 190px;
+      }
+      .global-search-wrap > i {
+        position: absolute;
+        left: 11px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #82909a;
+        font-size: 12px;
+      }
+      .global-search-wrap input {
+        width: 100%;
+        height: 34px;
+        border: 1px solid #d7e0e5;
+        border-radius: 6px;
+        padding: 0 11px 0 32px;
+        color: var(--ink);
+        font-size: 11px;
+        outline: none;
+      }
+      .global-search-wrap input:focus {
+        border-color: #bb7088;
+        box-shadow: 0 0 0 3px rgba(169, 21, 61, 0.07);
+      }
+      .table-tools {
+        display: flex;
+        gap: 7px;
+      }
+      .table-tools {
+        align-items: center;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+      }
+      .table-footer {
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+      .table-footer-controls {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 18px;
+        margin-left: auto;
+      }
+      .page-size {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+      }
+      .page-size select {
+        height: 29px;
+        border: 1px solid #d9e2e7;
+        border-radius: 5px;
+        font-size: 10px;
+        padding: 0 8px;
+      }
+      .page-size {
+        margin: 0;
+        white-space: nowrap;
+      }
+      .page-size select {
+        margin-left: 5px;
+        background: #fff;
+      }
+      .pagination .page-link {
+        font-size: 10px;
+        color: #617481;
+        border-color: #e0e6ea;
+      }
+      .pagination .active .page-link {
+        background: var(--red);
+        border-color: var(--red);
+        color: #fff;
+      }
+      #pagination .page-link {
+        min-width: 28px;
+        text-align: center;
+        cursor: pointer;
+      }
+      #pagination .page-item.disabled .page-link {
+        cursor: not-allowed;
+      }
+      .columns-menu {
+        min-width: 255px;
+        max-height: 70vh;
+        overflow-y: auto;
+      }
+      .columns-menu-title {
+        font-size: 11px;
+        font-weight: 800;
+        color: var(--navy);
+        padding: 5px 8px 9px;
+      }
+      .columns-menu-options {
+        display: grid;
+        gap: 2px;
+      }
+      .columns-menu-options label {
+        display: flex;
+        align-items: flex-start;
+        gap: 8px;
+        padding: 7px 8px;
+        border-radius: 5px;
+        font-size: 11px;
+        color: #405463;
+        cursor: pointer;
+      }
+      .columns-menu-options label:hover {
+        background: #f5eaf0;
+      }
+      .columns-menu-options input {
+        margin-top: 2px;
+        accent-color: var(--red);
+      }
+      @media (max-width: 900px) {
+        .page {
+          padding: 18px 12px;
+        }
+        .top-menu {
+          display: none;
+        }
+        .filter-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .engineering-table {
+          min-width: 650px;
+        }
+      }
+      @media (max-width: 600px) {
+        .filter-grid {
+          grid-template-columns: 1fr;
+        }
+        .table-footer {
+          align-items: flex-start;
+          gap: 8px;
+          flex-direction: column;
+        }
+      }
+      @media (max-width: 700px) {
+        .page-title-row {
+          flex-direction: column;
+          gap: 12px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="container-fluid px-4">
+        <div
+          class="header-inner d-flex align-items-center justify-content-between gap-3"
+        >
+          <a class="mahindra-logo" href="#"
+            ><img src="mahindra_rise_red.png" alt="Mahindra"
+          /></a>
+          <nav class="top-menu">
+            <a href="mahindra_engineering_dashboard.html"
+              ><i class="bi bi-grid-1x2 me-1"></i>Dashboard</a
+            >
+            <!-- <a href="mahindra_engineering_input_bd.html"
+              ><i class="bi bi-folder2-open me-1"></i>Input BD</a
+            >
+            <a href="mahindra_programs.html"
+              ><i class="bi bi-folder2-open me-1"></i>Programs</a
+            ><a href="mahindra_engineering_records.html"
+              ><i class="bi bi-folder2-open me-1"></i>Engineering 1</a
+            ><a href="mahindra_engineering_records_new.html"
+              ><i class="bi bi-folder2-open me-1"></i>Engineering 2</a
+            > -->
+            <a class="active" href="mahindra_tooling_tracker.html">
+              <i class="bi bi-tools me-1"></i>Tooling
+            </a>
+            <a href="#"><i class="bi bi-bar-chart-line me-1"></i>Reports</a>
+          </nav>
+          <div class="dropdown">
+            <button
+              class="profile-btn dropdown-toggle"
+              data-bs-toggle="dropdown"
+            >
+              <div>
+                <div class="profile-name">Priyank Jain</div>
+                <div class="profile-role">Tooling User</div>
+              </div>
+              <span class="avatar">PJ</span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end mt-2">
+              <li>
+                <a class="dropdown-item" href="#"
+                  ><i class="bi bi-person me-2"></i>My Profile</a
+                >
+              </li>
+              <li>
+                <a class="dropdown-item" href="#"
+                  ><i class="bi bi-gear me-2"></i>Settings</a
+                >
+              </li>
+              <li><hr class="dropdown-divider" /></li>
+              <li>
+                <a
+                  class="dropdown-item text-danger"
+                  href="mahindra_engineering_login.html"
+                  ><i class="bi bi-box-arrow-right me-2"></i>Logout</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </header>
+    <main class="page">
+      <div class="page-title-row">
+        <div>
+          <h5 class="title mb-1">Tooling Tracker</h5>
+          <div class="title-accent"></div>
+        </div>
+      </div>
+
+      <section class="filter-card">
+        <div class="filter-grid">
+          <div>
+            <div class="filter-label">Customer</div>
+            <input
+              id="filterCustomer"
+              class="form-control filter-control"
+              placeholder="Search customer"
+            />
+          </div>
+          <div>
+            <div class="filter-label">Part Number</div>
+            <input
+              id="filterPart"
+              class="form-control filter-control"
+              placeholder="Search part number"
+            />
+          </div>
+          <div>
+            <div class="filter-label">Tool Description</div>
+            <input
+              id="filterTool"
+              class="form-control filter-control"
+              placeholder="Search tool description"
+            />
+          </div>
+          <div class="d-flex gap-2">
+            <button class="apply" onclick="applyFilters()">
+              <i class="bi bi-funnel me-1"></i>Apply</button
+            ><button
+              class="tool-btn"
+              onclick="clearFilters()"
+              title="Clear filters"
+            >
+              <i class="bi bi-arrow-counterclockwise"></i>
+            </button>
+          </div>
+        </div>
+      </section>
+      <section class="table-card">
+        <div class="table-head table-head-toolbar">
+          <div class="table-heading-block">
+            <div class="table-title">
+              Tooling Records
+              <span class="table-meta">(<span id="recordCount">10</span>)</span>
+            </div>
+          </div>
+          <div class="table-toolbar-controls">
+            <div class="global-search-wrap">
+              <i class="bi bi-search"></i>
+              <input
+                id="globalSearch"
+                placeholder="Search..."
+                oninput="
+                  currentPage = 1;
+                  render();
+                "
+              />
+            </div>
+            <div class="table-tools">
+              <button
+                class="tool-btn"
+                onclick="exportAll()"
+                title="Export records to CSV"
+              >
+                <i class="bi bi-download me-1"></i>Export
+              </button>
+              <button
+                class="tool-btn"
+                onclick="document.getElementById('excelUpload').click()"
+                title="Upload Excel file"
+              >
+                <i class="bi bi-upload me-1"></i>Upload
+              </button>
+              <input
+                id="excelUpload"
+                type="file"
+                accept=".xlsx,.xls,.csv"
+                hidden
+                onchange="uploadExcel(event)"
+              />
+              <div class="dropdown">
+                <button
+                  class="tool-btn dropdown-toggle"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <i class="bi bi-sliders me-1"></i>Columns
+                </button>
+                <div class="dropdown-menu dropdown-menu-end columns-menu p-2">
+                  <div class="columns-menu-title">Show sections</div>
+                  <div class="columns-menu-options">
+                    <label
+                      ><input
+                        type="checkbox"
+                        checked
+                        onchange="
+                          toggleSectionVisibility('master', this.checked)
+                        "
+                      />
+                      Tool Master / Project</label
+                    >
+                    <label
+                      ><input
+                        type="checkbox"
+                        checked
+                        onchange="
+                          toggleSectionVisibility('gate1', this.checked)
+                        "
+                      />
+                      Gate 1 — Tool Design</label
+                    >
+                    <label
+                      ><input
+                        type="checkbox"
+                        checked
+                        onchange="toggleSectionVisibility('scm', this.checked)"
+                      />
+                      SCM / Manufacturing</label
+                    >
+                    <label
+                      ><input
+                        type="checkbox"
+                        checked
+                        onchange="
+                          toggleSectionVisibility('gate2', this.checked)
+                        "
+                      />
+                      Gate 2 — Tooling Quality &amp; Buy-Off</label
+                    >
+                    <label
+                      ><input
+                        type="checkbox"
+                        checked
+                        onchange="
+                          toggleSectionVisibility('gate3', this.checked)
+                        "
+                      />
+                      Gate 3 — FAI Tool Proveout</label
+                    >
+                    <label
+                      ><input
+                        type="checkbox"
+                        checked
+                        onchange="
+                          toggleSectionVisibility('gate4', this.checked)
+                        "
+                      />
+                      Gate 4 — Handover &amp; Tool Life Cycle</label
+                    >
+                  </div>
+                </div>
+              </div>
+              <button class="tool-btn" onclick="expandAllSections()">
+                <i class="bi bi-arrows-expand me-1"></i>Show all
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="engineering-table-wrap" id="tableWrap">
+          <div class="engineering-table" id="engineeringTable"></div>
+        </div>
+        <div class="table-footer">
+          <div class="table-footer-info">
+            Showing <strong id="showing">1 to 10</strong> of
+            <strong id="total">10</strong> records
+          </div>
+          <div class="table-footer-controls">
+            <nav aria-label="Engineering records pagination">
+              <ul id="pagination" class="pagination pagination-sm mb-0"></ul>
+            </nav>
+            <label class="page-size" for="pageSizeSelect">
+              Rows per page
+              <select id="pageSizeSelect" onchange="changePageSize(this.value)">
+                <option value="10" selected>10</option>
+                <option value="25">25</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+              </select>
+            </label>
+          </div>
+        </div>
+      </section>
+    </main>
+    <div class="modal fade" id="stageModal" tabindex="-1">
+      <div class="modal-dialog modal-xl modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalTitle">Tooling Stage</h5>
+            <button class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <form id="stageForm">
+            <div class="modal-body">
+              <div class="row g-3" id="modalFields"></div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-outline-secondary"
+                data-bs-dismiss="modal"
+              >
+                Cancel</button
+              ><button
+                type="submit"
+                class="btn btn-danger"
+                style="background: #a9153d"
+              >
+                Save Changes
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <input type="file" id="sectionUpload" accept=".xlsx,.xls,.csv" hidden />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+    <script>
+      const SECTIONS = [
+        {
+          key: "master",
+          title: "TOOL MASTER / PROJECT",
+          icon: "bi-folder2-open",
+          fields: [
+            "SR. NO.",
+            "CUSTOMER",
+            "PROJECT",
+            "DERIVABLE PART NO",
+            "PART NO",
+            "SAP NO",
+            "ANNUAL DEMAND",
+            "PART LAUNCH DATE",
+            "TOOL LOB DATE",
+            "C.E INPUT DATA VALIDATION",
+            "REMARKS (C.E)",
+          ],
+        },
+        {
+          key: "gate1",
+          title: "GATE 1 \u2014 TOOL DESIGN",
+          icon: "bi-pencil-square",
+          fields: [
+            "TRF PLAN DATE",
+            "TRF ACT DATE",
+            "TRF NO",
+            "TOOL NUMBER",
+            "TOOL DESCRIPTION",
+            "OPERATION",
+            "COMPLEXITY",
+            "DESIGN (INHOUSE / OUTSOURCED)",
+            "TRS NUMBER (DESIGN)",
+            "TRS PLAN DATE (DESIGN)",
+            "TRS ACT DATE (DESIGN)",
+            "PR NUMBER (DESIGN)",
+            "PR DATE (DESIGN)",
+            "PO DATE (DESIGN)",
+            "PO NO (DESIGN)",
+            "VENDOR INFO (DESIGN)",
+            "DESIGN START DATE (PLAN)",
+            "DESIGN END DATE (PLAN)",
+            "DESIGN START DATE (ACTUAL)",
+            "DESIGN END DATE (ACTUAL)",
+            "APPLICABILITY",
+            "CUSTOMER PLAN DATE",
+            "CUSTOMER ACTUAL DATE",
+            "MASPL TOOL DESIGN VALIDATION",
+            "VALIDATION REMARKS",
+            "DESIGN STATUS",
+            "DELAY (DESIGN)",
+            "DELAY REASON (DESIGN)",
+            "TOOL LENGTH",
+            "TOOL WIDTH",
+            "TOOL HEIGHT",
+          ],
+        },
+        {
+          key: "scm",
+          title: "SCM / MANUFACTURING",
+          icon: "bi-truck",
+          fields: [
+            "TL CODE (SAP)",
+            "MANUFACTURING (OUTSOURCED)",
+            "TRS (MFG)",
+            "TRS PLAN DATE (MFG)",
+            "TRS ACT DATE (MFG)",
+            "PR NUMBER (MFG)",
+            "PR DATE (MFG)",
+            "PO DATE (MFG)",
+            "PO NO (MFG)",
+            "VENDOR INFO (MFG)",
+            "MFG START DATE (PLAN)",
+            "MFG END DATE (PLAN)",
+            "SUPPLIER COMMITTED DATE",
+            "TOOL RECEIVED DATE",
+            "MFG STATUS",
+            "DELAY (MFG)",
+            "DELAY REASON (MFG)",
+          ],
+        },
+        {
+          key: "gate2",
+          title: "GATE 2 \u2014 TOOLING QUALITY & BUY-OFF",
+          icon: "bi-shield-check",
+          fields: [
+            "MASPL TOOLING QUALITY ACCEPTANCE",
+            "MASPL TOOL BUY-OFF (MFG)",
+            "BUY-OFF REMARKS (MFG)",
+          ],
+        },
+        {
+          key: "gate3",
+          title: "GATE 3 \u2014 FAI TOOL PROVEOUT",
+          icon: "bi-clipboard-check",
+          fields: ["FAI TOOL PROVEOUT", "PROVEOUT REMARKS"],
+        },
+        {
+          key: "gate4",
+          title: "GATE 4 \u2014 HANDOVER & TOOL LIFE CYCLE",
+          icon: "bi-box-seam",
+          fields: [
+            "ACCEPTANCE / REJECTION CRITERIA",
+            "TOOL HANDOVER TO STORES",
+            "TOOL LIFE CYCLE",
+            "VALIDATION FREQUENCY",
+            "PREVIOUS VALIDATION DATE",
+            "NEXT VALIDATION DATE",
+            "REMARKS",
+          ],
+        },
+      ];
+      let records = [
+        {
+          "SR. NO.": 1,
+          CUSTOMER: "ATLANTIC",
+          PROJECT: "ABS",
+          "DERIVABLE PART NO": "Z5791303430400",
+          "PART NO": "Z579-13034-304-00",
+          "SAP NO": "Z5791303430400",
+          "ANNUAL DEMAND": "",
+          "PART LAUNCH DATE": "7/18/2024",
+          "TOOL LOB DATE": "27/Jun/2024",
+          "C.E INPUT DATA VALIDATION": "Yes",
+          "REMARKS (C.E)": "",
+          "TRF PLAN DATE": "16/Dec/2023",
+          "TRF ACT DATE": "",
+          "TRF NO": "",
+          "TOOL NUMBER": "48500D57914677200000",
+          "TOOL DESCRIPTION": "MILLING FIXTURE",
+          OPERATION: "CNC Machining",
+          COMPLEXITY: "Medium",
+          "DESIGN (INHOUSE / OUTSOURCED)": "IN-HOUSE",
+          "TRS NUMBER (DESIGN)": "",
+          "TRS PLAN DATE (DESIGN)": "",
+          "TRS ACT DATE (DESIGN)": "",
+          "PR NUMBER (DESIGN)": "",
+          "PR DATE (DESIGN)": "",
+          "PO DATE (DESIGN)": "",
+          "PO NO (DESIGN)": "",
+          "VENDOR INFO (DESIGN)": "",
+          "DESIGN START DATE (PLAN)": "7/Jan/2024",
+          "DESIGN END DATE (PLAN)": "7/Mar/2024",
+          "DESIGN START DATE (ACTUAL)": "",
+          "DESIGN END DATE (ACTUAL)": "",
+          APPLICABILITY: "No",
+          "CUSTOMER PLAN DATE": "",
+          "CUSTOMER ACTUAL DATE": "",
+          "MASPL TOOL DESIGN VALIDATION": "Yes",
+          "VALIDATION REMARKS": "",
+          "DESIGN STATUS": "Completed",
+          "DELAY (DESIGN)": "",
+          "DELAY REASON (DESIGN)": "",
+          "TOOL LENGTH": "330",
+          "TOOL WIDTH": "192",
+          "TOOL HEIGHT": "103",
+          "TL CODE (SAP)": "TL0360090010001",
+          "MANUFACTURING (OUTSOURCED)": "OUTSOURCE",
+          "TRS (MFG)": "TRS-1762",
+          "TRS PLAN DATE (MFG)": "22/Mar/2024",
+          "TRS ACT DATE (MFG)": "20-Dec-24",
+          "PR NUMBER (MFG)": "1128571993",
+          "PR DATE (MFG)": "20-Dec-24",
+          "PO DATE (MFG)": "",
+          "PO NO (MFG)": "",
+          "VENDOR INFO (MFG)": "",
+          "MFG START DATE (PLAN)": "29/Mar/2024",
+          "MFG END DATE (PLAN)": "27/Jun/2024",
+          "SUPPLIER COMMITTED DATE": "",
+          "TOOL RECEIVED DATE": "12-Jul-24",
+          "MFG STATUS": "Received from Vendor",
+          "DELAY (MFG)": "",
+          "DELAY REASON (MFG)": "",
+          "MASPL TOOLING QUALITY ACCEPTANCE": "",
+          "MASPL TOOL BUY-OFF (MFG)": "Yes",
+          "BUY-OFF REMARKS (MFG)": "",
+          "FAI TOOL PROVEOUT": "Yes",
+          "PROVEOUT REMARKS": "",
+          "ACCEPTANCE / REJECTION CRITERIA": "",
+          "TOOL HANDOVER TO STORES": "",
+          "TOOL LIFE CYCLE": "1 year",
+          "VALIDATION FREQUENCY": "",
+          "PREVIOUS VALIDATION DATE": "12-Jul-24",
+          "NEXT VALIDATION DATE": "12-Jul-25",
+          REMARKS: "",
+        },
+        {
+          "SR. NO.": 2,
+          CUSTOMER: "ATLANTIC",
+          PROJECT: "ABS",
+          "DERIVABLE PART NO": "Z5791303330400",
+          "PART NO": "Z579-13033-304-00",
+          "SAP NO": "Z5791303330400",
+          "ANNUAL DEMAND": "",
+          "PART LAUNCH DATE": "7/18/2024",
+          "TOOL LOB DATE": "27/Jun/2024",
+          "C.E INPUT DATA VALIDATION": "Yes",
+          "REMARKS (C.E)": "",
+          "TRF PLAN DATE": "16/Dec/2023",
+          "TRF ACT DATE": "",
+          "TRF NO": "",
+          "TOOL NUMBER": "48500D57914677200000",
+          "TOOL DESCRIPTION": "MILLING FIXTURE",
+          OPERATION: "CNC Machining",
+          COMPLEXITY: "Medium",
+          "DESIGN (INHOUSE / OUTSOURCED)": "IN-HOUSE",
+          "TRS NUMBER (DESIGN)": "",
+          "TRS PLAN DATE (DESIGN)": "",
+          "TRS ACT DATE (DESIGN)": "",
+          "PR NUMBER (DESIGN)": "",
+          "PR DATE (DESIGN)": "",
+          "PO DATE (DESIGN)": "",
+          "PO NO (DESIGN)": "",
+          "VENDOR INFO (DESIGN)": "",
+          "DESIGN START DATE (PLAN)": "7/Jan/2024",
+          "DESIGN END DATE (PLAN)": "7/Mar/2024",
+          "DESIGN START DATE (ACTUAL)": "",
+          "DESIGN END DATE (ACTUAL)": "",
+          APPLICABILITY: "No",
+          "CUSTOMER PLAN DATE": "",
+          "CUSTOMER ACTUAL DATE": "",
+          "MASPL TOOL DESIGN VALIDATION": "Yes",
+          "VALIDATION REMARKS": "",
+          "DESIGN STATUS": "Completed",
+          "DELAY (DESIGN)": "",
+          "DELAY REASON (DESIGN)": "",
+          "TOOL LENGTH": "330",
+          "TOOL WIDTH": "192",
+          "TOOL HEIGHT": "103",
+          "TL CODE (SAP)": "TL0360090010001",
+          "MANUFACTURING (OUTSOURCED)": "OUTSOURCE",
+          "TRS (MFG)": "TRS-1762",
+          "TRS PLAN DATE (MFG)": "22/Mar/2024",
+          "TRS ACT DATE (MFG)": "20-Dec-24",
+          "PR NUMBER (MFG)": "1128571993",
+          "PR DATE (MFG)": "20-Dec-24",
+          "PO DATE (MFG)": "",
+          "PO NO (MFG)": "",
+          "VENDOR INFO (MFG)": "",
+          "MFG START DATE (PLAN)": "29/Mar/2024",
+          "MFG END DATE (PLAN)": "27/Jun/2024",
+          "SUPPLIER COMMITTED DATE": "",
+          "TOOL RECEIVED DATE": "17-Jul-24",
+          "MFG STATUS": "Received from Vendor",
+          "DELAY (MFG)": "",
+          "DELAY REASON (MFG)": "",
+          "MASPL TOOLING QUALITY ACCEPTANCE": "",
+          "MASPL TOOL BUY-OFF (MFG)": "Yes",
+          "BUY-OFF REMARKS (MFG)": "",
+          "FAI TOOL PROVEOUT": "Yes",
+          "PROVEOUT REMARKS": "",
+          "ACCEPTANCE / REJECTION CRITERIA": "",
+          "TOOL HANDOVER TO STORES": "",
+          "TOOL LIFE CYCLE": "1 year",
+          "VALIDATION FREQUENCY": "",
+          "PREVIOUS VALIDATION DATE": "17-Jul-24",
+          "NEXT VALIDATION DATE": "",
+          REMARKS: "",
+        },
+        {
+          "SR. NO.": 3,
+          CUSTOMER: "ATLANTIC",
+          PROJECT: "ABS",
+          "DERIVABLE PART NO": "Z5791303730400",
+          "PART NO": "Z579-13037-304-00",
+          "SAP NO": "Z5791303730400",
+          "ANNUAL DEMAND": "",
+          "PART LAUNCH DATE": "7/18/2024",
+          "TOOL LOB DATE": "27/Jun/2024",
+          "C.E INPUT DATA VALIDATION": "Yes",
+          "REMARKS (C.E)": "",
+          "TRF PLAN DATE": "16/Dec/2023",
+          "TRF ACT DATE": "",
+          "TRF NO": "",
+          "TOOL NUMBER": "54100D53931727200000",
+          "TOOL DESCRIPTION": "PRESS TOOL",
+          OPERATION: "Forming",
+          COMPLEXITY: "Medium",
+          "DESIGN (INHOUSE / OUTSOURCED)": "IN-HOUSE",
+          "TRS NUMBER (DESIGN)": "",
+          "TRS PLAN DATE (DESIGN)": "",
+          "TRS ACT DATE (DESIGN)": "",
+          "PR NUMBER (DESIGN)": "",
+          "PR DATE (DESIGN)": "",
+          "PO DATE (DESIGN)": "",
+          "PO NO (DESIGN)": "",
+          "VENDOR INFO (DESIGN)": "",
+          "DESIGN START DATE (PLAN)": "7/Jan/2024",
+          "DESIGN END DATE (PLAN)": "7/Mar/2024",
+          "DESIGN START DATE (ACTUAL)": "",
+          "DESIGN END DATE (ACTUAL)": "",
+          APPLICABILITY: "No",
+          "CUSTOMER PLAN DATE": "",
+          "CUSTOMER ACTUAL DATE": "",
+          "MASPL TOOL DESIGN VALIDATION": "Yes",
+          "VALIDATION REMARKS": "",
+          "DESIGN STATUS": "Completed",
+          "DELAY (DESIGN)": "",
+          "DELAY REASON (DESIGN)": "",
+          "TOOL LENGTH": "225",
+          "TOOL WIDTH": "120",
+          "TOOL HEIGHT": "71.2",
+          "TL CODE (SAP)": "TL0360080010005",
+          "MANUFACTURING (OUTSOURCED)": "OUTSOURCE",
+          "TRS (MFG)": "TRS-1176",
+          "TRS PLAN DATE (MFG)": "22/Mar/2024",
+          "TRS ACT DATE (MFG)": "9-Dec-24",
+          "PR NUMBER (MFG)": "1128571993",
+          "PR DATE (MFG)": "12-Sep-24",
+          "PO DATE (MFG)": "",
+          "PO NO (MFG)": "",
+          "VENDOR INFO (MFG)": "",
+          "MFG START DATE (PLAN)": "29/Mar/2024",
+          "MFG END DATE (PLAN)": "27/Jun/2024",
+          "SUPPLIER COMMITTED DATE": "",
+          "TOOL RECEIVED DATE": "22-Jul-24",
+          "MFG STATUS": "Received from Vendor",
+          "DELAY (MFG)": "",
+          "DELAY REASON (MFG)": "",
+          "MASPL TOOLING QUALITY ACCEPTANCE": "",
+          "MASPL TOOL BUY-OFF (MFG)": "Yes",
+          "BUY-OFF REMARKS (MFG)": "",
+          "FAI TOOL PROVEOUT": "Yes",
+          "PROVEOUT REMARKS": "",
+          "ACCEPTANCE / REJECTION CRITERIA": "",
+          "TOOL HANDOVER TO STORES": "",
+          "TOOL LIFE CYCLE": "1 year",
+          "VALIDATION FREQUENCY": "",
+          "PREVIOUS VALIDATION DATE": "22-Jul-24",
+          "NEXT VALIDATION DATE": "",
+          REMARKS: "",
+        },
+        {
+          "SR. NO.": 4,
+          CUSTOMER: "ATLANTIC",
+          PROJECT: "ABS",
+          "DERIVABLE PART NO": "Z5791303530400",
+          "PART NO": "Z579-13035-304-00",
+          "SAP NO": "Z5791303530400",
+          "ANNUAL DEMAND": "",
+          "PART LAUNCH DATE": "7/18/2024",
+          "TOOL LOB DATE": "27/Jun/2024",
+          "C.E INPUT DATA VALIDATION": "Yes",
+          "REMARKS (C.E)": "",
+          "TRF PLAN DATE": "16/Dec/2023",
+          "TRF ACT DATE": "",
+          "TRF NO": "",
+          "TOOL NUMBER": "54100D53922064200000",
+          "TOOL DESCRIPTION": "FORM BLOCK",
+          OPERATION: "Forming",
+          COMPLEXITY: "Medium",
+          "DESIGN (INHOUSE / OUTSOURCED)": "IN-HOUSE",
+          "TRS NUMBER (DESIGN)": "",
+          "TRS PLAN DATE (DESIGN)": "",
+          "TRS ACT DATE (DESIGN)": "",
+          "PR NUMBER (DESIGN)": "",
+          "PR DATE (DESIGN)": "",
+          "PO DATE (DESIGN)": "",
+          "PO NO (DESIGN)": "",
+          "VENDOR INFO (DESIGN)": "",
+          "DESIGN START DATE (PLAN)": "7/Jan/2024",
+          "DESIGN END DATE (PLAN)": "7/Mar/2024",
+          "DESIGN START DATE (ACTUAL)": "",
+          "DESIGN END DATE (ACTUAL)": "",
+          APPLICABILITY: "No",
+          "CUSTOMER PLAN DATE": "",
+          "CUSTOMER ACTUAL DATE": "",
+          "MASPL TOOL DESIGN VALIDATION": "Yes",
+          "VALIDATION REMARKS": "",
+          "DESIGN STATUS": "Completed",
+          "DELAY (DESIGN)": "",
+          "DELAY REASON (DESIGN)": "",
+          "TOOL LENGTH": "128",
+          "TOOL WIDTH": "102",
+          "TOOL HEIGHT": "82",
+          "TL CODE (SAP)": "TL0360010010003",
+          "MANUFACTURING (OUTSOURCED)": "OUTSOURCE",
+          "TRS (MFG)": "TRS-1762",
+          "TRS PLAN DATE (MFG)": "22/Mar/2024",
+          "TRS ACT DATE (MFG)": "20-Dec-24",
+          "PR NUMBER (MFG)": "1128571993",
+          "PR DATE (MFG)": "20-Dec-24",
+          "PO DATE (MFG)": "",
+          "PO NO (MFG)": "",
+          "VENDOR INFO (MFG)": "",
+          "MFG START DATE (PLAN)": "29/Mar/2024",
+          "MFG END DATE (PLAN)": "27/Jun/2024",
+          "SUPPLIER COMMITTED DATE": "",
+          "TOOL RECEIVED DATE": "27-Jun-24",
+          "MFG STATUS": "Received from Vendor",
+          "DELAY (MFG)": "",
+          "DELAY REASON (MFG)": "",
+          "MASPL TOOLING QUALITY ACCEPTANCE": "",
+          "MASPL TOOL BUY-OFF (MFG)": "Yes",
+          "BUY-OFF REMARKS (MFG)": "",
+          "FAI TOOL PROVEOUT": "Yes",
+          "PROVEOUT REMARKS": "",
+          "ACCEPTANCE / REJECTION CRITERIA": "",
+          "TOOL HANDOVER TO STORES": "",
+          "TOOL LIFE CYCLE": "1 year",
+          "VALIDATION FREQUENCY": "",
+          "PREVIOUS VALIDATION DATE": "27-Jun-24",
+          "NEXT VALIDATION DATE": "",
+          REMARKS: "",
+        },
+        {
+          "SR. NO.": 5,
+          CUSTOMER: "ATLANTIC",
+          PROJECT: "ABS",
+          "DERIVABLE PART NO": "Z5791319730300",
+          "PART NO": "Z579-13197-303-00",
+          "SAP NO": "Z5791319730300",
+          "ANNUAL DEMAND": "",
+          "PART LAUNCH DATE": "7/18/2024",
+          "TOOL LOB DATE": "27/Jun/2024",
+          "C.E INPUT DATA VALIDATION": "Yes",
+          "REMARKS (C.E)": "",
+          "TRF PLAN DATE": "16/Dec/2023",
+          "TRF ACT DATE": "",
+          "TRF NO": "",
+          "TOOL NUMBER": "54100E53911171204000",
+          "TOOL DESCRIPTION": "FORM BLOCK",
+          OPERATION: "Forming",
+          COMPLEXITY: "Medium",
+          "DESIGN (INHOUSE / OUTSOURCED)": "IN-HOUSE",
+          "TRS NUMBER (DESIGN)": "",
+          "TRS PLAN DATE (DESIGN)": "",
+          "TRS ACT DATE (DESIGN)": "",
+          "PR NUMBER (DESIGN)": "",
+          "PR DATE (DESIGN)": "",
+          "PO DATE (DESIGN)": "",
+          "PO NO (DESIGN)": "",
+          "VENDOR INFO (DESIGN)": "",
+          "DESIGN START DATE (PLAN)": "7/Jan/2024",
+          "DESIGN END DATE (PLAN)": "7/Mar/2024",
+          "DESIGN START DATE (ACTUAL)": "",
+          "DESIGN END DATE (ACTUAL)": "",
+          APPLICABILITY: "No",
+          "CUSTOMER PLAN DATE": "",
+          "CUSTOMER ACTUAL DATE": "",
+          "MASPL TOOL DESIGN VALIDATION": "Yes",
+          "VALIDATION REMARKS": "",
+          "DESIGN STATUS": "Completed",
+          "DELAY (DESIGN)": "",
+          "DELAY REASON (DESIGN)": "",
+          "TOOL LENGTH": "380",
+          "TOOL WIDTH": "369",
+          "TOOL HEIGHT": "57",
+          "TL CODE (SAP)": "TL0360010010004",
+          "MANUFACTURING (OUTSOURCED)": "OUTSOURCE",
+          "TRS (MFG)": "TRS-1762",
+          "TRS PLAN DATE (MFG)": "22/Mar/2024",
+          "TRS ACT DATE (MFG)": "20-Dec-24",
+          "PR NUMBER (MFG)": "1128571993",
+          "PR DATE (MFG)": "20-Dec-24",
+          "PO DATE (MFG)": "",
+          "PO NO (MFG)": "",
+          "VENDOR INFO (MFG)": "",
+          "MFG START DATE (PLAN)": "29/Mar/2024",
+          "MFG END DATE (PLAN)": "27/Jun/2024",
+          "SUPPLIER COMMITTED DATE": "",
+          "TOOL RECEIVED DATE": "5-Jul-24",
+          "MFG STATUS": "Received from Vendor",
+          "DELAY (MFG)": "",
+          "DELAY REASON (MFG)": "",
+          "MASPL TOOLING QUALITY ACCEPTANCE": "",
+          "MASPL TOOL BUY-OFF (MFG)": "Yes",
+          "BUY-OFF REMARKS (MFG)": "",
+          "FAI TOOL PROVEOUT": "Yes",
+          "PROVEOUT REMARKS": "",
+          "ACCEPTANCE / REJECTION CRITERIA": "",
+          "TOOL HANDOVER TO STORES": "",
+          "TOOL LIFE CYCLE": "1 year",
+          "VALIDATION FREQUENCY": "",
+          "PREVIOUS VALIDATION DATE": "5-Jul-24",
+          "NEXT VALIDATION DATE": "",
+          REMARKS: "",
+        },
+        {
+          "SR. NO.": 6,
+          CUSTOMER: "ATLANTIC",
+          PROJECT: "ABS",
+          "DERIVABLE PART NO": "Z5791303130400",
+          "PART NO": "Z579-13031-304-00",
+          "SAP NO": "Z5791303130400",
+          "ANNUAL DEMAND": "",
+          "PART LAUNCH DATE": "7/18/2024",
+          "TOOL LOB DATE": "27/Jun/2024",
+          "C.E INPUT DATA VALIDATION": "Yes",
+          "REMARKS (C.E)": "",
+          "TRF PLAN DATE": "16/Dec/2023",
+          "TRF ACT DATE": "",
+          "TRF NO": "",
+          "TOOL NUMBER": "54100A53610044208000",
+          "TOOL DESCRIPTION": "FORM BLOCK",
+          OPERATION: "Forming",
+          COMPLEXITY: "Medium",
+          "DESIGN (INHOUSE / OUTSOURCED)": "IN-HOUSE",
+          "TRS NUMBER (DESIGN)": "",
+          "TRS PLAN DATE (DESIGN)": "",
+          "TRS ACT DATE (DESIGN)": "",
+          "PR NUMBER (DESIGN)": "",
+          "PR DATE (DESIGN)": "",
+          "PO DATE (DESIGN)": "",
+          "PO NO (DESIGN)": "",
+          "VENDOR INFO (DESIGN)": "",
+          "DESIGN START DATE (PLAN)": "7/Jan/2024",
+          "DESIGN END DATE (PLAN)": "7/Mar/2024",
+          "DESIGN START DATE (ACTUAL)": "",
+          "DESIGN END DATE (ACTUAL)": "",
+          APPLICABILITY: "No",
+          "CUSTOMER PLAN DATE": "",
+          "CUSTOMER ACTUAL DATE": "",
+          "MASPL TOOL DESIGN VALIDATION": "Yes",
+          "VALIDATION REMARKS": "",
+          "DESIGN STATUS": "Completed",
+          "DELAY (DESIGN)": "",
+          "DELAY REASON (DESIGN)": "",
+          "TOOL LENGTH": "130",
+          "TOOL WIDTH": "92.9",
+          "TOOL HEIGHT": "40",
+          "TL CODE (SAP)": "TL0360010010053",
+          "MANUFACTURING (OUTSOURCED)": "OUTSOURCE",
+          "TRS (MFG)": "TRS-1854",
+          "TRS PLAN DATE (MFG)": "22/Mar/2024",
+          "TRS ACT DATE (MFG)": "12-May-25",
+          "PR NUMBER (MFG)": "1129153035",
+          "PR DATE (MFG)": "12-May-25",
+          "PO DATE (MFG)": "",
+          "PO NO (MFG)": "",
+          "VENDOR INFO (MFG)": "",
+          "MFG START DATE (PLAN)": "29/Mar/2024",
+          "MFG END DATE (PLAN)": "27/Jun/2024",
+          "SUPPLIER COMMITTED DATE": "",
+          "TOOL RECEIVED DATE": "23-Jul-24",
+          "MFG STATUS": "Received from Vendor",
+          "DELAY (MFG)": "",
+          "DELAY REASON (MFG)": "",
+          "MASPL TOOLING QUALITY ACCEPTANCE": "",
+          "MASPL TOOL BUY-OFF (MFG)": "Yes",
+          "BUY-OFF REMARKS (MFG)": "",
+          "FAI TOOL PROVEOUT": "Yes",
+          "PROVEOUT REMARKS": "",
+          "ACCEPTANCE / REJECTION CRITERIA": "",
+          "TOOL HANDOVER TO STORES": "",
+          "TOOL LIFE CYCLE": "1 year",
+          "VALIDATION FREQUENCY": "",
+          "PREVIOUS VALIDATION DATE": "23-Jul-24",
+          "NEXT VALIDATION DATE": "",
+          REMARKS: "",
+        },
+        {
+          "SR. NO.": 7,
+          CUSTOMER: "ATLANTIC",
+          PROJECT: "ABS",
+          "DERIVABLE PART NO": "Z5391064000000",
+          "PART NO": "Z539-10640-000-00",
+          "SAP NO": "Z5391064000000",
+          "ANNUAL DEMAND": "",
+          "PART LAUNCH DATE": "7/18/2024",
+          "TOOL LOB DATE": "27/Jun/2024",
+          "C.E INPUT DATA VALIDATION": "Yes",
+          "REMARKS (C.E)": "",
+          "TRF PLAN DATE": "16/Dec/2023",
+          "TRF ACT DATE": "",
+          "TRF NO": "",
+          "TOOL NUMBER": "54100A53610044209000",
+          "TOOL DESCRIPTION": "FORM BLOCK",
+          OPERATION: "Forming",
+          COMPLEXITY: "Medium",
+          "DESIGN (INHOUSE / OUTSOURCED)": "IN-HOUSE",
+          "TRS NUMBER (DESIGN)": "",
+          "TRS PLAN DATE (DESIGN)": "",
+          "TRS ACT DATE (DESIGN)": "",
+          "PR NUMBER (DESIGN)": "",
+          "PR DATE (DESIGN)": "",
+          "PO DATE (DESIGN)": "",
+          "PO NO (DESIGN)": "",
+          "VENDOR INFO (DESIGN)": "",
+          "DESIGN START DATE (PLAN)": "7/Jan/2024",
+          "DESIGN END DATE (PLAN)": "7/Mar/2024",
+          "DESIGN START DATE (ACTUAL)": "",
+          "DESIGN END DATE (ACTUAL)": "",
+          APPLICABILITY: "No",
+          "CUSTOMER PLAN DATE": "",
+          "CUSTOMER ACTUAL DATE": "",
+          "MASPL TOOL DESIGN VALIDATION": "Yes",
+          "VALIDATION REMARKS": "",
+          "DESIGN STATUS": "Completed",
+          "DELAY (DESIGN)": "",
+          "DELAY REASON (DESIGN)": "",
+          "TOOL LENGTH": "130",
+          "TOOL WIDTH": "92.9",
+          "TOOL HEIGHT": "40",
+          "TL CODE (SAP)": "TL0360010010054",
+          "MANUFACTURING (OUTSOURCED)": "OUTSOURCE",
+          "TRS (MFG)": "TRS-1854",
+          "TRS PLAN DATE (MFG)": "22/Mar/2024",
+          "TRS ACT DATE (MFG)": "12-May-25",
+          "PR NUMBER (MFG)": "1129153035",
+          "PR DATE (MFG)": "12-May-25",
+          "PO DATE (MFG)": "",
+          "PO NO (MFG)": "",
+          "VENDOR INFO (MFG)": "",
+          "MFG START DATE (PLAN)": "29/Mar/2024",
+          "MFG END DATE (PLAN)": "27/Jun/2024",
+          "SUPPLIER COMMITTED DATE": "",
+          "TOOL RECEIVED DATE": "1-Aug-24",
+          "MFG STATUS": "Received from Vendor",
+          "DELAY (MFG)": "",
+          "DELAY REASON (MFG)": "",
+          "MASPL TOOLING QUALITY ACCEPTANCE": "",
+          "MASPL TOOL BUY-OFF (MFG)": "Yes",
+          "BUY-OFF REMARKS (MFG)": "",
+          "FAI TOOL PROVEOUT": "Yes",
+          "PROVEOUT REMARKS": "",
+          "ACCEPTANCE / REJECTION CRITERIA": "",
+          "TOOL HANDOVER TO STORES": "",
+          "TOOL LIFE CYCLE": "1 year",
+          "VALIDATION FREQUENCY": "",
+          "PREVIOUS VALIDATION DATE": "1-Aug-24",
+          "NEXT VALIDATION DATE": "",
+          REMARKS: "",
+        },
+        {
+          "SR. NO.": 8,
+          CUSTOMER: "ATLANTIC",
+          PROJECT: "ABS",
+          "DERIVABLE PART NO": "X5393680130300",
+          "PART NO": "X539-36801-303-00",
+          "SAP NO": "X5393680130300",
+          "ANNUAL DEMAND": "",
+          "PART LAUNCH DATE": "7/18/2024",
+          "TOOL LOB DATE": "27/Jun/2024",
+          "C.E INPUT DATA VALIDATION": "Yes",
+          "REMARKS (C.E)": "",
+          "TRF PLAN DATE": "16/Dec/2023",
+          "TRF ACT DATE": "",
+          "TRF NO": "",
+          "TOOL NUMBER": "48500A53610221316000",
+          "TOOL DESCRIPTION": "MILLING FIXTURE",
+          OPERATION: "CNC Machining",
+          COMPLEXITY: "Simple",
+          "DESIGN (INHOUSE / OUTSOURCED)": "IN-HOUSE",
+          "TRS NUMBER (DESIGN)": "",
+          "TRS PLAN DATE (DESIGN)": "",
+          "TRS ACT DATE (DESIGN)": "",
+          "PR NUMBER (DESIGN)": "",
+          "PR DATE (DESIGN)": "",
+          "PO DATE (DESIGN)": "",
+          "PO NO (DESIGN)": "",
+          "VENDOR INFO (DESIGN)": "",
+          "DESIGN START DATE (PLAN)": "7/Jan/2024",
+          "DESIGN END DATE (PLAN)": "7/Mar/2024",
+          "DESIGN START DATE (ACTUAL)": "",
+          "DESIGN END DATE (ACTUAL)": "",
+          APPLICABILITY: "No",
+          "CUSTOMER PLAN DATE": "",
+          "CUSTOMER ACTUAL DATE": "",
+          "MASPL TOOL DESIGN VALIDATION": "Yes",
+          "VALIDATION REMARKS": "",
+          "DESIGN STATUS": "Completed",
+          "DELAY (DESIGN)": "",
+          "DELAY REASON (DESIGN)": "",
+          "TOOL LENGTH": "250",
+          "TOOL WIDTH": "110",
+          "TOOL HEIGHT": "25",
+          "TL CODE (SAP)": "TL0360090010066",
+          "MANUFACTURING (OUTSOURCED)": "OUTSOURCE",
+          "TRS (MFG)": "TRS-1875",
+          "TRS PLAN DATE (MFG)": "22/Mar/2024",
+          "TRS ACT DATE (MFG)": "3-Jun-25",
+          "PR NUMBER (MFG)": "1129250005",
+          "PR DATE (MFG)": "3-Jun-25",
+          "PO DATE (MFG)": "",
+          "PO NO (MFG)": "",
+          "VENDOR INFO (MFG)": "",
+          "MFG START DATE (PLAN)": "29/Mar/2024",
+          "MFG END DATE (PLAN)": "27/Jun/2024",
+          "SUPPLIER COMMITTED DATE": "",
+          "TOOL RECEIVED DATE": "30-Jun-24",
+          "MFG STATUS": "Received from Vendor",
+          "DELAY (MFG)": "",
+          "DELAY REASON (MFG)": "",
+          "MASPL TOOLING QUALITY ACCEPTANCE": "",
+          "MASPL TOOL BUY-OFF (MFG)": "Yes",
+          "BUY-OFF REMARKS (MFG)": "",
+          "FAI TOOL PROVEOUT": "Yes",
+          "PROVEOUT REMARKS": "",
+          "ACCEPTANCE / REJECTION CRITERIA": "",
+          "TOOL HANDOVER TO STORES": "",
+          "TOOL LIFE CYCLE": "1 year",
+          "VALIDATION FREQUENCY": "",
+          "PREVIOUS VALIDATION DATE": "30-Jun-24",
+          "NEXT VALIDATION DATE": "",
+          REMARKS: "",
+        },
+        {
+          "SR. NO.": 9,
+          CUSTOMER: "ATLANTIC",
+          PROJECT: "ABS",
+          "DERIVABLE PART NO": "Z5391067830000",
+          "PART NO": "Z539-10678-300-00",
+          "SAP NO": "Z5391067830000",
+          "ANNUAL DEMAND": "",
+          "PART LAUNCH DATE": "7/18/2024",
+          "TOOL LOB DATE": "27/Jun/2024",
+          "C.E INPUT DATA VALIDATION": "Yes",
+          "REMARKS (C.E)": "",
+          "TRF PLAN DATE": "16/Dec/2023",
+          "TRF ACT DATE": "",
+          "TRF NO": "",
+          "TOOL NUMBER": "54100D21210684200000",
+          "TOOL DESCRIPTION": "FORM BLOCK",
+          OPERATION: "Forming",
+          COMPLEXITY: "Simple",
+          "DESIGN (INHOUSE / OUTSOURCED)": "IN-HOUSE",
+          "TRS NUMBER (DESIGN)": "",
+          "TRS PLAN DATE (DESIGN)": "",
+          "TRS ACT DATE (DESIGN)": "",
+          "PR NUMBER (DESIGN)": "",
+          "PR DATE (DESIGN)": "",
+          "PO DATE (DESIGN)": "",
+          "PO NO (DESIGN)": "",
+          "VENDOR INFO (DESIGN)": "",
+          "DESIGN START DATE (PLAN)": "7/Jan/2024",
+          "DESIGN END DATE (PLAN)": "7/Mar/2024",
+          "DESIGN START DATE (ACTUAL)": "",
+          "DESIGN END DATE (ACTUAL)": "",
+          APPLICABILITY: "No",
+          "CUSTOMER PLAN DATE": "",
+          "CUSTOMER ACTUAL DATE": "",
+          "MASPL TOOL DESIGN VALIDATION": "Yes",
+          "VALIDATION REMARKS": "",
+          "DESIGN STATUS": "Completed",
+          "DELAY (DESIGN)": "",
+          "DELAY REASON (DESIGN)": "",
+          "TOOL LENGTH": "200",
+          "TOOL WIDTH": "160",
+          "TOOL HEIGHT": "56.8",
+          "TL CODE (SAP)": "TL0360010010080",
+          "MANUFACTURING (OUTSOURCED)": "OUTSOURCE",
+          "TRS (MFG)": "TRS-1895",
+          "TRS PLAN DATE (MFG)": "22/Mar/2024",
+          "TRS ACT DATE (MFG)": "17-Jun-25",
+          "PR NUMBER (MFG)": "1129377449",
+          "PR DATE (MFG)": "17-Jun-25",
+          "PO DATE (MFG)": "",
+          "PO NO (MFG)": "",
+          "VENDOR INFO (MFG)": "",
+          "MFG START DATE (PLAN)": "29/Mar/2024",
+          "MFG END DATE (PLAN)": "27/Jun/2024",
+          "SUPPLIER COMMITTED DATE": "",
+          "TOOL RECEIVED DATE": "7-Jul-24",
+          "MFG STATUS": "Received from Vendor",
+          "DELAY (MFG)": "",
+          "DELAY REASON (MFG)": "",
+          "MASPL TOOLING QUALITY ACCEPTANCE": "",
+          "MASPL TOOL BUY-OFF (MFG)": "Yes",
+          "BUY-OFF REMARKS (MFG)": "",
+          "FAI TOOL PROVEOUT": "Yes",
+          "PROVEOUT REMARKS": "",
+          "ACCEPTANCE / REJECTION CRITERIA": "",
+          "TOOL HANDOVER TO STORES": "",
+          "TOOL LIFE CYCLE": "1 year",
+          "VALIDATION FREQUENCY": "",
+          "PREVIOUS VALIDATION DATE": "7-Jul-24",
+          "NEXT VALIDATION DATE": "",
+          REMARKS: "",
+        },
+        {
+          "SR. NO.": 10,
+          CUSTOMER: "ATLANTIC",
+          PROJECT: "ABS",
+          "DERIVABLE PART NO": "Z5393680130400",
+          "PART NO": "Z539-36801-304-00",
+          "SAP NO": "Z5393680130400",
+          "ANNUAL DEMAND": "",
+          "PART LAUNCH DATE": "7/18/2024",
+          "TOOL LOB DATE": "27/Jun/2024",
+          "C.E INPUT DATA VALIDATION": "Yes",
+          "REMARKS (C.E)": "",
+          "TRF PLAN DATE": "16/Dec/2023",
+          "TRF ACT DATE": "",
+          "TRF NO": "",
+          "TOOL NUMBER": "54100D53230653200000",
+          "TOOL DESCRIPTION": "FORM BLOCK",
+          OPERATION: "Forming",
+          COMPLEXITY: "Simple",
+          "DESIGN (INHOUSE / OUTSOURCED)": "IN-HOUSE",
+          "TRS NUMBER (DESIGN)": "",
+          "TRS PLAN DATE (DESIGN)": "",
+          "TRS ACT DATE (DESIGN)": "",
+          "PR NUMBER (DESIGN)": "",
+          "PR DATE (DESIGN)": "",
+          "PO DATE (DESIGN)": "",
+          "PO NO (DESIGN)": "",
+          "VENDOR INFO (DESIGN)": "",
+          "DESIGN START DATE (PLAN)": "7/Jan/2024",
+          "DESIGN END DATE (PLAN)": "7/Mar/2024",
+          "DESIGN START DATE (ACTUAL)": "",
+          "DESIGN END DATE (ACTUAL)": "",
+          APPLICABILITY: "No",
+          "CUSTOMER PLAN DATE": "",
+          "CUSTOMER ACTUAL DATE": "",
+          "MASPL TOOL DESIGN VALIDATION": "Yes",
+          "VALIDATION REMARKS": "",
+          "DESIGN STATUS": "Completed",
+          "DELAY (DESIGN)": "",
+          "DELAY REASON (DESIGN)": "",
+          "TOOL LENGTH": "195",
+          "TOOL WIDTH": "63.1",
+          "TOOL HEIGHT": "48",
+          "TL CODE (SAP)": "TL0360010010045",
+          "MANUFACTURING (OUTSOURCED)": "OUTSOURCE",
+          "TRS (MFG)": "TRS-1833",
+          "TRS PLAN DATE (MFG)": "22/Mar/2024",
+          "TRS ACT DATE (MFG)": "9-Apr-25",
+          "PR NUMBER (MFG)": "1129025298",
+          "PR DATE (MFG)": "9-Apr-25",
+          "PO DATE (MFG)": "",
+          "PO NO (MFG)": "",
+          "VENDOR INFO (MFG)": "",
+          "MFG START DATE (PLAN)": "29/Mar/2024",
+          "MFG END DATE (PLAN)": "27/Jun/2024",
+          "SUPPLIER COMMITTED DATE": "",
+          "TOOL RECEIVED DATE": "6-Jul-24",
+          "MFG STATUS": "Received from Vendor",
+          "DELAY (MFG)": "",
+          "DELAY REASON (MFG)": "",
+          "MASPL TOOLING QUALITY ACCEPTANCE": "",
+          "MASPL TOOL BUY-OFF (MFG)": "Yes",
+          "BUY-OFF REMARKS (MFG)": "",
+          "FAI TOOL PROVEOUT": "Yes",
+          "PROVEOUT REMARKS": "",
+          "ACCEPTANCE / REJECTION CRITERIA": "",
+          "TOOL HANDOVER TO STORES": "",
+          "TOOL LIFE CYCLE": "1 year",
+          "VALIDATION FREQUENCY": "",
+          "PREVIOUS VALIDATION DATE": "6-Jul-24",
+          "NEXT VALIDATION DATE": "",
+          REMARKS: "",
+        },
+        {
+          "SR. NO.": 11,
+          CUSTOMER: "ATLANTIC",
+          PROJECT: "ABS",
+          "DERIVABLE PART NO": "Z5393680130600",
+          "PART NO": "Z539-36801-306-00",
+          "SAP NO": "Z5393680130600",
+          "ANNUAL DEMAND": "",
+          "PART LAUNCH DATE": "7/18/2024",
+          "TOOL LOB DATE": "27/Jun/2024",
+          "C.E INPUT DATA VALIDATION": "Yes",
+          "REMARKS (C.E)": "",
+          "TRF PLAN DATE": "16/Dec/2023",
+          "TRF ACT DATE": "",
+          "TRF NO": "",
+          "TOOL NUMBER": "54100D53230654200000",
+          "TOOL DESCRIPTION": "FORM BLOCK",
+          OPERATION: "Forming",
+          COMPLEXITY: "Simple",
+          "DESIGN (INHOUSE / OUTSOURCED)": "IN-HOUSE",
+          "TRS NUMBER (DESIGN)": "",
+          "TRS PLAN DATE (DESIGN)": "",
+          "TRS ACT DATE (DESIGN)": "",
+          "PR NUMBER (DESIGN)": "",
+          "PR DATE (DESIGN)": "",
+          "PO DATE (DESIGN)": "",
+          "PO NO (DESIGN)": "",
+          "VENDOR INFO (DESIGN)": "",
+          "DESIGN START DATE (PLAN)": "7/Jan/2024",
+          "DESIGN END DATE (PLAN)": "7/Mar/2024",
+          "DESIGN START DATE (ACTUAL)": "",
+          "DESIGN END DATE (ACTUAL)": "",
+          APPLICABILITY: "No",
+          "CUSTOMER PLAN DATE": "",
+          "CUSTOMER ACTUAL DATE": "",
+          "MASPL TOOL DESIGN VALIDATION": "Yes",
+          "VALIDATION REMARKS": "",
+          "DESIGN STATUS": "Completed",
+          "DELAY (DESIGN)": "",
+          "DELAY REASON (DESIGN)": "",
+          "TOOL LENGTH": "165",
+          "TOOL WIDTH": "43",
+          "TOOL HEIGHT": "52",
+          "TL CODE (SAP)": "TL0360010010043",
+          "MANUFACTURING (OUTSOURCED)": "OUTSOURCE",
+          "TRS (MFG)": "TRS-1833",
+          "TRS PLAN DATE (MFG)": "22/Mar/2024",
+          "TRS ACT DATE (MFG)": "9-Apr-25",
+          "PR NUMBER (MFG)": "1129025298",
+          "PR DATE (MFG)": "9-Apr-25",
+          "PO DATE (MFG)": "",
+          "PO NO (MFG)": "",
+          "VENDOR INFO (MFG)": "",
+          "MFG START DATE (PLAN)": "29/Mar/2024",
+          "MFG END DATE (PLAN)": "27/Jun/2024",
+          "SUPPLIER COMMITTED DATE": "",
+          "TOOL RECEIVED DATE": "3-Jul-24",
+          "MFG STATUS": "Received from Vendor",
+          "DELAY (MFG)": "",
+          "DELAY REASON (MFG)": "",
+          "MASPL TOOLING QUALITY ACCEPTANCE": "",
+          "MASPL TOOL BUY-OFF (MFG)": "Yes",
+          "BUY-OFF REMARKS (MFG)": "",
+          "FAI TOOL PROVEOUT": "Yes",
+          "PROVEOUT REMARKS": "",
+          "ACCEPTANCE / REJECTION CRITERIA": "",
+          "TOOL HANDOVER TO STORES": "",
+          "TOOL LIFE CYCLE": "1 year",
+          "VALIDATION FREQUENCY": "",
+          "PREVIOUS VALIDATION DATE": "3-Jul-24",
+          "NEXT VALIDATION DATE": "",
+          REMARKS: "",
+        },
+      ];
+      let activeRecord = 0,
+        activeSection = "master",
+        expanded = "master",
+        showAll = false,
+        currentPage = 1,
+        pageSize = 10;
+      const stageDone = {};
+      const $ = (id) => document.getElementById(id);
+      function esc(v) {
+        return String(v ?? "").replace(
+          /[&<>"']/g,
+          (c) =>
+            ({
+              "&": "&amp;",
+              "<": "&lt;",
+              ">": "&gt;",
+              '"': "&quot;",
+              "'": "&#39;",
+            })[c],
+        );
+      }
+      function init() {
+        const root = $("engineeringTable");
+        root.innerHTML = SECTIONS.map(
+          (s) =>
+            `<section class="engineering-section ${s.key === "master" ? "expanded" : ""}" data-section="${s.key}"><button class="section-vertical-bar" onclick="openSection('${s.key}')"><i class="bi ${s.icon} vertical-icon"></i><span class="vertical-text">${s.title}</span></button><div class="section-content"><div class="section-header"><span><i class="bi ${s.icon} me-1"></i>${s.title}</span><div class="section-head-actions"><button class="icon-btn" title="Export ${s.title} to Excel" onclick="exportSection('${s.key}')"><i class="bi bi-download"></i></button><button class="icon-btn" title="Upload and update ${s.title}" onclick="uploadSection('${s.key}')"><i class="bi bi-upload"></i></button><button class="section-collapse" title="Collapse section" onclick="collapseSections(event)"><i class="bi bi-chevron-left"></i></button></div></div><table><thead><tr>${s.fields.map((f) => `<th>${esc(f)}</th>`).join("")}${s.key !== "master" ? "<th>TAKE ACTION</th>" : ""}</tr></thead><tbody id="body_${s.key}"></tbody></table></div></section>`,
+        ).join("");
+        render();
+      }
+      function filtered() {
+        const c = $("filterCustomer").value.toLowerCase(),
+          p = $("filterPart").value.toLowerCase(),
+          t = $("filterTool").value.toLowerCase(),
+          q = $("globalSearch").value.toLowerCase();
+        return records
+          .map((r, i) => ({ ...r, __i: i }))
+          .filter(
+            (r) =>
+              (!c || String(r["CUSTOMER"]).toLowerCase().includes(c)) &&
+              (!p ||
+                String(r["PART NO"]).toLowerCase().includes(p) ||
+                String(r["DERIVABLE PART NO"]).toLowerCase().includes(p)) &&
+              (!t || String(r["TOOL DESCRIPTION"]).toLowerCase().includes(t)) &&
+              (!q ||
+                Object.values(r).some((v) =>
+                  String(v).toLowerCase().includes(q),
+                )),
+          );
+      }
+
+      function renderPagination(totalRows) {
+        const pagination = document.getElementById("pagination");
+        if (!pagination) return;
+        const totalPages = Math.max(1, Math.ceil(totalRows / pageSize));
+        currentPage = Math.min(currentPage, totalPages);
+        const item = (
+          label,
+          page,
+          disabled = false,
+          active = false,
+          aria = "",
+        ) =>
+          `<li class="page-item ${disabled ? "disabled" : ""} ${active ? "active" : ""}">
+             <button class="page-link" type="button" ${disabled ? "disabled" : ""} ${aria ? `aria-label="${aria}"` : ""}
+               onclick="goToPage(${page})">${label}</button></li>`;
+        let out = item(
+          "&laquo;",
+          currentPage - 1,
+          currentPage === 1,
+          false,
+          "Previous page",
+        );
+        let first = Math.max(1, currentPage - 2);
+        let last = Math.min(totalPages, first + 4);
+        first = Math.max(1, last - 4);
+        for (let n = first; n <= last; n++)
+          out += item(n, n, false, n === currentPage, `Page ${n}`);
+        out += item(
+          "&raquo;",
+          currentPage + 1,
+          currentPage === totalPages,
+          false,
+          "Next page",
+        );
+        pagination.innerHTML = out;
+      }
+
+      function render() {
+        const rows = filtered();
+        const totalRows = rows.length;
+        const totalPages = Math.max(1, Math.ceil(totalRows / pageSize));
+        currentPage = Math.min(Math.max(1, currentPage), totalPages);
+        const startIndex = totalRows ? (currentPage - 1) * pageSize : 0;
+        const visibleRows = rows.slice(startIndex, startIndex + pageSize);
+
+        $("recordCount").textContent = totalRows;
+        $("total").textContent = totalRows;
+        $("showing").textContent = totalRows
+          ? `${startIndex + 1} to ${Math.min(startIndex + pageSize, totalRows)}`
+          : "0";
+        renderPagination(totalRows);
+
+        SECTIONS.forEach((s) => {
+          const b = $("body_" + s.key);
+          if (!b) return;
+          b.innerHTML = visibleRows
+            .map(
+              (r) =>
+                `<tr>${s.fields.map((f) => `<td>${esc(r[f] || "—")}</td>`).join("")}${s.key !== "master" ? `<td><button class="stage-action-btn" ${!canAct(r.__i, s.key) ? "disabled" : ""} onclick="openAction(${r.__i},'${s.key}')"><i class="bi bi-pencil-square me-1"></i>${stageDone[r.__i + "_" + s.key] ? "Edit Entry" : canAct(r.__i, s.key) ? "Take Action" : "Locked"}</button></td>` : ""}</tr>`,
+            )
+            .join("");
+        });
+      }
+
+      function toggleSectionVisibility(key, visible) {
+        const section = document.querySelector(
+          `.engineering-section[data-section="${key}"]`,
+        );
+        if (!section) return;
+        section.style.display = visible ? "flex" : "none";
+        if (!visible && expanded === key) {
+          const next = SECTIONS.find(
+            (s) =>
+              s.key !== key &&
+              document.querySelector(
+                `.engineering-section[data-section="${s.key}"]`,
+              )?.style.display !== "none",
+          );
+          expanded = next ? next.key : "";
+          document
+            .querySelectorAll(".engineering-section")
+            .forEach((el) =>
+              el.classList.toggle(
+                "expanded",
+                !!expanded && el.dataset.section === expanded,
+              ),
+            );
+          $("engineeringTable").classList.remove("show-all-mode");
+          showAll = false;
+        }
+        const visibleSections = SECTIONS.filter(
+          (s) =>
+            document.querySelector(
+              `.engineering-section[data-section="${s.key}"]`,
+            )?.style.display !== "none",
+        );
+        if (visible && visibleSections.length === 1) openSection(key);
+      }
+      function canAct(i, key) {
+        const idx = SECTIONS.findIndex((s) => s.key === key);
+        if (idx <= 1) return true;
+        return !!stageDone[i + "_" + SECTIONS[idx - 1].key];
+      }
+      function openSection(key) {
+        showAll = false;
+        expanded = key;
+        document
+          .querySelectorAll(".engineering-section")
+          .forEach((e) =>
+            e.classList.toggle("expanded", e.dataset.section === key),
+          );
+        $("engineeringTable").classList.remove("show-all-mode");
+        $("tableWrap").style.overflowX = "auto";
+      }
+      function collapseSections(e) {
+        e.stopPropagation();
+        const el = e.target.closest(".engineering-section");
+        el.classList.remove("expanded");
+        expanded = "";
+      }
+      function expandAllSections() {
+        showAll = !showAll;
+        const root = $("engineeringTable");
+        root.classList.toggle("show-all-mode", showAll);
+        document
+          .querySelectorAll(".engineering-section")
+          .forEach((e) =>
+            e.classList.toggle(
+              "expanded",
+              e.style.display !== "none" &&
+                (showAll || e.dataset.section === expanded),
+            ),
+          );
+        $("tableWrap").style.overflowX = "auto";
+      }
+      function applyFilters() {
+        currentPage = 1;
+        render();
+      }
+      function clearFilters() {
+        ["filterCustomer", "filterPart", "filterTool", "globalSearch"].forEach(
+          (id) => ($(id).value = ""),
+        );
+        currentPage = 1;
+        render();
+      }
+      function openAction(i, key) {
+        if (!canAct(i, key)) return;
+        activeRecord = i;
+        activeSection = key;
+        const s = SECTIONS.find((x) => x.key === key);
+        $("modalTitle").textContent =
+          s.title + " — " + (records[i]["PART NO"] || "Record");
+        $("modalFields").innerHTML = s.fields
+          .filter((f) => f !== "SR. NO.")
+          .map((f, n) => {
+            let value = records[i][f] || "";
+            let date = /DATE/i.test(f);
+            let opts =
+              /VALIDATION|APPLICABILITY|BUY-OFF|PROVEOUT|ACCEPTANCE|HANDOVER|INHOUSE|OUTSOURCED/i.test(
+                f,
+              );
+            return `<div class="col-md-4"><label class="form-label fw-bold" style="font-size:11px">${esc(f)}</label>${opts ? `<select class="form-select workflow-input" name="${esc(f)}"><option value="">Select...</option>${["Yes", "No", "N/A", "In-House", "Outsource", "Completed", "Work In Progress", "Delayed", "On Track", "Received from Vendor"].map((x) => `<option ${value === x ? "selected" : ""}>${x}</option>`).join("")}</select>` : `<input class="form-control workflow-input" name="${esc(f)}" type="${date ? "text" : "text"}" value="${esc(value)}" placeholder="Enter ${esc(f.toLowerCase())}">`}</div>`;
+          })
+          .join("");
+        $("stageForm").onsubmit = (e) => {
+          e.preventDefault();
+          new FormData(e.target).forEach(
+            (v, k) => (records[activeRecord][k] = v),
+          );
+          stageDone[activeRecord + "_" + activeSection] = true;
+          bootstrap.Modal.getOrCreateInstance($("stageModal")).hide();
+          render();
+        };
+        bootstrap.Modal.getOrCreateInstance($("stageModal")).show();
+      }
+      function sectionRows(key) {
+        const s = SECTIONS.find((x) => x.key === key);
+        return records.map((r) => {
+          const o = {};
+          o["PART NO"] = r["PART NO"];
+          o["CUSTOMER MATERIAL CODE"] = r["DERIVABLE PART NO"];
+          o["CUSTOMER"] = r["CUSTOMER"];
+          s.fields.forEach((f) => (o[f] = r[f] ?? ""));
+          return o;
+        });
+      }
+      function goToPage(page) {
+        const totalPages = Math.max(1, Math.ceil(filtered().length / pageSize));
+        if (page < 1 || page > totalPages) return;
+        currentPage = page;
+        render();
+      }
+
+      function changePageSize(value) {
+        pageSize = Math.max(1, Number(value) || 10);
+        currentPage = 1;
+        render();
+      }
+      function exportSection(key) {
+        if (!window.XLSX) {
+          alert("Excel library needs an internet connection.");
+          return;
+        }
+        const s = SECTIONS.find((x) => x.key === key),
+          ws = XLSX.utils.json_to_sheet(sectionRows(key));
+        const wb = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(wb, ws, s.title.slice(0, 31));
+        XLSX.writeFile(wb, "Tooling_" + key + "_export.xlsx");
+      }
+      function exportAll() {
+        if (!window.XLSX) {
+          alert("Excel library needs an internet connection.");
+          return;
+        }
+        const wb = XLSX.utils.book_new();
+        SECTIONS.forEach((s) =>
+          XLSX.utils.book_append_sheet(
+            wb,
+            XLSX.utils.json_to_sheet(sectionRows(s.key)),
+            s.title.slice(0, 31),
+          ),
+        );
+        XLSX.writeFile(wb, "Mahindra_Tooling_Tracker.xlsx");
+      }
+      function uploadSection(key) {
+        activeSection = key;
+        $("sectionUpload").value = "";
+        $("sectionUpload").click();
+      }
+      $("sectionUpload").addEventListener("change", (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+        if (!window.XLSX) {
+          alert("Excel library needs an internet connection.");
+          return;
+        }
+        const reader = new FileReader();
+        reader.onload = (ev) => {
+          try {
+            const wb = XLSX.read(ev.target.result, { type: "array" }),
+              ws = wb.Sheets[wb.SheetNames[0]],
+              data = XLSX.utils.sheet_to_json(ws, { defval: "" });
+            const s = SECTIONS.find((x) => x.key === activeSection);
+            let updated = 0;
+            data.forEach((row) => {
+              const part = String(row["PART NO"] || "").trim(),
+                customer = String(row["CUSTOMER"] || "").trim();
+              if (!part) return;
+              const rec = records.find(
+                (r) =>
+                  String(r["PART NO"]).trim() === part &&
+                  (!customer || String(r["CUSTOMER"]).trim() === customer),
+              );
+              if (!rec) return;
+              s.fields.forEach((f) => {
+                if (
+                  Object.prototype.hasOwnProperty.call(row, f) &&
+                  f !== "SR. NO."
+                )
+                  rec[f] = row[f];
+              });
+              updated++;
+            });
+            if (updated) {
+              records.forEach((r, i) => {
+                if (r[s.fields.find((f) => f !== "SR. NO.")])
+                  stageDone[i + "_" + activeSection] = true;
+              });
+              render();
+              alert(
+                `${updated} record(s) updated in ${s.title}. Other sections were not changed.`,
+              );
+            } else
+              alert(
+                "No matching records found. Keep PART NO and CUSTOMER columns from the exported template.",
+              );
+          } catch (err) {
+            alert(
+              "Unable to read this file. Please upload the section Excel exported from this page.",
+            );
+          }
+        };
+        reader.readAsArrayBuffer(file);
+      });
+      init();
+    </script>
+  </body>
+</html>

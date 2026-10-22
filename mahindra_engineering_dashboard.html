@@ -1,0 +1,1357 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Mahindra Engineering Dashboard – ASA All Waves</title>
+    <link
+      rel="stylesheet"
+      href="https://fontsstorage.blob.core.windows.net/html/css/georama.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="container-fluid px-4">
+        <div
+          class="header-inner d-flex align-items-center justify-content-between gap-3"
+        >
+          <a class="mahindra-logo" href="#"
+            ><img src="mahindra_rise_red.png" alt="Mahindra"
+          /></a>
+          <nav class="top-menu">
+            <a href="mahindra_engineering_dashboard.html" class="active"
+              ><i class="bi bi-grid-1x2 me-1"></i>Dashboard</a
+            >
+            <a href="mahindra_engineering_input_bd.html"
+              ><i class="bi bi-folder2-open me-1"></i>Input BD</a
+            >
+            <!-- <a href="mahindra_programs.html"
+              ><i class="bi bi-folder2-open me-1"></i>Programs</a
+            >
+            <a href="mahindra_engineering_records.html"
+              ><i class="bi bi-folder2-open me-1"></i>Engineering 1</a
+            >
+            <a href="mahindra_engineering_records_new.html"
+              ><i class="bi bi-folder2-open me-1"></i>Engineering 2</a
+            > -->
+            <a href="#"><i class="bi bi-bar-chart-line me-1"></i>Reports</a>
+          </nav>
+          <div class="dropdown">
+            <button
+              class="profile-btn dropdown-toggle"
+              data-bs-toggle="dropdown"
+            >
+              <div>
+                <div class="profile-name">Priyank Jain</div>
+                <div class="profile-role">Input BD User</div>
+              </div>
+              <span class="avatar">PJ</span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end mt-2">
+              <li>
+                <a class="dropdown-item" href="#"
+                  ><i class="bi bi-person me-2"></i>My Profile</a
+                >
+              </li>
+              <li>
+                <a class="dropdown-item" href="#"
+                  ><i class="bi bi-gear me-2"></i>Settings</a
+                >
+              </li>
+              <li><hr class="dropdown-divider" /></li>
+              <li>
+                <a
+                  class="dropdown-item text-danger"
+                  href="mahindra_engineering_login.html"
+                  ><i class="bi bi-box-arrow-right me-2"></i>Logout</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </header>
+    <main class="page container-fluid">
+      <div class="section-title-row mb-3">
+        <div>
+          <h5 class="title mb-1">Dashboard Overview</h5>
+          <div class="accent"></div>
+        </div>
+        <div class="text-muted small">
+          <i class="bi bi-clock me-1"></i>Last refreshed: 13-Oct-2026
+        </div>
+      </div>
+
+      <section class="cardx mb-3" id="projectScopeSection">
+        <div class="table-head table-head-toolbar">
+          <div class="table-heading-block">
+            <div class="table-title">
+              Project &amp; Scope Details
+              <span class="table-meta">(<span id="count"></span>)</span>
+            </div>
+          </div>
+          <div class="table-toolbar-controls">
+            <div class="table-search">
+              <i class="bi bi-search"></i
+              ><input
+                id="search"
+                type="search"
+                placeholder="Search..."
+                oninput="render()"
+                aria-label="Search projects"
+              />
+            </div>
+            <button
+              type="button"
+              class="tool-btn"
+              onclick="exportCsv()"
+              title="Export records"
+            >
+              <i class="bi bi-download me-1"></i>
+              Export
+            </button>
+            <button
+              class="tool-btn"
+              id="collapseBtn"
+              onclick="toggleTable()"
+              type="button"
+              title="Collapse table"
+            >
+              <i class="bi bi-chevron-up me-1"></i>Collapse
+            </button>
+          </div>
+        </div>
+        <div id="tableContent">
+          <div class="eng-table-wrap">
+            <table class="eng-table" id="projectTable">
+              <thead id="tableHead"></thead>
+              <tbody></tbody>
+              <tfoot id="tableFoot"></tfoot>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- Portfolio KPI cards retained from the original dashboard -->
+      <section class="row g-3 mb-4">
+        <div class="col-6 col-xl-3">
+          <div
+            class="cardx p-3"
+            style="background: #eef6fb; border: 1px solid #cfe2ef"
+          >
+            <div class="d-flex justify-content-between">
+              <div>
+                <div
+                  class="text-uppercase text-muted fw-bold"
+                  style="font-size: 10px"
+                >
+                  Total Scope
+                </div>
+                <div class="fw-bold" style="font-size: 28px; color: #071b2d">
+                  1,759
+                </div>
+                <div class="text-muted">6 projects</div>
+              </div>
+              <div class="fs-3 text-primary">
+                <i class="bi bi-diagram-3"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-xl-3">
+          <div
+            class="cardx p-3"
+            style="background: #edf8f8; border: 1px solid #cbe8e9"
+          >
+            <div class="d-flex justify-content-between">
+              <div>
+                <div
+                  class="text-uppercase text-muted fw-bold"
+                  style="font-size: 10px"
+                >
+                  TDP Available
+                </div>
+                <div class="fw-bold" style="font-size: 28px; color: #071b2d">
+                  1,757
+                </div>
+                <div class="text-muted">
+                  <span style="color: #477463; font-weight: 800">99.9%</span>
+                  readiness
+                </div>
+              </div>
+              <div class="fs-3 text-info">
+                <i class="bi bi-check2-circle"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-xl-3">
+          <div
+            class="cardx p-3"
+            style="background: #eef6fb; border: 1px solid #cfe2ef"
+          >
+            <div class="d-flex justify-content-between">
+              <div>
+                <div
+                  class="text-uppercase text-muted fw-bold"
+                  style="font-size: 10px"
+                >
+                  FPQ Complete
+                </div>
+                <div class="fw-bold" style="font-size: 28px; color: #071b2d">
+                  1,719
+                </div>
+                <div class="text-muted">6 pending</div>
+              </div>
+              <div class="fs-3 text-primary">
+                <i class="bi bi-person-check"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-xl-3">
+          <div
+            class="cardx p-3"
+            style="background: #fff3f3; border: 1px solid #f3c7ca"
+          >
+            <div class="d-flex justify-content-between">
+              <div>
+                <div
+                  class="text-uppercase text-muted fw-bold"
+                  style="font-size: 10px"
+                >
+                  3D Model Pending
+                </div>
+                <div class="fw-bold" style="font-size: 28px; color: #071b2d">
+                  61
+                </div>
+                <div class="text-muted">
+                  <span style="color: #a15b6f; font-weight: 800"
+                    >Action required</span
+                  >
+                </div>
+              </div>
+              <div class="fs-3 text-danger">
+                <i class="bi bi-exclamation-triangle"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Gate readiness cards from the original dashboard -->
+      <div class="section-title-row mb-3">
+        <div>
+          <h5 class="title mb-1">Gate Readiness</h5>
+          <div class="accent"></div>
+        </div>
+      </div>
+      <section class="row g-3 mb-4">
+        <div class="col-12 col-md-6 col-xl-3">
+          <div
+            class="cardx h-100 overflow-hidden copyable-card"
+            data-image-name="Gate 1 Readiness"
+          >
+            <div
+              class="p-3 fw-bold"
+              style="
+                background: #e8f0f6;
+                color: #315a78;
+                border-left: 4px solid #5f89a6;
+              "
+            >
+              <span>GATE 1 <i class="bi bi-flag ms-1"></i></span>
+              <span class="image-action-group float-end">
+                <button
+                  type="button"
+                  class="image-action-btn"
+                  onclick="copyDashboardImage(this)"
+                  title="Copy Gate 1 as image"
+                  aria-label="Copy Gate 1 as image"
+                >
+                  <i class="bi bi-clipboard"></i
+                  ><span class="action-label">Copy</span>
+                </button>
+                <button
+                  type="button"
+                  class="image-action-btn"
+                  onclick="downloadDashboardImage(this)"
+                  title="Download Gate 1 as PNG"
+                  aria-label="Download Gate 1 as PNG"
+                >
+                  <i class="bi bi-download"></i
+                  ><span class="action-label">PNG</span>
+                </button>
+              </span>
+            </div>
+            <div class="p-3">
+              <div class="d-flex justify-content-between mb-2">
+                <span class="text-muted">TDP Available</span><b>1,757</b>
+              </div>
+              <div class="d-flex justify-content-between mb-2">
+                <span class="text-muted">TDP Pending</span
+                ><b style="color: #a15b6f">2</b>
+              </div>
+              <div class="d-flex justify-content-between mb-2">
+                <span class="text-muted">Feasibility Completed</span
+                ><b>1,751</b>
+              </div>
+              <div class="d-flex justify-content-between">
+                <span class="text-muted">Feasibility Pending</span
+                ><b style="color: #a15b6f">8</b>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6 col-xl-3">
+          <div
+            class="cardx h-100 overflow-hidden copyable-card"
+            data-image-name="Gate 2 Readiness"
+          >
+            <div
+              class="p-3 fw-bold"
+              style="
+                background: #f4e9ed;
+                color: #7d4055;
+                border-left: 4px solid #b47a8d;
+              "
+            >
+              <span>GATE 2 <i class="bi bi-clipboard-check ms-1"></i></span>
+              <span class="image-action-group float-end">
+                <button
+                  type="button"
+                  class="image-action-btn"
+                  onclick="copyDashboardImage(this)"
+                  title="Copy Gate 2 as image"
+                  aria-label="Copy Gate 2 as image"
+                >
+                  <i class="bi bi-clipboard"></i
+                  ><span class="action-label">Copy</span>
+                </button>
+                <button
+                  type="button"
+                  class="image-action-btn"
+                  onclick="downloadDashboardImage(this)"
+                  title="Download Gate 2 as PNG"
+                  aria-label="Download Gate 2 as PNG"
+                >
+                  <i class="bi bi-download"></i
+                  ><span class="action-label">PNG</span>
+                </button>
+              </span>
+            </div>
+            <div class="p-3">
+              <div class="d-flex justify-content-between mb-2">
+                <span class="text-muted">P-BOM Complete</span><b>1,750</b>
+              </div>
+              <div class="d-flex justify-content-between mb-2">
+                <span class="text-muted">P-BOM Pending</span
+                ><b style="color: #a15b6f">9</b>
+              </div>
+              <div class="d-flex justify-content-between mb-2">
+                <span class="text-muted">SST Approval Complete</span
+                ><b>1,755</b>
+              </div>
+              <div class="d-flex justify-content-between">
+                <span class="text-muted">SST Approval Pending</span
+                ><b style="color: #a15b6f">4</b>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6 col-xl-3">
+          <div
+            class="cardx h-100 overflow-hidden copyable-card"
+            data-image-name="Gate 3 Readiness"
+          >
+            <div
+              class="p-3 fw-bold"
+              style="
+                background: #e9eef7;
+                color: #3f5f8a;
+                border-left: 4px solid #7894b8;
+              "
+            >
+              <span>GATE 3 <i class="bi bi-shield-check ms-1"></i></span>
+              <span class="image-action-group float-end">
+                <button
+                  type="button"
+                  class="image-action-btn"
+                  onclick="copyDashboardImage(this)"
+                  title="Copy Gate 3 as image"
+                  aria-label="Copy Gate 3 as image"
+                >
+                  <i class="bi bi-clipboard"></i
+                  ><span class="action-label">Copy</span>
+                </button>
+                <button
+                  type="button"
+                  class="image-action-btn"
+                  onclick="downloadDashboardImage(this)"
+                  title="Download Gate 3 as PNG"
+                  aria-label="Download Gate 3 as PNG"
+                >
+                  <i class="bi bi-download"></i
+                  ><span class="action-label">PNG</span>
+                </button>
+              </span>
+            </div>
+            <div class="p-3">
+              <div class="d-flex justify-content-between mb-2">
+                <span class="text-muted">LAI Approval Complete</span
+                ><b>1,702</b>
+              </div>
+              <div class="d-flex justify-content-between mb-2">
+                <span class="text-muted">LAI Approval Pending</span
+                ><b style="color: #a15b6f">57</b>
+              </div>
+              <div class="d-flex justify-content-between mb-2">
+                <span class="text-muted">FPQ Approval Complete</span
+                ><b>1,719</b>
+              </div>
+              <div class="d-flex justify-content-between">
+                <span class="text-muted">Tool Design Pending</span
+                ><b style="color: #a15b6f">106</b>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6 col-xl-3">
+          <div
+            class="cardx h-100 overflow-hidden copyable-card"
+            data-image-name="Gate 4 Readiness"
+          >
+            <div
+              class="p-3 fw-bold"
+              style="
+                background: #e7f2f1;
+                color: #3e706b;
+                border-left: 4px solid #6ca39c;
+              "
+            >
+              <span>GATE 4 <i class="bi bi-award ms-1"></i></span>
+              <span class="image-action-group float-end">
+                <button
+                  type="button"
+                  class="image-action-btn"
+                  onclick="copyDashboardImage(this)"
+                  title="Copy Gate 4 as image"
+                  aria-label="Copy Gate 4 as image"
+                >
+                  <i class="bi bi-clipboard"></i
+                  ><span class="action-label">Copy</span>
+                </button>
+                <button
+                  type="button"
+                  class="image-action-btn"
+                  onclick="downloadDashboardImage(this)"
+                  title="Download Gate 4 as PNG"
+                  aria-label="Download Gate 4 as PNG"
+                >
+                  <i class="bi bi-download"></i
+                  ><span class="action-label">PNG</span>
+                </button>
+              </span>
+            </div>
+            <div class="p-3">
+              <div class="d-flex justify-content-between mb-2">
+                <span class="text-muted">Concurrence Complete</span><b>1,747</b>
+              </div>
+              <div class="d-flex justify-content-between mb-2">
+                <span class="text-muted">Concurrence Pending</span
+                ><b style="color: #a15b6f">12</b>
+              </div>
+              <div class="d-flex justify-content-between mb-2">
+                <span class="text-muted">TRF Given</span><b>1,747</b>
+              </div>
+              <div class="d-flex justify-content-between">
+                <span class="text-muted">3D Model Pending</span
+                ><b style="color: #a15b6f">61</b>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Original dashboard charts -->
+      <section class="row g-3 mb-4">
+        <div class="col-lg-7">
+          <div
+            class="cardx p-3 copyable-card"
+            data-image-name="Pending Items by Project"
+            style="height: 285px; overflow: hidden"
+          >
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <div>
+                <b class="title">Pending Items by Project</b>
+                <div class="small text-muted">Primary action areas</div>
+              </div>
+              <span class="d-inline-flex align-items-center gap-2">
+                <span class="badge" style="background: #fff4d5; color: #8a6500"
+                  >Needs attention</span
+                >
+                <span class="image-action-group is-chart-actions">
+                  <button
+                    type="button"
+                    class="image-action-btn"
+                    onclick="copyDashboardImage(this)"
+                    title="Copy Pending Items by Project as image"
+                    aria-label="Copy Pending Items by Project as image"
+                  >
+                    <i class="bi bi-clipboard"></i
+                    ><span class="action-label">Copy</span>
+                  </button>
+                  <button
+                    type="button"
+                    class="image-action-btn"
+                    onclick="downloadDashboardImage(this)"
+                    title="Download Pending Items by Project as PNG"
+                    aria-label="Download Pending Items by Project as PNG"
+                  >
+                    <i class="bi bi-download"></i
+                    ><span class="action-label">PNG</span>
+                  </button>
+                </span>
+              </span>
+            </div>
+            <div style="height: 215px"><canvas id="pendingChart"></canvas></div>
+          </div>
+        </div>
+        <div class="col-lg-5">
+          <div
+            class="cardx p-3 copyable-card"
+            data-image-name="Gate Completion"
+            style="height: 285px; overflow: hidden"
+          >
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <b class="title">Gate Completion</b>
+              <span class="image-action-group is-chart-actions">
+                <button
+                  type="button"
+                  class="image-action-btn"
+                  onclick="copyDashboardImage(this)"
+                  title="Copy Gate Completion as image"
+                  aria-label="Copy Gate Completion as image"
+                >
+                  <i class="bi bi-clipboard"></i
+                  ><span class="action-label">Copy</span>
+                </button>
+                <button
+                  type="button"
+                  class="image-action-btn"
+                  onclick="downloadDashboardImage(this)"
+                  title="Download Gate Completion as PNG"
+                  aria-label="Download Gate Completion as PNG"
+                >
+                  <i class="bi bi-download"></i
+                  ><span class="action-label">PNG</span>
+                </button>
+              </span>
+            </div>
+            <div style="height: 215px"><canvas id="gateChart"></canvas></div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      const data = [
+        {
+          p: "ASA NPI-1.1",
+          scope: 148,
+          tdpa: 146,
+          tdpp: 2,
+          fc: 140,
+          fp: 8,
+          pbc: 139,
+          pbp: 9,
+          sstc: 148,
+          sstp: 0,
+          laic: 148,
+          laip: 0,
+          fpqc: 142,
+          fpqp: 0,
+          toolConceptApprovalPending: 6,
+          toolDesignApprovalPending: 6,
+          toolConceptPending: 6,
+          toolDesignPending: 12,
+          concurrencePending: 0,
+          trfGiven: 136,
+          trfPending: 0,
+          modelComplete: 136,
+          modelPending: 6,
+          ncpComplete: 136,
+          ncpPending: 6,
+          toolConceptG5: 136,
+          toolDesignG5: 6,
+          toolFabComplete: 131,
+          toolFabPending: 131,
+          materialCut: 17,
+          lcPending: 11,
+          meWip: 6,
+          rmDep: 0,
+          boiDep: 0,
+          cpWip: 0,
+          lcGiven: 0,
+          tqDep: 130,
+          otherPending: 18,
+          dossier: 0,
+          faIComplete: 13,
+          faIPending: 117,
+          productionHandover: 68,
+        },
+        {
+          p: "ASA W1",
+          scope: 53,
+          tdpa: 53,
+          tdpp: 0,
+          fc: 53,
+          fp: 0,
+          pbc: 53,
+          pbp: 0,
+          sstc: 53,
+          sstp: 0,
+          laic: 52,
+          laip: 1,
+          fpqc: 53,
+          fpqp: 0,
+          toolConceptApprovalPending: 0,
+          toolDesignApprovalPending: 0,
+          toolConceptPending: 0,
+          toolDesignPending: 0,
+          concurrencePending: 0,
+          trfGiven: 53,
+          trfPending: 0,
+          modelComplete: 53,
+          modelPending: 0,
+          ncpComplete: 53,
+          ncpPending: 0,
+          toolConceptG5: 53,
+          toolDesignG5: 0,
+          toolFabComplete: 53,
+          toolFabPending: 0,
+          materialCut: 51,
+          lcPending: 2,
+          meWip: 0,
+          rmDep: 1,
+          boiDep: 0,
+          cpWip: 0,
+          lcGiven: 0,
+          tqDep: 50,
+          otherPending: 3,
+          dossier: 2,
+          faIComplete: 0,
+          faIPending: 50,
+          productionHandover: 5,
+        },
+        {
+          p: "ASA W2",
+          scope: 618,
+          tdpa: 618,
+          tdpp: 0,
+          fc: 618,
+          fp: 0,
+          pbc: 618,
+          pbp: 0,
+          sstc: 614,
+          sstp: 4,
+          laic: 610,
+          laip: 8,
+          fpqc: 618,
+          fpqp: 4,
+          toolConceptApprovalPending: 0,
+          toolDesignApprovalPending: 2,
+          toolConceptPending: 0,
+          toolDesignPending: 2,
+          concurrencePending: 0,
+          trfGiven: 618,
+          trfPending: 0,
+          modelComplete: 618,
+          modelPending: 0,
+          ncpComplete: 616,
+          ncpPending: 2,
+          toolConceptG5: 618,
+          toolDesignG5: 0,
+          toolFabComplete: 617,
+          toolFabPending: 1,
+          materialCut: 615,
+          lcPending: 3,
+          meWip: 0,
+          rmDep: 0,
+          boiDep: 0,
+          cpWip: 0,
+          lcGiven: 0,
+          tqDep: 599,
+          otherPending: 19,
+          dossier: 0,
+          faIComplete: 8,
+          faIPending: 591,
+          productionHandover: 163,
+        },
+        {
+          p: "ASA W3A",
+          scope: 313,
+          tdpa: 313,
+          tdpp: 0,
+          fc: 313,
+          fp: 0,
+          pbc: 313,
+          pbp: 0,
+          sstc: 313,
+          sstp: 0,
+          laic: 307,
+          laip: 6,
+          fpqc: 311,
+          fpqp: 2,
+          toolConceptApprovalPending: 0,
+          toolDesignApprovalPending: 0,
+          toolConceptPending: 0,
+          toolDesignPending: 0,
+          concurrencePending: 0,
+          trfGiven: 313,
+          trfPending: 0,
+          modelComplete: 313,
+          modelPending: 0,
+          ncpComplete: 313,
+          ncpPending: 0,
+          toolConceptG5: 313,
+          toolDesignG5: 0,
+          toolFabComplete: 313,
+          toolFabPending: 2,
+          materialCut: 296,
+          lcPending: 17,
+          meWip: 0,
+          rmDep: 1,
+          boiDep: 1,
+          cpWip: 1,
+          lcGiven: 41,
+          tqDep: 274,
+          otherPending: 39,
+          dossier: 3,
+          faIComplete: 36,
+          faIPending: 238,
+          productionHandover: 0,
+        },
+        {
+          p: "ASA W3B",
+          scope: 276,
+          tdpa: 276,
+          tdpp: 0,
+          fc: 276,
+          fp: 0,
+          pbc: 276,
+          pbp: 0,
+          sstc: 276,
+          sstp: 0,
+          laic: 275,
+          laip: 1,
+          fpqc: 274,
+          fpqp: 0,
+          toolConceptApprovalPending: 0,
+          toolDesignApprovalPending: 64,
+          toolConceptPending: 0,
+          toolDesignPending: 64,
+          concurrencePending: 0,
+          trfGiven: 276,
+          trfPending: 0,
+          modelComplete: 276,
+          modelPending: 0,
+          ncpComplete: 250,
+          ncpPending: 26,
+          toolConceptG5: 276,
+          toolDesignG5: 0,
+          toolFabComplete: 261,
+          toolFabPending: 15,
+          materialCut: 250,
+          lcPending: 48,
+          meWip: 0,
+          rmDep: 9,
+          boiDep: 2,
+          cpWip: 0,
+          lcGiven: 232,
+          tqDep: 167,
+          otherPending: 109,
+          dossier: 2,
+          faIComplete: 60,
+          faIPending: 107,
+          productionHandover: 0,
+        },
+        {
+          p: "ASA W3C",
+          scope: 351,
+          tdpa: 351,
+          tdpp: 0,
+          fc: 351,
+          fp: 0,
+          pbc: 351,
+          pbp: 0,
+          sstc: 351,
+          sstp: 0,
+          laic: 310,
+          laip: 41,
+          fpqc: 321,
+          fpqp: 0,
+          toolConceptApprovalPending: 0,
+          toolDesignApprovalPending: 34,
+          toolConceptPending: 0,
+          toolDesignPending: 34,
+          concurrencePending: 0,
+          trfGiven: 351,
+          trfPending: 0,
+          modelComplete: 351,
+          modelPending: 0,
+          ncpComplete: 324,
+          ncpPending: 27,
+          toolConceptG5: 351,
+          toolDesignG5: 0,
+          toolFabComplete: 317,
+          toolFabPending: 34,
+          materialCut: 317,
+          lcPending: 34,
+          meWip: 0,
+          rmDep: 4,
+          boiDep: 0,
+          cpWip: 0,
+          lcGiven: 307,
+          tqDep: 184,
+          otherPending: 167,
+          dossier: 15,
+          faIComplete: 179,
+          faIPending: 5,
+          productionHandover: 0,
+        },
+      ];
+      const cols = [
+        ["tdpa", "TDP Available", "g1", false],
+        ["tdpp", "TDP Pending", "g1", true],
+        ["fc", "Feasibility Complete", "g1", false],
+        ["fp", "Feasibility Pending", "g1", true],
+        ["pbc", "P-BOM Creation Complete", "g2", false],
+        ["pbp", "P-BOM Pending", "g2", true],
+        ["sstc", "SST Approval Complete", "g2", false],
+        ["sstp", "SST Approval Pending", "g2", true],
+        ["laic", "LAI Approval Complete", "cust", false],
+        ["laip", "LAI Approval Pending", "cust", true],
+        ["fpqc", "FPQ Approval Complete", "cust", false],
+        ["fpqp", "FPQ Approval Pending", "cust", true],
+        [
+          "toolConceptApprovalPending",
+          "Tool Concept Approval Pending",
+          "cust",
+          true,
+        ],
+        [
+          "toolDesignApprovalPending",
+          "Tool Design Approval Pending",
+          "cust",
+          true,
+        ],
+        ["toolConceptPending", "Tool Concept Pending", "g4", true],
+        ["toolDesignPending", "Tool Design Pending", "g4", true],
+        ["concurrencePending", "Concurrence Pending", "g4", true],
+        ["trfGiven", "TRF Given", "g4", false],
+        ["trfPending", "TRF Not Given", "g4", true],
+        ["modelComplete", "3D Model Complete", "g4", false],
+        ["modelPending", "3D Model Pending", "g4", true],
+        ["ncpComplete", "NCP Complete", "g5", false],
+        ["ncpPending", "NCP Pending", "g5", true],
+        ["toolConceptG5", "Tool Concept Complete", "g5", false],
+        ["toolDesignG5", "Tool Design Pending", "g5", true],
+        ["toolFabComplete", "Tool Fab. Complete", "g5", false],
+        ["toolFabPending", "Tool Fab. Pending", "g5", true],
+        ["materialCut", "Material Cut", "g6", false],
+        ["lcPending", "LC Pending", "g6", true],
+        ["meWip", "ME WIP", "g6", true],
+        ["rmDep", "RM Dep.", "g6", true],
+        ["boiDep", "BOI Dep.", "g6", true],
+        ["cpWip", "CP WIP", "g6", true],
+        ["lcGiven", "LC Given (Launch)", "g6", false],
+        ["tqDep", "TQ Dep. (Dossier)", "g7", true],
+        ["otherPending", "Other Pending", "g7", true],
+        ["dossier", "Dossier Submitted", "g7", false],
+        ["faIComplete", "FAI Complete", "g8", false],
+        ["faIPending", "FAI Pending", "g8", true],
+        ["productionHandover", "Production Handover", "g8", false],
+      ];
+      const groups = [
+        ["Project & Scope", 2, "project-group"],
+        ["Gate 1", 4, "g1"],
+        ["Gate 2", 4, "g2"],
+        ["Gate 3 / Customer Approvals", 6, "cust"],
+        ["Gate 4", 7, "g4"],
+        ["Gate 5", 6, "g5"],
+        ["Gate 6 (Launch Clearance)", 7, "g6"],
+        ["Gate 7", 3, "g7"],
+        ["Gate 8", 3, "g8"],
+      ];
+      let sortState = { key: null, direction: "asc" };
+      function buildHeader() {
+        const head = document.getElementById("tableHead");
+        head.replaceChildren();
+        // First row: grouped Gate headers
+        const top = document.createElement("tr");
+        top.className = "gate-group-row";
+        groups.forEach(([label, span, cls]) => {
+          const th = document.createElement("th");
+          th.colSpan = span;
+          th.className = cls;
+          th.textContent = label;
+          top.appendChild(th);
+        });
+        head.appendChild(top);
+        // Second row: sortable column headers
+        const sub = document.createElement("tr");
+        const headerColumns = [
+          ["p", "Project", "project-col"],
+          ["scope", "Scope", "scope-col"],
+          ...cols.map(([key, label]) => [key, label, ""]),
+        ];
+        headerColumns.forEach(([key, label, className]) => {
+          const th = document.createElement("th");
+          th.dataset.sortKey = key;
+          th.className = className;
+          th.tabIndex = 0;
+          th.setAttribute("role", "button");
+          th.setAttribute("aria-label", `Sort by ${label}`);
+          th.setAttribute("aria-sort", "none");
+          const labelSpan = document.createElement("span");
+          labelSpan.className = "sort-label";
+          labelSpan.textContent = label;
+          th.appendChild(labelSpan);
+          const icon = document.createElement("span");
+          icon.className = "sort-default";
+          icon.textContent = "↕";
+          icon.setAttribute("aria-hidden", "true");
+          th.appendChild(icon);
+          th.addEventListener("click", () => sortByColumn(key));
+          th.addEventListener("keydown", (event) => {
+            if (event.key === "Enter" || event.key === " ") {
+              event.preventDefault();
+              sortByColumn(key);
+            }
+          });
+          sub.appendChild(th);
+        });
+        head.appendChild(sub);
+      }
+      function sortByColumn(key) {
+        if (sortState.key === key) {
+          sortState.direction = sortState.direction === "asc" ? "desc" : "asc";
+        } else {
+          sortState.key = key;
+          sortState.direction = "asc";
+        }
+        render();
+      }
+      function filteredRows() {
+        const q = document.getElementById("search").value.trim().toLowerCase();
+        return data.filter(
+          (r) =>
+            !q ||
+            [r.p, ...cols.map((c) => c[1]), ...Object.values(r)].some((v) =>
+              String(v ?? "")
+                .toLowerCase()
+                .includes(q),
+            ),
+        );
+      }
+      function render() {
+        let rows = filteredRows();
+        if (sortState.key) {
+          const k = sortState.key;
+          rows = [...rows].sort((a, b) => {
+            const av = a[k] ?? 0,
+              bv = b[k] ?? 0;
+            const n =
+              typeof av === "number" && typeof bv === "number"
+                ? av - bv
+                : String(av).localeCompare(String(bv), undefined, {
+                    numeric: true,
+                    sensitivity: "base",
+                  });
+            return sortState.direction === "asc" ? n : -n;
+          });
+        }
+        const body = document.querySelector("#projectTable tbody");
+        body.replaceChildren();
+        rows.forEach((r) => {
+          const tr = document.createElement("tr");
+          const p = document.createElement("td");
+          p.className = "project-col";
+          p.innerHTML =
+            '<span style="color:#a9153d;margin-right:6px">●</span><span class="project-link"></span>';
+          p.querySelector("span.project-link").textContent = r.p;
+          tr.appendChild(p);
+          const s = document.createElement("td");
+          s.className = "scope-col";
+          s.textContent = fmt(r.scope);
+          tr.appendChild(s);
+          cols.forEach(([key, label, group, pending]) => {
+            const td = document.createElement("td");
+            const v = r[key];
+            td.textContent = v === undefined || v === null ? "—" : fmt(v);
+            td.className = pending
+              ? Number(v) > 0
+                ? "cell-pending"
+                : "cell-zero"
+              : "cell-complete";
+            tr.appendChild(td);
+          });
+          body.appendChild(tr);
+        });
+        const foot = document.getElementById("tableFoot");
+        foot.replaceChildren();
+        const tr = document.createElement("tr"),
+          lab = document.createElement("td");
+        lab.className = "total-label";
+        lab.textContent = `TOTAL (${rows.length} projects)`;
+        tr.appendChild(lab);
+        const scope = document.createElement("td");
+        scope.textContent = fmt(rows.reduce((s, r) => s + r.scope, 0));
+        tr.appendChild(scope);
+        cols.forEach(([key]) => {
+          const td = document.createElement("td");
+          const vals = rows.filter((r) => Number.isFinite(r[key]));
+          td.textContent = vals.length
+            ? fmt(vals.reduce((s, r) => s + r[key], 0))
+            : "—";
+          tr.appendChild(td);
+        });
+        foot.appendChild(tr);
+        document.getElementById("count").textContent = rows.length;
+        document
+          .querySelectorAll("#tableHead th[data-sort-key]")
+          .forEach((th) => {
+            const icon = th.querySelector(".sort-default");
+            if (!icon) return;
+            const isActive = th.dataset.sortKey === sortState.key;
+            icon.className = isActive ? "sort-indicator" : "sort-default";
+            icon.textContent = isActive
+              ? sortState.direction === "asc"
+                ? "↑"
+                : "↓"
+              : "↕";
+            th.setAttribute(
+              "aria-sort",
+              isActive
+                ? sortState.direction === "asc"
+                  ? "ascending"
+                  : "descending"
+                : "none",
+            );
+          });
+      }
+      function fmt(v) {
+        return Number(v).toLocaleString("en-IN");
+      }
+      function toggleTable() {
+        const c = document.getElementById("tableContent"),
+          b = document.getElementById("collapseBtn");
+        c.classList.toggle("d-none");
+        const hide = c.classList.contains("d-none");
+        b.innerHTML = hide
+          ? '<i class="bi bi-chevron-down me-1"></i>Expand'
+          : '<i class="bi bi-chevron-up me-1"></i>Collapse';
+      }
+      function exportCsv() {
+        const rows = filteredRows();
+        if (sortState.key) {
+          const k = sortState.key;
+          rows.sort((a, b) => {
+            const n = (a[k] ?? 0) - (b[k] ?? 0);
+            return sortState.direction === "asc" ? n : -n;
+          });
+        }
+        const esc = (v) => '"' + String(v ?? "").replace(/"/g, '""') + '"',
+          lines = [
+            ["Project", "Scope", ...cols.map((c) => c[1])].map(esc).join(","),
+          ];
+        rows.forEach((r) =>
+          lines.push(
+            [r.p, r.scope, ...cols.map((c) => r[c[0]] ?? "")]
+              .map(esc)
+              .join(","),
+          ),
+        );
+        lines.push(
+          [
+            `TOTAL (${rows.length} projects)`,
+            rows.reduce((s, r) => s + r.scope, 0),
+            ...cols.map((c) =>
+              rows.reduce((s, r) => s + (Number(r[c[0]]) || 0), 0),
+            ),
+          ]
+            .map(esc)
+            .join(","),
+        );
+        const blob = new Blob(["\uFEFF" + lines.join("\r\n")], {
+            type: "text/csv;charset=utf-8;",
+          }),
+          url = URL.createObjectURL(blob),
+          a = document.createElement("a");
+        a.href = url;
+        a.download = "mahindra-engineering-asa-all-waves-gate-1-to-8.csv";
+        a.click();
+        setTimeout(() => URL.revokeObjectURL(url), 1000);
+      }
+      buildHeader();
+      render();
+    </script>
+
+    <script>
+      (function () {
+        function initDashboardCharts() {
+          if (typeof Chart === "undefined") {
+            const chartAreas = document.querySelectorAll(
+              "#pendingChart, #gateChart",
+            );
+            chartAreas.forEach(function (canvas) {
+              const msg = document.createElement("div");
+              msg.className = "small text-muted text-center p-3";
+              msg.textContent =
+                "Charts could not load. Check your internet connection and reload this page.";
+              canvas.parentElement.replaceChild(msg, canvas);
+            });
+            return;
+          }
+
+          // Use the same six project records as the engineering table.
+          const chartProjects = [
+            { name: "ASA NP1.1", pending: 61 },
+            { name: "ASA W1", pending: 1 },
+            { name: "ASA W2", pending: 20 },
+            { name: "ASA W3A", pending: 8 },
+            { name: "ASA W3B", pending: 100 },
+            { name: "ASA W3C", pending: 109 },
+          ];
+          const pendingCanvas = document.getElementById("pendingChart");
+          if (pendingCanvas) {
+            new Chart(pendingCanvas, {
+              type: "bar",
+              data: {
+                labels: chartProjects.map(function (x) {
+                  return x.name.replace("ASA ", "");
+                }),
+                datasets: [
+                  {
+                    label: "Pending items",
+                    data: chartProjects.map(function (x) {
+                      return x.pending;
+                    }),
+                    backgroundColor: "#b85d76",
+                    borderRadius: 4,
+                    barPercentage: 0.58,
+                    categoryPercentage: 0.72,
+                  },
+                ],
+              },
+              options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                  legend: { display: false },
+                  tooltip: { displayColors: false },
+                },
+                scales: {
+                  y: {
+                    beginAtZero: true,
+                    ticks: { maxTicksLimit: 5, font: { size: 10 } },
+                    grid: { color: "#edf1f4" },
+                  },
+                  x: {
+                    ticks: { font: { size: 10 } },
+                    grid: { display: false },
+                  },
+                },
+              },
+            });
+          }
+
+          const gateCanvas = document.getElementById("gateChart");
+          if (gateCanvas) {
+            new Chart(gateCanvas, {
+              type: "doughnut",
+              data: {
+                labels: ["Gate 1", "Gate 2", "Gate 3", "Gate 4"],
+                datasets: [
+                  {
+                    data: [99.5, 99.3, 94.0, 96.5],
+                    backgroundColor: [
+                      "#8fb0c7",
+                      "#c79aaa",
+                      "#9eafd0",
+                      "#91bcb7",
+                    ],
+                    borderWidth: 0,
+                    hoverOffset: 3,
+                  },
+                ],
+              },
+              options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: "72%",
+                plugins: {
+                  legend: {
+                    position: "bottom",
+                    labels: { boxWidth: 9, padding: 10, font: { size: 10 } },
+                  },
+                },
+              },
+            });
+          }
+        }
+
+        if (document.readyState === "loading") {
+          document.addEventListener("DOMContentLoaded", initDashboardCharts);
+        } else {
+          initDashboardCharts();
+        }
+      })();
+
+      // Capture only the selected Gate card or chart for pasting into Word/email.
+      async function createDashboardImage(button) {
+        const card = button.closest(".copyable-card");
+        if (!card)
+          throw new Error("Could not find the selected dashboard card.");
+        if (typeof html2canvas !== "function") {
+          throw new Error(
+            "Image capture library did not load. Check your internet connection and reload the dashboard.",
+          );
+        }
+        const hiddenControls = card.querySelectorAll(".image-action-group");
+        hiddenControls.forEach((el) => {
+          el.dataset.previousVisibility = el.style.visibility;
+          el.style.visibility = "hidden";
+        });
+        try {
+          // Give Chart.js a chance to finish painting before capture.
+          await new Promise((resolve) =>
+            requestAnimationFrame(() => requestAnimationFrame(resolve)),
+          );
+          const canvas = await html2canvas(card, {
+            backgroundColor: "#ffffff",
+            scale: 2,
+            useCORS: true,
+            logging: false,
+            imageTimeout: 15000,
+            ignoreElements: (el) =>
+              el.classList && el.classList.contains("image-action-group"),
+          });
+          return {
+            canvas,
+            name: (card.dataset.imageName || "dashboard-card")
+              .replace(/[^a-z0-9_-]+/gi, "-")
+              .replace(/^-|-$/g, ""),
+          };
+        } finally {
+          hiddenControls.forEach((el) => {
+            el.style.visibility = el.dataset.previousVisibility || "";
+            delete el.dataset.previousVisibility;
+          });
+        }
+      }
+
+      async function copyDashboardImage(button) {
+        const original = button.innerHTML;
+        button.disabled = true;
+        try {
+          const { canvas, name } = await createDashboardImage(button);
+          const blob = await new Promise((resolve, reject) =>
+            canvas.toBlob(
+              (b) =>
+                b
+                  ? resolve(b)
+                  : reject(new Error("Could not create PNG image.")),
+              "image/png",
+            ),
+          );
+          if (
+            navigator.clipboard &&
+            window.ClipboardItem &&
+            window.isSecureContext
+          ) {
+            await navigator.clipboard.write([
+              new ClipboardItem({ "image/png": blob }),
+            ]);
+            button.innerHTML =
+              '<i class="bi bi-check2"></i><span class="action-label">Copied</span>';
+            button.title = name + " copied as image. Paste with Ctrl+V.";
+            setTimeout(() => {
+              button.innerHTML = original;
+              button.disabled = false;
+            }, 1800);
+          } else {
+            downloadPngBlob(blob, name);
+            alert(
+              "This browser does not allow direct image copying on this page. The PNG has been downloaded; insert it into Word/email or open it and copy it.",
+            );
+            button.innerHTML = original;
+            button.disabled = false;
+          }
+        } catch (error) {
+          console.error(error);
+          alert(
+            "Could not copy this card as an image. " +
+              (error.message || "Please try again."),
+          );
+          button.innerHTML = original;
+          button.disabled = false;
+        }
+      }
+
+      async function downloadDashboardImage(button) {
+        const original = button.innerHTML;
+        button.disabled = true;
+        try {
+          const { canvas, name } = await createDashboardImage(button);
+          const blob = await new Promise((resolve, reject) =>
+            canvas.toBlob(
+              (b) =>
+                b
+                  ? resolve(b)
+                  : reject(new Error("Could not create PNG image.")),
+              "image/png",
+            ),
+          );
+          downloadPngBlob(blob, name);
+        } catch (error) {
+          console.error(error);
+          alert(
+            "Could not download this card as an image. " +
+              (error.message || "Please try again."),
+          );
+        } finally {
+          button.innerHTML = original;
+          button.disabled = false;
+        }
+      }
+
+      function downloadPngBlob(blob, name) {
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = name + ".png";
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        setTimeout(() => URL.revokeObjectURL(url), 1500);
+      }
+
+      document
+        .querySelectorAll('[data-bs-toggle="tooltip"]')
+        .forEach((el) => bootstrap.Tooltip.getOrCreateInstance(el));
+    </script>
+  </body>
+</html>

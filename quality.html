@@ -1,0 +1,905 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Mahindra Programs | CIO Tracker</title>
+    <link
+      rel="stylesheet"
+      href="https://fontsstorage.blob.core.windows.net/html/css/georama.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --red: #a9153d;
+        --navy: #071b2d;
+        --ink: #243746;
+        --muted: #71818d;
+        --bg: #f3f6f8;
+        --border: #dce4e9;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "Georama-Regular", Arial, sans-serif;
+        font-size: 12px;
+      }
+      .topbar {
+        height: 68px;
+        background: #fff;
+        border-bottom: 2px solid var(--red);
+        box-shadow: 0 1px 5px #071b2d0f;
+      }
+      .header-inner {
+        height: 68px;
+      }
+      .mahindra-logo img {
+        width: 170px;
+        height: auto;
+      }
+      .top-menu {
+        display: flex;
+        gap: 4px;
+        align-items: center;
+      }
+      .top-menu a {
+        color: #465967;
+        text-decoration: none;
+        padding: 11px 13px;
+        border-radius: 6px;
+        font-size: 12px;
+        font-weight: 700;
+        white-space: nowrap;
+      }
+      .top-menu a:hover,
+      .top-menu a.active {
+        background: #f5eaf0;
+        color: var(--red);
+      }
+      .top-menu a.active {
+        box-shadow: inset 0 -2px 0 var(--red);
+      }
+      .profile-btn {
+        border: 0;
+        background: transparent;
+        color: var(--ink);
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        padding: 5px 7px;
+      }
+      .avatar {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: var(--red);
+        color: white;
+        display: grid;
+        place-items: center;
+        font-weight: 800;
+      }
+      .profile-name {
+        font-size: 12px;
+        font-weight: 800;
+      }
+      .profile-role {
+        font-size: 10px;
+        color: #7b8993;
+      }
+      .page {
+        padding: 24px 28px 40px;
+        max-width: 1700px;
+        margin: auto;
+      }
+      .page-title-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 12px;
+        margin-bottom: 16px;
+      }
+      .title {
+        font-size: 22px;
+        font-weight: 800;
+        color: var(--navy);
+        margin: 0;
+      }
+      .sub {
+        font-size: 11px;
+        color: var(--muted);
+        margin-top: 5px;
+      }
+      .accent {
+        height: 3px;
+        width: 45px;
+        background: var(--red);
+        border-radius: 3px;
+        margin-top: 9px;
+      }
+      .summary-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 12px;
+        margin-bottom: 14px;
+      }
+      .summary-card,
+      .table-card,
+      .filter-card {
+        background: #fff;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        box-shadow: 0 2px 9px #071b2d0c;
+      }
+      .summary-card {
+        padding: 14px 16px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .summary-label {
+        font-size: 10px;
+        color: #71818d;
+        text-transform: uppercase;
+        font-weight: 800;
+        letter-spacing: 0.35px;
+      }
+      .summary-value {
+        font-size: 23px;
+        font-weight: 800;
+        color: var(--navy);
+        margin-top: 5px;
+      }
+      .summary-icon {
+        width: 38px;
+        height: 38px;
+        border-radius: 9px;
+        background: #f7eaf0;
+        color: var(--red);
+        display: grid;
+        place-items: center;
+        font-size: 17px;
+      }
+      .filter-card {
+        padding: 14px 16px;
+        margin-bottom: 14px;
+      }
+      .filter-grid {
+        display: grid;
+        grid-template-columns: 1.2fr 1fr 1fr auto;
+        gap: 10px;
+        align-items: end;
+      }
+      .filter-label {
+        font-size: 10px;
+        text-transform: uppercase;
+        font-weight: 800;
+        color: #687a87;
+        margin-bottom: 5px;
+      }
+      .filter-control {
+        height: 35px;
+        font-size: 11px;
+      }
+      .apply,
+      .tool-btn {
+        height: 34px;
+        border: 1px solid #d7e0e5;
+        background: #fff;
+        border-radius: 6px;
+        color: #617481;
+        font-size: 10px;
+        padding: 0 11px;
+        font-weight: 700;
+        white-space: nowrap;
+      }
+      .apply {
+        background: var(--red);
+        color: #fff;
+        border-color: var(--red);
+      }
+      .table-head {
+        padding: 15px 17px 12px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 14px;
+        flex-wrap: wrap;
+      }
+      .table-title {
+        font-size: 16px;
+        font-weight: 800;
+        color: var(--navy);
+      }
+      .table-meta {
+        font-size: 10px;
+        color: #7a8994;
+      }
+      .toolbar-controls {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+      .search-wrap {
+        position: relative;
+        width: 250px;
+        max-width: 100%;
+      }
+      .search-wrap i {
+        position: absolute;
+        left: 11px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #82909a;
+      }
+      .search-wrap input {
+        width: 100%;
+        height: 34px;
+        border: 1px solid #d7e0e5;
+        border-radius: 6px;
+        padding: 0 10px 0 31px;
+        font-size: 11px;
+        outline: none;
+      }
+      .table-wrap {
+        width: 100%;
+        overflow: auto;
+        border-top: 1px solid var(--border);
+        max-height: 65vh;
+        min-height: 300px;
+      }
+      .data-table {
+        width: max-content;
+        min-width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+        background: white;
+      }
+      .data-table th {
+        position: sticky;
+        top: 0;
+        z-index: 2;
+        background: #f1f4f6;
+        color: #627582;
+        border-right: 1px solid #edf1f4;
+        border-bottom: 1px solid #dce4e9;
+        padding: 9px 7px;
+        font-size: 11px;
+        text-transform: uppercase;
+        white-space: nowrap;
+        text-align: left;
+        line-height: 1.25;
+      }
+      .data-table td {
+        padding: 10px;
+        color: #405463;
+        border-right: 1px solid #f0f3f5;
+        border-bottom: 1px solid #e8edf0;
+        font-size: 12px;
+        white-space: nowrap;
+      }
+      .data-table tbody tr:nth-child(even) td {
+        background: #fafbfc;
+      }
+      .data-table tbody tr:hover td {
+        background: #f5eaf0;
+      }
+      .status-pill {
+        display: inline-flex;
+        padding: 4px 8px;
+        border-radius: 20px;
+        background: #e8f4ed;
+        color: #277447;
+        font-size: 10px;
+        font-weight: 800;
+      }
+      .table-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        flex-wrap: wrap;
+        padding: 11px 17px;
+        color: #7a8994;
+        font-size: 11px;
+      }
+      .footer-controls {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 16px;
+        flex-wrap: wrap;
+        margin-left: auto;
+      }
+      .page-size {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        white-space: nowrap;
+      }
+      .page-size select {
+        height: 29px;
+        border: 1px solid #d9e2e7;
+        border-radius: 5px;
+        font-size: 10px;
+        padding: 0 8px;
+        background: #fff;
+      }
+      .pagination .page-link {
+        font-size: 10px;
+        color: #617481;
+        border-color: #e0e6ea;
+        cursor: pointer;
+        min-width: 29px;
+        text-align: center;
+      }
+      .pagination .active .page-link {
+        background: var(--red);
+        border-color: var(--red);
+        color: white;
+      }
+      .pagination .disabled .page-link {
+        cursor: not-allowed;
+      }
+      .columns-menu {
+        min-width: 240px;
+        max-height: 65vh;
+        overflow: auto;
+      }
+      .columns-menu label {
+        display: flex;
+        gap: 8px;
+        padding: 6px 8px;
+        font-size: 11px;
+        cursor: pointer;
+      }
+      .columns-menu label:hover {
+        background: #f5eaf0;
+      }
+      .columns-menu input {
+        accent-color: var(--red);
+      }
+      .empty-state {
+        text-align: center;
+        padding: 35px;
+        color: #71818d;
+      }
+      @media (max-width: 1000px) {
+        .top-menu {
+          display: none;
+        }
+        .page {
+          padding: 18px 12px;
+        }
+        .filter-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+      @media (max-width: 600px) {
+        .filter-grid {
+          grid-template-columns: 1fr;
+        }
+        .page-title-row {
+          flex-direction: column;
+        }
+        .table-footer {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+        .footer-controls {
+          margin-left: 0;
+        }
+        .profile-name,
+        .profile-role {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="container-fluid px-4">
+        <div
+          class="header-inner d-flex align-items-center justify-content-between gap-3"
+        >
+          <a class="mahindra-logo" href="#"
+            ><img src="mahindra_rise_red.png" alt="Mahindra"
+          /></a>
+          <nav class="top-menu">
+            <a href="mahindra_engineering_dashboard.html"
+              ><i class="bi bi-grid-1x2 me-1"></i>Dashboard</a
+            ><a class="active" href="quality.html"
+              ><i class="bi bi-diagram-3 me-1"></i>Quality</a
+            ><a href="#"><i class="bi bi-bar-chart-line me-1"></i>Reports</a>
+          </nav>
+          <div class="dropdown">
+            <button
+              class="profile-btn dropdown-toggle"
+              data-bs-toggle="dropdown"
+            >
+              <div>
+                <div class="profile-name">Priyank Jain</div>
+                <div class="profile-role">Quality User</div>
+              </div>
+              <span class="avatar">PJ</span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end mt-2">
+              <li>
+                <a class="dropdown-item" href="#"
+                  ><i class="bi bi-person me-2"></i>My Profile</a
+                >
+              </li>
+              <li>
+                <a class="dropdown-item" href="#"
+                  ><i class="bi bi-gear me-2"></i>Settings</a
+                >
+              </li>
+              <li><hr class="dropdown-divider" /></li>
+              <li>
+                <a
+                  class="dropdown-item text-danger"
+                  href="mahindra_engineering_login.html"
+                  ><i class="bi bi-box-arrow-right me-2"></i>Logout</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </header>
+    <main class="page">
+      <div class="page-title-row">
+        <div>
+          <h1 class="title">Quality</h1>
+          <div class="accent"></div>
+        </div>
+      </div>
+      <section class="filter-card">
+        <div
+          class="filter-grid"
+          style="grid-template-columns: 1.1fr 1.1fr 1fr 1fr auto"
+        >
+          <div>
+            <div class="filter-label">Customer</div>
+            <input
+              id="filterCustomer"
+              class="form-control filter-control"
+              placeholder="Search customer"
+            />
+          </div>
+          <div>
+            <div class="filter-label">Part Number</div>
+            <input
+              id="filterPart"
+              class="form-control filter-control"
+              placeholder="Search part number"
+            />
+          </div>
+          <div>
+            <div class="filter-label">Current Status</div>
+            <select id="filterStatus" class="form-select filter-control">
+              <option value="">All statuses</option>
+              <option>Approved</option>
+              <option>Waiting for approval</option>
+              <option>Issues</option>
+            </select>
+          </div>
+          <div>
+            <div class="filter-label">D/C</div>
+            <select id="filterDC" class="form-select filter-control">
+              <option value="">All D/C types</option>
+              <option>CP</option>
+              <option>DP</option>
+            </select>
+          </div>
+          <div class="d-flex gap-2">
+            <button class="apply" onclick="applyFilters()">
+              <i class="bi bi-funnel me-1"></i>Apply</button
+            ><button
+              class="tool-btn"
+              onclick="clearFilters()"
+              title="Clear filters"
+              aria-label="Clear filters"
+            >
+              <i class="bi bi-arrow-counterclockwise"></i>
+            </button>
+          </div>
+        </div>
+      </section>
+      <section class="table-card">
+        <div class="table-head">
+          <div>
+            <div class="table-title">
+              FAI Work Order Records
+              <span class="table-meta">(<span id="recordCount">11</span>)</span>
+            </div>
+          </div>
+          <div class="toolbar-controls">
+            <div class="search-wrap">
+              <i class="bi bi-search"></i
+              ><input
+                id="globalSearch"
+                placeholder="Search..."
+                oninput="
+                  currentPage = 1;
+                  render();
+                "
+                aria-label="Search all records"
+              />
+            </div>
+            <button
+              class="tool-btn"
+              onclick="exportCsv()"
+              title="Export filtered records to CSV"
+            >
+              <i class="bi bi-download me-1"></i>Export
+            </button>
+            <div class="dropdown">
+              <button
+                class="tool-btn dropdown-toggle"
+                data-bs-toggle="dropdown"
+              >
+                <i class="bi bi-sliders me-1"></i>Columns
+              </button>
+              <div
+                class="dropdown-menu dropdown-menu-end columns-menu p-2"
+                id="columnsMenu"
+              >
+                <div class="fw-bold px-2 py-1">Show / hide columns</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table class="data-table" id="dataTable">
+            <thead>
+              <tr id="tableHead"></tr>
+            </thead>
+            <tbody id="tableBody"></tbody>
+          </table>
+        </div>
+        <div class="table-footer">
+          <div>
+            Showing <strong id="showing">1–10</strong> of
+            <strong id="total">11</strong> records
+          </div>
+          <div class="footer-controls">
+            <nav aria-label="Tracker pagination">
+              <ul id="pagination" class="pagination pagination-sm mb-0"></ul>
+            </nav>
+            <label class="page-size"
+              >Rows per page
+              <select id="pageSize" onchange="changePageSize(this.value)">
+                <option>10</option>
+                <option>25</option>
+                <option>50</option>
+                <option>100</option>
+              </select></label
+            >
+          </div>
+        </div>
+      </section>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      const columns = [
+        "Date",
+        "Month",
+        "Week",
+        "Customer",
+        "Part Number",
+        "Type",
+        "Work order number",
+        "Order Type",
+        "Current Status",
+        "Remarks",
+        "D/C",
+      ];
+      const records = [
+        [
+          "9/26/2024",
+          "SEPTEMBER",
+          "36",
+          "ATLANTIC",
+          "Z5791303430400",
+          "",
+          "21002672",
+          "FAI",
+          "Approved",
+          "",
+          "CP",
+        ],
+        [
+          "9/25/2024",
+          "SEPTEMBER",
+          "36",
+          "ATLANTIC",
+          "Z5791303330400",
+          "",
+          "21002756",
+          "FAI",
+          "Approved",
+          "",
+          "CP",
+        ],
+        [
+          "9/26/2024",
+          "SEPTEMBER",
+          "36",
+          "ATLANTIC",
+          "Z5791303730400",
+          "",
+          "21014016",
+          "FAI",
+          "Approved",
+          "",
+          "DP",
+        ],
+        [
+          "9/20/2024",
+          "SEPTEMBER",
+          "35",
+          "ATLANTIC",
+          "Z5791303530400",
+          "",
+          "21011803",
+          "FAI",
+          "Approved",
+          "",
+          "DP",
+        ],
+        [
+          "9/24/2024",
+          "SEPTEMBER",
+          "36",
+          "ATLANTIC",
+          "Z5791319730300",
+          "",
+          "21005043",
+          "FAI",
+          "Approved",
+          "",
+          "DP",
+        ],
+        [
+          "9/26/2024",
+          "SEPTEMBER",
+          "36",
+          "ATLANTIC",
+          "Z5791303130400",
+          "",
+          "21003087",
+          "FAI",
+          "Approved",
+          "",
+          "DP",
+        ],
+        [
+          "9/24/2024",
+          "SEPTEMBER",
+          "36",
+          "ATLANTIC",
+          "Z5391064000000",
+          "",
+          "21007077",
+          "FAI",
+          "Approved",
+          "",
+          "DP",
+        ],
+        [
+          "9/25/2024",
+          "SEPTEMBER",
+          "36",
+          "ATLANTIC",
+          "X5393680130300",
+          "",
+          "21009445",
+          "FAI",
+          "Waiting for approval",
+          "",
+          "DP",
+        ],
+        [
+          "9/19/2024",
+          "SEPTEMBER",
+          "35",
+          "ATLANTIC",
+          "Z5391067830000",
+          "",
+          "21003861",
+          "FAI",
+          "Approved",
+          "",
+          "DP",
+        ],
+        [
+          "9/25/2024",
+          "SEPTEMBER",
+          "36",
+          "ATLANTIC",
+          "Z5393680130400",
+          "",
+          "21001863",
+          "FAI",
+          "Approved",
+          "",
+          "DP",
+        ],
+        [
+          "9/25/2024",
+          "SEPTEMBER",
+          "36",
+          "ATLANTIC",
+          "Z5393680130600",
+          "",
+          "21003799",
+          "FAI",
+          "Approved",
+          "",
+          "DP",
+        ],
+      ];
+      let filtered = [...records],
+        currentPage = 1,
+        pageSize = 10,
+        visibleColumns = columns.map((_, i) => i);
+      function escapeHtml(v) {
+        return String(v ?? "").replace(
+          /[&<>"']/g,
+          (c) =>
+            ({
+              "&": "&amp;",
+              "<": "&lt;",
+              ">": "&gt;",
+              '"': "&quot;",
+              "'": "&#39;",
+            })[c],
+        );
+      }
+      function initColumns() {
+        const menu = document.getElementById("columnsMenu");
+        columns.forEach((name, i) => {
+          const label = document.createElement("label");
+          label.innerHTML = `<input type="checkbox" checked data-col="${i}"> <span>${escapeHtml(name)}</span>`;
+          label.querySelector("input").addEventListener("change", (e) => {
+            if (e.target.checked) {
+              if (!visibleColumns.includes(i)) visibleColumns.push(i);
+            } else visibleColumns = visibleColumns.filter((n) => n !== i);
+            visibleColumns.sort((a, b) => a - b);
+            render();
+          });
+          menu.appendChild(label);
+        });
+      }
+      function getFiltered() {
+        const customer = document
+            .getElementById("filterCustomer")
+            .value.trim()
+            .toLowerCase(),
+          part = document
+            .getElementById("filterPart")
+            .value.trim()
+            .toLowerCase(),
+          status = document.getElementById("filterStatus").value,
+          dc = document.getElementById("filterDC").value,
+          search = document
+            .getElementById("globalSearch")
+            .value.trim()
+            .toLowerCase();
+        return records.filter(
+          (r) =>
+            (!customer || r[3].toLowerCase().includes(customer)) &&
+            (!part || r[4].toLowerCase().includes(part)) &&
+            (!status || r[8] === status) &&
+            (!dc || r[10] === dc) &&
+            (!search ||
+              r.some((v) =>
+                String(v ?? "")
+                  .toLowerCase()
+                  .includes(search),
+              )),
+        );
+      }
+      function applyFilters() {
+        currentPage = 1;
+        render();
+      }
+      function clearFilters() {
+        [
+          "filterCustomer",
+          "filterPart",
+          "filterStatus",
+          "filterDC",
+          "globalSearch",
+        ].forEach((id) => (document.getElementById(id).value = ""));
+        currentPage = 1;
+        render();
+      }
+      function changePageSize(v) {
+        pageSize = Number(v) || 10;
+        currentPage = 1;
+        render();
+      }
+      function render() {
+        filtered = getFiltered();
+        const pages = Math.max(1, Math.ceil(filtered.length / pageSize));
+        if (currentPage > pages) currentPage = pages;
+        const start = (currentPage - 1) * pageSize,
+          shown = filtered.slice(start, start + pageSize);
+        document.getElementById("recordCount").textContent = filtered.length;
+        document.getElementById("total").textContent = filtered.length;
+        document.getElementById("showing").textContent = filtered.length
+          ? `${start + 1}–${Math.min(start + pageSize, filtered.length)}`
+          : "0–0";
+        document.getElementById("tableHead").innerHTML = visibleColumns
+          .map((i) => `<th>${escapeHtml(columns[i])}</th>`)
+          .join("");
+        document.getElementById("tableBody").innerHTML = shown.length
+          ? shown
+              .map(
+                (r) =>
+                  `<tr>${visibleColumns.map((i) => `<td>${i === 8 ? `<span class="status-pill" style="${r[i] === "Waiting for approval" ? "background:#fff0d9;color:#9a5a00" : ""}">${escapeHtml(r[i] || "—")}</span>` : escapeHtml(r[i] || "—")}</td>`).join("")}</tr>`,
+              )
+              .join("")
+          : `<tr><td class="empty-state" colspan="${Math.max(1, visibleColumns.length)}">No records match your search or filters.</td></tr>`;
+        renderPagination(pages);
+      }
+      function renderPagination(pages) {
+        const ul = document.getElementById("pagination");
+        let items = [];
+        const add = (label, page, disabled = false, active = false) =>
+          items.push(
+            `<li class="page-item ${disabled ? "disabled" : ""} ${active ? "active" : ""}"><button class="page-link" ${disabled ? "disabled" : ""} onclick="goPage(${page})">${label}</button></li>`,
+          );
+        add("&laquo;", currentPage - 1, currentPage === 1);
+        let start = Math.max(1, currentPage - 2),
+          end = Math.min(pages, start + 4);
+        start = Math.max(1, end - 4);
+        for (let p = start; p <= end; p++) add(p, p, false, p === currentPage);
+        add("&raquo;", currentPage + 1, currentPage === pages);
+        ul.innerHTML = items.join("");
+      }
+      function goPage(p) {
+        const pages = Math.max(1, Math.ceil(filtered.length / pageSize));
+        if (p < 1 || p > pages) return;
+        currentPage = p;
+        render();
+      }
+      function exportCsv() {
+        const csvRows = [
+          visibleColumns.map((i) => columns[i]),
+          ...filtered.map((r) => visibleColumns.map((i) => r[i] ?? "")),
+        ];
+        const csv = csvRows
+          .map((row) =>
+            row.map((v) => '"' + String(v).replace(/"/g, '""') + '"').join(","),
+          )
+          .join("\r\n");
+        const blob = new Blob(["\ufeff" + csv], {
+          type: "text/csv;charset=utf-8;",
+        });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "mahindra_fai_work_order_tracker.csv";
+        a.click();
+        URL.revokeObjectURL(url);
+      }
+      initColumns();
+      render();
+    </script>
+  </body>
+</html>

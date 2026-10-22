@@ -1,0 +1,1650 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Mahindra Engineering | PPC SAP Status Tracker</title>
+    <link
+      rel="stylesheet"
+      href="https://fontsstorage.blob.core.windows.net/html/css/georama.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --red: #a9153d;
+        --navy: #071b2d;
+        --ink: #243746;
+        --muted: #71818d;
+        --bg: #f3f6f8;
+        --border: #dce4e9;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "Georama-Regular", Arial, sans-serif;
+        font-size: 12px;
+      }
+      .topbar {
+        height: 68px;
+        background: #fff;
+        border-bottom: 2px solid var(--red);
+        box-shadow: 0 1px 5px #071b2d0f;
+      }
+      .header-inner {
+        height: 68px;
+      }
+      .mahindra-logo img {
+        width: 170px;
+        height: auto;
+      }
+      .top-menu {
+        display: flex;
+        gap: 4px;
+        align-items: center;
+      }
+      .top-menu a {
+        color: #465967;
+        text-decoration: none;
+        padding: 11px 13px;
+        border-radius: 6px;
+        font-size: 12px;
+        font-weight: 700;
+        white-space: nowrap;
+      }
+      .top-menu a:hover,
+      .top-menu a.active {
+        background: #f5eaf0;
+        color: var(--red);
+      }
+      .top-menu a.active {
+        box-shadow: inset 0 -2px 0 var(--red);
+      }
+      .profile-btn {
+        border: 0;
+        background: transparent;
+        color: var(--ink);
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        padding: 5px 7px;
+      }
+      .avatar {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: var(--red);
+        color: white;
+        display: grid;
+        place-items: center;
+        font-weight: 800;
+      }
+      .profile-name {
+        font-size: 12px;
+        font-weight: 800;
+      }
+      .profile-role {
+        font-size: 10px;
+        color: #7b8993;
+      }
+      .page {
+        padding: 24px 28px 40px;
+        max-width: 1700px;
+        margin: auto;
+      }
+      .page-title-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 12px;
+        margin-bottom: 16px;
+      }
+      .title {
+        font-size: 22px;
+        font-weight: 800;
+        color: var(--navy);
+        margin: 0;
+      }
+      .sub {
+        font-size: 11px;
+        color: var(--muted);
+        margin-top: 5px;
+      }
+      .accent {
+        height: 3px;
+        width: 45px;
+        background: var(--red);
+        border-radius: 3px;
+        margin-top: 9px;
+      }
+      .summary-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 12px;
+        margin-bottom: 14px;
+      }
+      .summary-card,
+      .table-card,
+      .filter-card {
+        background: #fff;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        box-shadow: 0 2px 9px #071b2d0c;
+      }
+      .summary-card {
+        padding: 14px 16px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .summary-label {
+        font-size: 10px;
+        color: #71818d;
+        text-transform: uppercase;
+        font-weight: 800;
+        letter-spacing: 0.35px;
+      }
+      .summary-value {
+        font-size: 23px;
+        font-weight: 800;
+        color: var(--navy);
+        margin-top: 5px;
+      }
+      .summary-icon {
+        width: 38px;
+        height: 38px;
+        border-radius: 9px;
+        background: #f7eaf0;
+        color: var(--red);
+        display: grid;
+        place-items: center;
+        font-size: 17px;
+      }
+      .filter-card {
+        padding: 14px 16px;
+        margin-bottom: 14px;
+      }
+      .filter-grid {
+        display: grid;
+        grid-template-columns: 1.2fr 1fr 1fr auto;
+        gap: 10px;
+        align-items: end;
+      }
+      .filter-label {
+        font-size: 10px;
+        text-transform: uppercase;
+        font-weight: 800;
+        color: #687a87;
+        margin-bottom: 5px;
+      }
+      .filter-control {
+        height: 35px;
+        font-size: 11px;
+      }
+      .apply,
+      .tool-btn {
+        height: 34px;
+        border: 1px solid #d7e0e5;
+        background: #fff;
+        border-radius: 6px;
+        color: #617481;
+        font-size: 10px;
+        padding: 0 11px;
+        font-weight: 700;
+        white-space: nowrap;
+      }
+      .apply {
+        background: var(--red);
+        color: #fff;
+        border-color: var(--red);
+      }
+      .table-head {
+        padding: 15px 17px 12px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 14px;
+        flex-wrap: wrap;
+      }
+      .table-title {
+        font-size: 16px;
+        font-weight: 800;
+        color: var(--navy);
+      }
+      .table-meta {
+        font-size: 10px;
+        color: #7a8994;
+      }
+      .toolbar-controls {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+      .search-wrap {
+        position: relative;
+        width: 250px;
+        max-width: 100%;
+      }
+      .search-wrap i {
+        position: absolute;
+        left: 11px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #82909a;
+      }
+      .search-wrap input {
+        width: 100%;
+        height: 34px;
+        border: 1px solid #d7e0e5;
+        border-radius: 6px;
+        padding: 0 10px 0 31px;
+        font-size: 11px;
+        outline: none;
+      }
+      .table-wrap {
+        width: 100%;
+        overflow: auto;
+        border-top: 1px solid var(--border);
+        max-height: 65vh;
+        min-height: 300px;
+      }
+      .data-table {
+        width: max-content;
+        min-width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+        background: white;
+      }
+      .data-table th {
+        position: sticky;
+        top: 0;
+        z-index: 2;
+        background: #f1f4f6;
+        color: #627582;
+        border-right: 1px solid #edf1f4;
+        border-bottom: 1px solid #dce4e9;
+        padding: 9px 7px;
+        font-size: 11px;
+        text-transform: uppercase;
+        white-space: nowrap;
+        text-align: left;
+        line-height: 1.25;
+      }
+      .data-table td {
+        padding: 10px;
+        color: #405463;
+        border-right: 1px solid #f0f3f5;
+        border-bottom: 1px solid #e8edf0;
+        font-size: 12px;
+        white-space: nowrap;
+      }
+      .data-table tbody tr:nth-child(even) td {
+        background: #fafbfc;
+      }
+      .data-table tbody tr:hover td {
+        background: #f5eaf0;
+      }
+      .status-pill {
+        display: inline-flex;
+        padding: 4px 8px;
+        border-radius: 20px;
+        background: #e8f4ed;
+        color: #277447;
+        font-size: 10px;
+        font-weight: 800;
+      }
+      .table-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        flex-wrap: wrap;
+        padding: 11px 17px;
+        color: #7a8994;
+        font-size: 11px;
+      }
+      .footer-controls {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 16px;
+        flex-wrap: wrap;
+        margin-left: auto;
+      }
+      .page-size {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        white-space: nowrap;
+      }
+      .page-size select {
+        height: 29px;
+        border: 1px solid #d9e2e7;
+        border-radius: 5px;
+        font-size: 10px;
+        padding: 0 8px;
+        background: #fff;
+      }
+      .pagination .page-link {
+        font-size: 10px;
+        color: #617481;
+        border-color: #e0e6ea;
+        cursor: pointer;
+        min-width: 29px;
+        text-align: center;
+      }
+      .pagination .active .page-link {
+        background: var(--red);
+        border-color: var(--red);
+        color: white;
+      }
+      .pagination .disabled .page-link {
+        cursor: not-allowed;
+      }
+      .columns-menu {
+        min-width: 240px;
+        max-height: 65vh;
+        overflow: auto;
+      }
+      .columns-menu label {
+        display: flex;
+        gap: 8px;
+        padding: 6px 8px;
+        font-size: 11px;
+        cursor: pointer;
+      }
+      .columns-menu label:hover {
+        background: #f5eaf0;
+      }
+      .columns-menu input {
+        accent-color: var(--red);
+      }
+      .empty-state {
+        text-align: center;
+        padding: 35px;
+        color: #71818d;
+      }
+      @media (max-width: 1000px) {
+        .top-menu {
+          display: none;
+        }
+        .page {
+          padding: 18px 12px;
+        }
+        .filter-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+      @media (max-width: 600px) {
+        .filter-grid {
+          grid-template-columns: 1fr;
+        }
+        .page-title-row {
+          flex-direction: column;
+        }
+        .table-footer {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+        .footer-controls {
+          margin-left: 0;
+        }
+        .profile-name,
+        .profile-role {
+          display: none;
+        }
+      }
+
+      .sap-stage-btn {
+        border: 1px solid #d7e0e5;
+        background: #fff;
+        color: #a9153d;
+        border-radius: 6px;
+        padding: 6px 10px;
+        font-weight: 800;
+        font-size: 10px;
+        white-space: nowrap;
+      }
+      .sap-stage-btn:hover {
+        background: #a9153d;
+        color: #fff;
+      }
+      .sap-modal .modal-content {
+        border: 0;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 18px 60px #071b2d30;
+      }
+      .sap-modal .modal-header {
+        background: linear-gradient(120deg, #071b2d, #233f54);
+        color: #fff;
+        padding: 20px 24px;
+        border: 0;
+      }
+      .sap-modal .modal-title {
+        font-weight: 800;
+        font-size: 18px;
+      }
+      .sap-modal .modal-header .btn-close {
+        filter: invert(1);
+        opacity: 0.9;
+      }
+      .sap-modal .modal-body {
+        padding: 20px 24px;
+        background: #f5f7f9;
+      }
+      .modal-part-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 8px;
+      }
+      .modal-part-meta span {
+        font-size: 10px;
+        background: #ffffff20;
+        border: 1px solid #ffffff35;
+        border-radius: 20px;
+        padding: 4px 9px;
+        color: #fff;
+      }
+      .stage-summary {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 10px;
+        margin-bottom: 18px;
+      }
+      .stage-summary div {
+        background: white;
+        border: 1px solid #e0e7ec;
+        border-radius: 9px;
+        padding: 12px;
+      }
+      .stage-summary small {
+        display: block;
+        color: #748492;
+        font-size: 10px;
+        text-transform: uppercase;
+        font-weight: 800;
+      }
+      .stage-summary strong {
+        display: block;
+        color: #10283a;
+        font-size: 18px;
+        margin-top: 3px;
+      }
+      .stage-grid {
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: 9px;
+      }
+      .stage-card {
+        background: #fff;
+        border: 1px solid #dfe6eb;
+        border-radius: 9px;
+        padding: 10px;
+        min-height: 83px;
+        position: relative;
+        overflow: hidden;
+      }
+      .stage-card:before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 3px;
+        background: #a9153d;
+      }
+      .stage-card .stage-number {
+        font-size: 9px;
+        font-weight: 800;
+        color: #a9153d;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+      .stage-card .stage-value {
+        font-size: 11px;
+        font-weight: 800;
+        color: #253c4d;
+        margin-top: 7px;
+        overflow-wrap: anywhere;
+      }
+      .stage-card.empty:before {
+        background: #c7d0d7;
+      }
+      .stage-card.empty .stage-value {
+        font-weight: 500;
+        color: #87949e;
+      }
+      .stage-card.future {
+        background: #f0f3f5;
+        border-style: dashed;
+      }
+      .stage-card.future:before {
+        background: #9aa8b2;
+      }
+      .stage-card.future .stage-value {
+        color: #7d8b95;
+        font-weight: 600;
+      }
+      .modal-footnote {
+        font-size: 10px;
+        color: #748492;
+        margin-top: 14px;
+      }
+      .issues-pill {
+        display: inline-flex;
+        padding: 4px 8px;
+        border-radius: 20px;
+        background: #fff0d9;
+        color: #935800;
+        font-size: 10px;
+        font-weight: 800;
+      }
+      .action-pill {
+        display: inline-flex;
+        padding: 4px 8px;
+        border-radius: 20px;
+        background: #e7f4ec;
+        color: #277447;
+        font-size: 10px;
+        font-weight: 800;
+      }
+      @media (max-width: 900px) {
+        .stage-grid {
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+      }
+      @media (max-width: 600px) {
+        .stage-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        .stage-summary {
+          grid-template-columns: 1fr;
+        }
+        .sap-modal .modal-body {
+          padding: 14px;
+        }
+        .sap-modal .modal-header {
+          padding: 16px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="container-fluid px-4">
+        <div
+          class="header-inner d-flex align-items-center justify-content-between gap-3"
+        >
+          <a class="mahindra-logo" href="#"
+            ><img src="mahindra_rise_red.png" alt="Mahindra"
+          /></a>
+          <nav class="top-menu">
+            <a href="mahindra_engineering_dashboard.html"
+              ><i class="bi bi-grid-1x2 me-1"></i>Dashboard</a
+            ><a class="active" href="ppc.html"
+              ><i class="bi bi-diagram-3 me-1"></i>PPC</a
+            ><a href="#"><i class="bi bi-bar-chart-line me-1"></i>Reports</a>
+          </nav>
+          <div class="dropdown">
+            <button
+              class="profile-btn dropdown-toggle"
+              data-bs-toggle="dropdown"
+            >
+              <div>
+                <div class="profile-name">Priyank Jain</div>
+                <div class="profile-role">PPC User</div>
+              </div>
+              <span class="avatar">PJ</span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end mt-2">
+              <li>
+                <a class="dropdown-item" href="#"
+                  ><i class="bi bi-person me-2"></i>My Profile</a
+                >
+              </li>
+              <li>
+                <a class="dropdown-item" href="#"
+                  ><i class="bi bi-gear me-2"></i>Settings</a
+                >
+              </li>
+              <li><hr class="dropdown-divider" /></li>
+              <li>
+                <a
+                  class="dropdown-item text-danger"
+                  href="mahindra_engineering_login.html"
+                  ><i class="bi bi-box-arrow-right me-2"></i>Logout</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </header>
+    <main class="page">
+      <div class="page-title-row">
+        <div>
+          <h1 class="title">PPC</h1>
+          <div class="accent"></div>
+        </div>
+      </div>
+      <section class="filter-card">
+        <div
+          class="filter-grid"
+          style="grid-template-columns: 1.15fr 1fr 1fr 1fr auto"
+        >
+          <div>
+            <div class="filter-label">SAP Part Number</div>
+            <input
+              id="filterPart"
+              class="form-control filter-control"
+              placeholder="Search SAP PN#"
+            />
+          </div>
+          <div>
+            <div class="filter-label">SAP Status</div>
+            <select id="filterStatus" class="form-select filter-control">
+              <option value="">All SAP statuses</option>
+              <option>FINISHED GOODS STORAGE</option>
+            </select>
+          </div>
+          <div>
+            <div class="filter-label">Action Status</div>
+            <select id="filterAction" class="form-select filter-control">
+              <option value="">All action statuses</option>
+              <option>OPEN</option>
+              <option>Closed</option>
+            </select>
+          </div>
+          <div>
+            <div class="filter-label">DP / CP</div>
+            <select id="filterDC" class="form-select filter-control">
+              <option value="">All types</option>
+              <option>DP</option>
+              <option>CP</option>
+            </select>
+          </div>
+          <div class="d-flex gap-2">
+            <button class="apply" onclick="applyFilters()">
+              <i class="bi bi-funnel me-1"></i>Apply</button
+            ><button
+              class="tool-btn"
+              onclick="clearFilters()"
+              title="Clear filters"
+              aria-label="Clear filters"
+            >
+              <i class="bi bi-arrow-counterclockwise"></i>
+            </button>
+          </div>
+        </div>
+      </section>
+      <section class="table-card">
+        <div class="table-head">
+          <div>
+            <div class="table-title">
+              PPC Records
+              <span class="table-meta">(<span id="recordCount">11</span>)</span>
+            </div>
+          </div>
+          <div class="toolbar-controls">
+            <div class="search-wrap">
+              <i class="bi bi-search"></i
+              ><input
+                id="globalSearch"
+                placeholder="Search..."
+                oninput="
+                  currentPage = 1;
+                  render();
+                "
+                aria-label="Search all records"
+              />
+            </div>
+            <button
+              class="tool-btn"
+              onclick="exportCsv()"
+              title="Export filtered records to CSV"
+            >
+              <i class="bi bi-download me-1"></i>Export
+            </button>
+            <div class="dropdown">
+              <button
+                class="tool-btn dropdown-toggle"
+                data-bs-toggle="dropdown"
+              >
+                <i class="bi bi-sliders me-1"></i>Columns
+              </button>
+              <div
+                class="dropdown-menu dropdown-menu-end columns-menu p-2"
+                id="columnsMenu"
+              >
+                <div class="fw-bold px-2 py-1">Show / hide columns</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table class="data-table" id="dataTable">
+            <thead>
+              <tr id="tableHead"></tr>
+            </thead>
+            <tbody id="tableBody"></tbody>
+          </table>
+        </div>
+        <div class="table-footer">
+          <div>
+            Showing <strong id="showing">1–10</strong> of
+            <strong id="total">11</strong> records
+          </div>
+          <div class="footer-controls">
+            <nav aria-label="Tracker pagination">
+              <ul id="pagination" class="pagination pagination-sm mb-0"></ul>
+            </nav>
+            <label class="page-size"
+              >Rows per page
+              <select id="pageSize" onchange="changePageSize(this.value)">
+                <option>10</option>
+                <option>25</option>
+                <option>50</option>
+                <option>100</option>
+              </select></label
+            >
+          </div>
+        </div>
+      </section>
+    </main>
+    <div
+      class="modal fade sap-modal"
+      id="stageModal"
+      tabindex="-1"
+      aria-hidden="true"
+    >
+      <div
+        class="modal-dialog modal-xl modal-dialog-scrollable modal-dialog-centered"
+      >
+        <div class="modal-content">
+          <div class="modal-header">
+            <div>
+              <h5 class="modal-title" id="modalTitle">SAP Operation Stages</h5>
+              <div id="modalMeta" class="modal-part-meta"></div>
+            </div>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div class="stage-summary">
+              <div>
+                <small>Stage headings in PDF</small><strong>32 / 60</strong>
+              </div>
+              <div>
+                <small>Populated stage values</small
+                ><strong id="stagePopulated">—</strong>
+              </div>
+              <div>
+                <small>Current SAP status</small
+                ><strong id="stageSapStatus" style="font-size: 12px">—</strong>
+              </div>
+            </div>
+            <div class="stage-grid" id="stageGrid"></div>
+            <div class="modal-footnote">
+              <i class="bi bi-info-circle me-1"></i>Stages 1–32 follow the
+              values visible in the source PDF. Stages 33–60 are placeholders
+              because their headings and values were not included in this file.
+              Confirm exact stage-to-column mapping against the source workbook
+              before using this as a production tracker.
+            </div>
+          </div>
+          <div class="modal-footer bg-white">
+            <button type="button" class="tool-btn" data-bs-dismiss="modal">
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      const columns = [
+        "SAP PN#",
+        "WO",
+        "SAP Status",
+        "Ageing",
+        "Project",
+        "Issues",
+        "Qty",
+        "Action Status",
+        "Work Category",
+        "Priority",
+        "Issue Summary",
+        "Resp",
+        "DP/CP",
+        "Assy",
+        "EDC",
+        "WO Active Days",
+        "PO Check",
+        "Next Operation Cat",
+        "Next Operation Desc",
+        "Customer",
+        "Project Nomenclature",
+        "OPN Pending",
+        "RM Stock Check",
+        "RM Code",
+        "Project2",
+        "Completion %",
+        "Handover 1",
+      ];
+      const records = [
+        [
+          "Z5791303430400",
+          "21002672",
+          "FINISHED GOODS STORAGE",
+          532,
+          "ABS",
+          "Waiting for approval",
+          7,
+          "OPEN",
+          "FG",
+          "PART SUBMITTED",
+          "FAI Approval",
+          "FG",
+          "DP",
+          "NO",
+          0,
+          581,
+          "YES",
+          "FG",
+          "FINISHED GOODS STORAGE",
+          "ABS",
+          "ABS",
+          2,
+          "OK",
+          "#N/A",
+          "ABS",
+          "90.48%",
+          "pending",
+        ],
+        [
+          "Z5791303330400",
+          "21002756",
+          "FINISHED GOODS STORAGE",
+          440,
+          "ABS",
+          "",
+          3,
+          "Closed",
+          "FG",
+          "PART SUBMITTED",
+          "FAI Approval",
+          "FG",
+          "DP",
+          "YES",
+          "",
+          "493",
+          "YES",
+          "FG",
+          "FINISHED GOODS STORAGE",
+          "ABS",
+          "ABS",
+          1,
+          "OK",
+          "#N/A",
+          "ABS",
+          "95.00%",
+          "Completed",
+        ],
+        [
+          "Z5791303730400",
+          "21014016",
+          "FINISHED GOODS STORAGE",
+          354,
+          "ABS",
+          "Waiting for approval",
+          2,
+          "OPEN",
+          "FG",
+          "PART SUBMITTED",
+          "FAI Approval",
+          "FG",
+          "DP",
+          "NO",
+          0,
+          396,
+          "YES",
+          "FG",
+          "FINISHED GOODS STORAGE",
+          "ABS",
+          "ABS",
+          2,
+          "OK",
+          "#N/A",
+          "ABS",
+          "90.48%",
+          "Completed",
+        ],
+        [
+          "Z5791303530400",
+          "21011803",
+          "FINISHED GOODS STORAGE",
+          340,
+          "ABS",
+          "",
+          2,
+          "OPEN",
+          "FG",
+          "PART SUBMITTED",
+          "FAI Approval",
+          "FG",
+          "DP",
+          "YES",
+          0,
+          396,
+          "NO",
+          "FG",
+          "FINISHED GOODS STORAGE",
+          "ABS",
+          "ABS",
+          12,
+          "NOT OK",
+          "RA1M7011861601",
+          "ABS",
+          "53.85%",
+          "#N/A",
+        ],
+        [
+          "Z5791319730300",
+          "21005043",
+          "FINISHED GOODS STORAGE",
+          311,
+          "ABS",
+          "Waiting for approval",
+          4,
+          "OPEN",
+          "FG",
+          "PART SUBMITTED",
+          "FAI Approval",
+          "FG",
+          "DP",
+          "YES",
+          0,
+          351,
+          "YES",
+          "FG",
+          "FINISHED GOODS STORAGE",
+          "ABS",
+          "ABS",
+          2,
+          "OK",
+          "#N/A",
+          "ABS",
+          "92.31%",
+          "Completed",
+        ],
+        [
+          "Z5791303130400",
+          "21003087",
+          "FINISHED GOODS STORAGE",
+          302,
+          "ABS",
+          "Waiting for approval",
+          2,
+          "OPEN",
+          "FG",
+          "PART SUBMITTED",
+          "FAI Approval",
+          "FG",
+          "DP",
+          "NO",
+          0,
+          323,
+          "YES",
+          "FG",
+          "FINISHED GOODS STORAGE",
+          "ABS",
+          "ABS",
+          2,
+          "OK",
+          "#N/A",
+          "ABS",
+          "86.67%",
+          "Completed",
+        ],
+        [
+          "Z5391064000000",
+          "21007077",
+          "FINISHED GOODS STORAGE",
+          256,
+          "ABS",
+          "Waiting for approval",
+          4,
+          "OPEN",
+          "FG",
+          "PART SUBMITTED",
+          "FAI Approval",
+          "FG",
+          "DP",
+          "NO",
+          0,
+          291,
+          "YES",
+          "FG",
+          "FINISHED GOODS STORAGE",
+          "ABS",
+          "ABS",
+          2,
+          "OK",
+          "#N/A",
+          "ABS",
+          "91.30%",
+          "Completed",
+        ],
+        [
+          "X5393680130300",
+          "21009445",
+          "FINISHED GOODS STORAGE",
+          254,
+          "ABS",
+          "Engg Review",
+          6,
+          "OPEN",
+          "FG",
+          "PART SUBMITTED",
+          "FAI Approval",
+          "FG",
+          "DP",
+          "NO",
+          0,
+          297,
+          "NO",
+          "FG",
+          "FINISHED GOODS STORAGE",
+          "ABS",
+          "ABS",
+          2,
+          "NOT OK",
+          "RM0010012480005",
+          "ABS",
+          "91.67%",
+          "Completed",
+        ],
+        [
+          "Z5391067830000",
+          "21003861",
+          "FINISHED GOODS STORAGE",
+          251,
+          "ABS",
+          "Parts are with Engg_Abhishek, PO not available; mail has been sent from Engg to TECO the part",
+          5,
+          "OPEN",
+          "FG",
+          "PART SUBMITTED",
+          "FAI Approval",
+          "FG",
+          "DP",
+          "YES",
+          0,
+          294,
+          "NO",
+          "FG",
+          "FINISHED GOODS STORAGE",
+          "ABS",
+          "ABS",
+          14,
+          "NOT OK",
+          "RM5060610290029",
+          "ABS",
+          "56.25%",
+          "#N/A",
+        ],
+        [
+          "Z5393680130400",
+          "21001863",
+          "FINISHED GOODS STORAGE",
+          223,
+          "ABS",
+          "Drawing Updating",
+          8,
+          "OPEN",
+          "FG",
+          "PART SUBMITTED",
+          "FAI Approval",
+          "FG",
+          "CP",
+          "NO",
+          0,
+          255,
+          "YES",
+          "FG",
+          "FINISHED GOODS STORAGE",
+          "ABS",
+          "ABS",
+          2,
+          "OK",
+          "#N/A",
+          "ABS",
+          "88.24%",
+          "pending",
+        ],
+        [
+          "Z5393680130600",
+          "21003799",
+          "FINISHED GOODS STORAGE",
+          218,
+          "ABS",
+          "Engg issdue_Wrong hardware loaded",
+          4,
+          "OPEN",
+          "FG",
+          "PART SUBMITTED",
+          "FAI Approval",
+          "FG",
+          "DP",
+          "YES",
+          0,
+          235,
+          "YES",
+          "FG",
+          "FINISHED GOODS STORAGE",
+          "ABS",
+          "ABS",
+          6,
+          "NOT OK",
+          "RM5171030650065",
+          "ABS",
+          "66.67%",
+          "pending",
+        ],
+      ];
+      const stageValues = [
+        [
+          "RS-RM-01",
+          "SMROCELL",
+          "SM-DB-01",
+          "SM-DB-03",
+          "QA-BI-01",
+          "SMHTCELL",
+          "SMHTCELL",
+          "HT-CS-02",
+          "SMPBCELL",
+          "SM-HP-01",
+          "SM-CS-01",
+          "SMAOCELL",
+          "SMAOCELL",
+          "QA-CI-01",
+          "QA-HT-01",
+          "ND-FP-01",
+          "ST-CA-02",
+          "",
+          "QA-ST-01",
+          "PM-PI-01",
+          "QA-FI",
+          "RS-FG-01",
+        ],
+        [
+          "RS-RM-01",
+          "SMROCELL",
+          "SM-DB-01",
+          "SM-DB-03",
+          "QA-BI-01",
+          "SMPBCELL",
+          "QA-CI-01",
+          "ST-TA-04",
+          "QA-ST-01",
+          "ST-PS-01",
+          "QA-PS-01",
+          "ST-PS-01",
+          "ST-TU-01",
+          "QA-PS-01",
+          "RS-HD-01",
+          "EQUIP-01",
+          "EQ-QA-01",
+          "",
+          "AS-PM-02",
+          "QA-FI",
+          "RS-FG-01",
+        ],
+        [
+          "RS-RM-01",
+          "SMROCELL",
+          "SM-DB-01",
+          "SM-DB-03",
+          "QA-BI-01",
+          "SMHTCELL",
+          "SMHTCELL",
+          "HT-CS-02",
+          "SMPBCELL",
+          "QA-CI-01",
+          "QA-HT-01",
+          "ST-TA-04",
+          "QA-ST-01",
+          "ST-PS-01",
+          "QA-PS-01",
+          "ST-PS-01",
+          "ST-TU-01",
+          "",
+          "QA-PS-01",
+          "PM-PI-01",
+          "QA-FI",
+          "RS-FG-01",
+        ],
+        [
+          "RS-RM-01",
+          "SM-WL-01",
+          "SM-WL-01",
+          "SM-CS-01",
+          "QA-WL-01",
+          "QA-CI-02",
+          "ND-FP-01",
+          "ST-CA-02",
+          "QA-ST-01",
+          "ST-PS-01",
+          "QA-PS-01",
+          "ST-TC-01",
+          "ST-TU-01",
+          "QA-PS-01",
+          "RS-HD-01",
+          "EQUIP-01",
+          "AS-SE-01",
+          "AS-SE-01",
+          "EQUIP-01",
+          "EQ-QA-01",
+          "AS-PS-01",
+          "AS-PM-02",
+          "QA-FI",
+          "AS-PM-02",
+          "AS-PS-02",
+          "RS-FG-01",
+        ],
+        [
+          "RS-RM-01",
+          "SMROCELL",
+          "SM-DB-01",
+          "SM-DB-03",
+          "QA-BI-01",
+          "SMPBCELL",
+          "QA-CI-01",
+          "ST-MA-01",
+          "QA-ST-01",
+          "ST-TA-04",
+          "QA-ST-01",
+          "ST-PS-01",
+          "ST-UM-01",
+          "ST-TU-01",
+          "QA-PS-01",
+          "RS-HD-01",
+          "EQUIP-01",
+          "AS-CD-01",
+          "EQUIP-01",
+          "EQ-QA-01",
+          "AS-PS-01",
+          "AS-QP-01",
+          "ST-UM-01",
+          "AS-PM-02",
+          "QA-FI",
+          "RS-FG-01",
+        ],
+        [
+          "RS-RM-01",
+          "SMROCELL",
+          "SM-DB-01",
+          "SM-DB-03",
+          "QA-CI-01",
+          "ST-TA-04",
+          "QA-ST-01",
+          "ST-PS-01",
+          "QA-PS-01",
+          "ST-PS-01",
+          "ST-TU-01",
+          "QA-PS-01",
+          "PM-PI-01",
+          "QA-FI",
+          "RS-FG-01",
+        ],
+        [
+          "RS-RM-01",
+          "SMROCELL",
+          "SM-DB-01",
+          "SM-DB-03",
+          "QA-BI-01",
+          "SMHTCELL",
+          "SMHTCELL",
+          "HT-CS-02",
+          "SMPBCELL",
+          "SM-TR-01",
+          "SMPBCELL",
+          "QA-CI-01",
+          "QA-HT-01",
+          "ST-TA-04",
+          "QA-ST-01",
+          "ST-PS-01",
+          "QA-PS-01",
+          "",
+          "ST-PS-01",
+          "ST-TU-01",
+          "QA-PS-01",
+          "PM-PI-01",
+          "QA-FI",
+          "RS-FG-01",
+        ],
+        [
+          "RS-RM-01",
+          "SMROCELL",
+          "SM-DB-01",
+          "SM-DB-03",
+          "QA-BI-01",
+          "SMHTCELL",
+          "SMHTCELL",
+          "HT-CS-02",
+          "SMPBCELL",
+          "SM-HF-01",
+          "HT-AO-02",
+          "QA-CI-02",
+          "QA-HT-01",
+          "ND-FP-01",
+          "ST-TA-04",
+          "QA-ST-01",
+          "ST-PS-01",
+          "",
+          "QA-PS-01",
+          "ST-PS-01",
+          "ST-TU-01",
+          "QA-PS-01",
+          "PM-PI-01",
+          "QA-FI",
+          "RS-FG-01",
+        ],
+        [
+          "RS-RM-01",
+          "SM-RO-03",
+          "SM-DB-03",
+          "SM-DB-01",
+          "QA-CI-02",
+          "ST-MA-01",
+          "QA-ST-01",
+          "ST-MA-01",
+          "QA-ST-01",
+          "ST-CA-02",
+          "QA-ST-01",
+          "ST-PS-01",
+          "QA-PS-01",
+          "ST-TC-01",
+          "ST-TU-01",
+          "ST-MA-01",
+          "QA-PS-01",
+          "RS-HD-01",
+          "EQUIP-01",
+          "AS-CD-02",
+          "AS-SE-01",
+          "AS-SE-01",
+          "EQUIP-01",
+          "EQ-QA-01",
+          "AS-SE-01",
+          "AS-SE-01",
+          "EQ-QA-01",
+          "AS-PM-02",
+          "QA-FI",
+          "AS-PM-02",
+          "AS-PS-02",
+          "RS-FG-01",
+        ],
+        [
+          "RS-RM-01",
+          "SMROCELL",
+          "SM-DB-01",
+          "SM-DB-03",
+          "QA-BI-01",
+          "SMPBCELL",
+          "QA-CI-01",
+          "ST-CC-01",
+          "QA-ST-01",
+          "ST-PS-01",
+          "QA-PS-01",
+          "ST-PS-01",
+          "ST-TU-01",
+          "QA-PS-01",
+          "PM-PI-01",
+          "QA-FI",
+          "RS-SF-01",
+        ],
+        [
+          "RS-RM-01",
+          "SMROCELL",
+          "SM-DB-01",
+          "SM-DB-03",
+          "QA-BI-01",
+          "SMPBCELL",
+          "QA-CI-01",
+          "ST-TA-04",
+          "QA-ST-01",
+          "ST-PS-01",
+          "ST-TU-01",
+          "QA-PS-01",
+          "RS-SF-01",
+          "EQUIP-01",
+          "EQ-QA-01",
+          "AS-PM-02",
+          "QA-FI",
+          "RS-FG-01",
+        ],
+        [
+          "RS-RM-01",
+          "SMROCELL",
+          "SM-DB-01",
+          "SM-DB-03",
+          "QA-BI-01",
+          "SMPBCELL",
+          "ST-TA-04",
+          "QA-ST-01",
+          "ST-PS-01",
+          "ST-TU-01",
+          "QA-PS-01",
+          "RS-SF-01",
+          "EQUIP-01",
+          "EQ-QA-01",
+          "AS-PM-02",
+          "QA-FI",
+          "RS-FG-01",
+        ],
+      ];
+      let filtered = [...records],
+        currentPage = 1,
+        pageSize = 10,
+        visibleColumns = columns.map((_, i) => i);
+      function escapeHtml(v) {
+        return String(v ?? "").replace(
+          /[&<>"']/g,
+          (c) =>
+            ({
+              "&": "&amp;",
+              "<": "&lt;",
+              ">": "&gt;",
+              '"': "&quot;",
+              "'": "&#39;",
+            })[c],
+        );
+      }
+      function initColumns() {
+        const menu = document.getElementById("columnsMenu");
+        columns.forEach((name, i) => {
+          const label = document.createElement("label");
+          label.innerHTML = `<input type="checkbox" checked data-col="${i}"> <span>${escapeHtml(name)}</span>`;
+          label.querySelector("input").addEventListener("change", (e) => {
+            if (e.target.checked) {
+              if (!visibleColumns.includes(i)) visibleColumns.push(i);
+            } else visibleColumns = visibleColumns.filter((n) => n !== i);
+            visibleColumns.sort((a, b) => a - b);
+            render();
+          });
+          menu.appendChild(label);
+        });
+      }
+      function getFiltered() {
+        const part = document
+            .getElementById("filterPart")
+            .value.trim()
+            .toLowerCase(),
+          status = document.getElementById("filterStatus").value,
+          action = document.getElementById("filterAction").value,
+          dc = document.getElementById("filterDC").value,
+          search = document
+            .getElementById("globalSearch")
+            .value.trim()
+            .toLowerCase();
+        return records.filter(
+          (r, idx) =>
+            (!part || String(r[0]).toLowerCase().includes(part)) &&
+            (!status || r[2] === status) &&
+            (!action || r[7] === action) &&
+            (!dc || r[12] === dc) &&
+            (!search ||
+              r.some((v) =>
+                String(v ?? "")
+                  .toLowerCase()
+                  .includes(search),
+              ) ||
+              stageValues[idx].some((v) =>
+                String(v ?? "")
+                  .toLowerCase()
+                  .includes(search),
+              )),
+        );
+      }
+      function applyFilters() {
+        currentPage = 1;
+        render();
+      }
+      function clearFilters() {
+        [
+          "filterPart",
+          "filterStatus",
+          "filterAction",
+          "filterDC",
+          "globalSearch",
+        ].forEach((id) => (document.getElementById(id).value = ""));
+        currentPage = 1;
+        render();
+      }
+      function changePageSize(v) {
+        pageSize = Number(v) || 10;
+        currentPage = 1;
+        render();
+      }
+      function render() {
+        filtered = getFiltered();
+        const pages = Math.max(1, Math.ceil(filtered.length / pageSize));
+        if (currentPage > pages) currentPage = pages;
+        const start = (currentPage - 1) * pageSize,
+          shown = filtered.slice(start, start + pageSize);
+        document.getElementById("recordCount").textContent = filtered.length;
+        document.getElementById("total").textContent = filtered.length;
+        document.getElementById("showing").textContent = filtered.length
+          ? `${start + 1}–${Math.min(start + pageSize, filtered.length)}`
+          : "0–0";
+        document.getElementById("tableHead").innerHTML =
+          visibleColumns
+            .map((i) => `<th>${escapeHtml(columns[i])}</th>`)
+            .join("") + "<th>Status</th>";
+        document.getElementById("tableBody").innerHTML = shown.length
+          ? shown
+              .map((r) => {
+                const idx = records.indexOf(r);
+                return `<tr>${visibleColumns.map((i) => `<td>${i === 2 ? `<span class="status-pill">${escapeHtml(r[i] || "—")}</span>` : i === 5 ? `<span class="issues-pill">${escapeHtml(r[i] || "—")}</span>` : i === 7 ? `<span class="${r[i] === "Closed" ? "status-pill" : "issues-pill"}">${escapeHtml(r[i] || "—")}</span>` : escapeHtml(r[i] ?? "—")}</td>`).join("")}<td><button class="sap-stage-btn" onclick="openStages(${idx})"><i class="bi bi-diagram-3 me-1"></i>View stages <span class="badge text-bg-light ms-1">32 / 60</span></button></td></tr>`;
+              })
+              .join("")
+          : `<tr><td class="empty-state" colspan="${Math.max(1, visibleColumns.length + 1)}">No records match your search or filters.</td></tr>`;
+        renderPagination(pages);
+      }
+      function renderPagination(pages) {
+        const ul = document.getElementById("pagination");
+        let items = [];
+        const add = (label, page, disabled = false, active = false) =>
+          items.push(
+            `<li class="page-item ${disabled ? "disabled" : ""} ${active ? "active" : ""}"><button class="page-link" ${disabled ? "disabled" : ""} onclick="goPage(${page})">${label}</button></li>`,
+          );
+        add("&laquo;", currentPage - 1, currentPage === 1);
+        let start = Math.max(1, currentPage - 2),
+          end = Math.min(pages, start + 4);
+        start = Math.max(1, end - 4);
+        for (let p = start; p <= end; p++) add(p, p, false, p === currentPage);
+        add("&raquo;", currentPage + 1, currentPage === pages);
+        ul.innerHTML = items.join("");
+      }
+      function goPage(p) {
+        const pages = Math.max(1, Math.ceil(filtered.length / pageSize));
+        if (p < 1 || p > pages) return;
+        currentPage = p;
+        render();
+      }
+      function openStages(idx) {
+        const r = records[idx],
+          vals = stageValues[idx] || [];
+        document.getElementById("modalTitle").textContent =
+          "SAP Operation Stages";
+        document.getElementById("modalMeta").innerHTML =
+          `<span>SAP PN#: ${escapeHtml(r[0])}</span><span>WO: ${escapeHtml(r[1])}</span><span>DP/CP: ${escapeHtml(r[12])}</span><span>Ageing: ${escapeHtml(r[3])} days</span>`;
+        document.getElementById("stageSapStatus").textContent = r[2] || "—";
+        document.getElementById("stagePopulated").textContent = vals.filter(
+          (v) => v,
+        ).length;
+        document.getElementById("stageGrid").innerHTML = Array.from(
+          { length: 60 },
+          (_, i) => {
+            const n = i + 1,
+              val = vals[i] || "";
+            const future = n > 32,
+              empty = !future && !val;
+            return `<div class="stage-card ${future ? "future" : empty ? "empty" : ""}"><div class="stage-number">Stage ${String(n).padStart(2, "0")} ${future ? "· Not in PDF" : ""}</div><div class="stage-value">${future ? "Not available in PDF" : empty ? "Blank in PDF" : escapeHtml(val)}</div></div>`;
+          },
+        ).join("");
+        bootstrap.Modal.getOrCreateInstance(
+          document.getElementById("stageModal"),
+        ).show();
+      }
+      function exportCsv() {
+        const csvRows = [
+          [...visibleColumns.map((i) => columns[i]), "SAP stages 1–32"],
+          ...filtered.map((r) => {
+            const idx = records.indexOf(r);
+            return [
+              ...visibleColumns.map((i) => r[i] ?? ""),
+              stageValues[idx].map((v, i) => `${i + 1}:${v || ""}`).join(" | "),
+            ];
+          }),
+        ];
+        const csv = csvRows
+          .map((row) =>
+            row
+              .map((v) => '"' + String(v ?? "").replace(/"/g, '""') + '"')
+              .join(","),
+          )
+          .join("\r\n");
+        const blob = new Blob(["\ufeff" + csv], {
+          type: "text/csv;charset=utf-8;",
+        });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "mahindra_ppc_sap_status_tracker.csv";
+        a.click();
+        URL.revokeObjectURL(url);
+      }
+      initColumns();
+      render();
+    </script>
+  </body>
+</html>

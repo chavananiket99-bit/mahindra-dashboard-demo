@@ -1,0 +1,2805 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Mahindra Engineering Records</title>
+    <link
+      rel="stylesheet"
+      href="https://fontsstorage.blob.core.windows.net/html/css/georama.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --red: #a9153d;
+        --red-soft: #f7e9ee;
+        --navy: #071b2d;
+        --ink: #243746;
+        --muted: #71818d;
+        --bg: #f3f6f8;
+        --surface: #fff;
+        --border: #dce4e9;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "Georama-Regular", Arial, sans-serif;
+        font-size: 12px;
+      }
+      .topbar {
+        height: 68px;
+        background: #fff;
+        border-bottom: 2px solid #a9153d;
+        box-shadow: 0 1px 5px rgba(7, 27, 45, 0.06);
+      }
+      .header-inner {
+        height: 68px;
+      }
+      .mahindra-logo img {
+        width: 170px;
+        height: auto;
+      }
+      .top-menu {
+        display: flex;
+        gap: 4px;
+        align-items: center;
+      }
+      .top-menu a {
+        color: #465967;
+        text-decoration: none;
+        padding: 11px 16px;
+        border-radius: 6px;
+        font-size: 12px;
+        font-weight: 700;
+      }
+      .top-menu a:hover,
+      .top-menu a.active {
+        background: #f5eaf0;
+        color: var(--red);
+      }
+      .top-menu a.active {
+        box-shadow: inset 0 -2px 0 var(--red);
+      }
+      .profile-btn {
+        border: 0;
+        background: transparent;
+        color: var(--ink);
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        padding: 5px 7px;
+      }
+      .avatar {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: #a9153d;
+        color: #fff;
+        display: grid;
+        place-items: center;
+        font-weight: 800;
+        font-size: 11px;
+      }
+      .profile-name {
+        font-size: 12px;
+        font-weight: 800;
+        text-align: left;
+      }
+      .profile-role {
+        font-size: 11px;
+        color: #7b8993;
+      }
+      .dropdown-menu {
+        border: 1px solid var(--border);
+        box-shadow: 0 8px 24px #071b2d22;
+        border-radius: 8px;
+      }
+      .dropdown-item {
+        font-size: 12px;
+        padding: 9px 14px;
+      }
+
+      .page {
+        padding: 24px 28px 40px;
+        max-width: 1500px;
+        margin: auto;
+      }
+      .breadcrumb {
+        font-size: 10px;
+        color: #82909a;
+        margin-bottom: 7px;
+      }
+      .breadcrumb strong {
+        color: #4e6270;
+      }
+      .page-title-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 16px;
+      }
+      .page-title {
+        font-size: 23px;
+        font-weight: 800;
+        color: var(--navy);
+        margin: 0;
+      }
+      .page-subtitle {
+        font-size: 11px;
+        color: #71818d;
+        margin-top: 5px;
+      }
+      .title-accent {
+        height: 3px;
+        width: 45px;
+        background: var(--red);
+        border-radius: 3px;
+        margin-top: 9px;
+      }
+      .title {
+        font-weight: 800;
+        color: var(--navy);
+      }
+      .header-actions {
+        display: flex;
+        gap: 8px;
+      }
+      .btn-light-action {
+        height: 36px;
+        border: 1px solid #d5dfe5;
+        background: #fff;
+        color: #526672;
+        border-radius: 6px;
+        font-size: 11px;
+        font-weight: 700;
+        padding: 0 13px;
+      }
+      .btn-primary-mahindra {
+        height: 36px;
+        background: var(--red);
+        border: 1px solid var(--red);
+        color: #fff;
+        border-radius: 6px;
+        font-size: 11px;
+        font-weight: 800;
+        padding: 0 15px;
+      }
+      .btn-primary-mahindra:hover {
+        background: #8f1234;
+        color: #fff;
+      }
+
+      .tabs {
+        display: flex;
+        gap: 24px;
+        border-bottom: 1px solid #d9e1e6;
+        margin-bottom: 15px;
+      }
+      .tabs a {
+        padding: 9px 2px 10px;
+        color: #617481;
+        text-decoration: none;
+        font-size: 11px;
+        font-weight: 700;
+        position: relative;
+      }
+      .tabs a.active {
+        color: var(--red);
+      }
+      .tabs a.active:after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: -1px;
+        height: 2px;
+        background: var(--red);
+      }
+
+      .filter-card {
+        background: #fff;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        box-shadow: 0 2px 9px #071b2d0c;
+        padding: 15px 17px 16px;
+        margin-bottom: 14px;
+      }
+      .filter-grid {
+        display: grid;
+        grid-template-columns: 1.35fr 1fr 1fr 1.25fr 1fr auto;
+        gap: 11px;
+        align-items: end;
+      }
+      .filter-label {
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        font-weight: 800;
+        color: #687a87;
+        margin-bottom: 5px;
+      }
+      .filter-control {
+        height: 37px;
+        border: 1px solid #d5dfe6;
+        border-radius: 6px;
+        font-size: 12px;
+        color: #415563;
+        background: #fff;
+      }
+      .filter-control:focus {
+        border-color: #bb7088;
+        box-shadow: 0 0 0 3px rgba(169, 21, 61, 0.07);
+      }
+      .filter-actions {
+        display: flex;
+        gap: 7px;
+      }
+      .apply {
+        height: 37px;
+        background: var(--red);
+        color: #fff;
+        border: 1px solid var(--red);
+        font-size: 11px;
+        font-weight: 800;
+        padding: 0 16px;
+        border-radius: 6px;
+      }
+      .clear {
+        height: 37px;
+        border: 1px solid #d5dfe6;
+        background: #fff;
+        color: #657682;
+        border-radius: 6px;
+        width: 38px;
+      }
+
+      .table-card {
+        background: #fff;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        box-shadow: 0 2px 9px #071b2d0c;
+        overflow: hidden;
+      }
+      .table-head {
+        padding: 15px 17px 11px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .table-title {
+        font-size: 16px;
+        font-weight: 800;
+        color: var(--navy);
+      }
+      .table-meta {
+        font-size: 10px;
+        color: #7a8994;
+        margin-top: 3px;
+      }
+      .table-tools {
+        display: flex;
+        gap: 7px;
+      }
+      .tool-btn {
+        height: 32px;
+        border: 1px solid #d7e0e5;
+        background: #fff;
+        border-radius: 6px;
+        color: #617481;
+        font-size: 10px;
+        padding: 0 11px;
+        font-weight: 700;
+      }
+      .table-wrap {
+        overflow: auto;
+        border-top: 1px solid #e2e8ec;
+      }
+      .records-table {
+        width: 100%;
+        min-width: 1550px;
+        border-collapse: separate;
+        border-spacing: 0;
+      }
+      .records-table th {
+        background: #f5f7f9;
+        color: #627582;
+        border-right: 1px solid #edf1f4;
+        border-bottom: 1px solid #dce4e9;
+        padding: 10px 9px;
+        font-size: 11px;
+        line-height: 1.25;
+        text-transform: uppercase;
+        letter-spacing: 0.3px;
+        white-space: nowrap;
+      }
+      .records-table td {
+        padding: 10px 9px;
+        color: #405463;
+        border-right: 1px solid #f0f3f5;
+        border-bottom: 1px solid #e8edf0;
+        font-size: 12px;
+        white-space: nowrap;
+      }
+      .records-table tbody tr:hover td {
+        background: #fbfcfd;
+      }
+      .records-table th:first-child,
+      .records-table td:first-child {
+        padding-left: 16px;
+      }
+      .doc-link {
+        color: #3e6e96;
+        font-weight: 800;
+      }
+      .project-name {
+        font-weight: 700;
+        color: #344e60;
+      }
+      .material-code,
+      .customer-code {
+        font-weight: 700;
+        color: #556c7a;
+      }
+      .status {
+        display: inline-flex;
+        padding: 4px 8px;
+        border-radius: 12px;
+        font-size: 8px;
+        font-weight: 800;
+      }
+      .pending {
+        background: #f8e9ee;
+        color: #95506a;
+      }
+      .approved {
+        background: #e7f3ec;
+        color: #477463;
+      }
+      .progress {
+        background: #e9f0f6;
+        color: #4e718d;
+      }
+      .completed {
+        background: #e5f2ec;
+        color: #3e725f;
+      }
+      .action-group {
+        display: flex;
+        gap: 4px;
+      }
+      .action {
+        width: 27px;
+        height: 25px;
+        border: 1px solid #e0e6ea;
+        background: #fff;
+        color: #71818d;
+        border-radius: 5px;
+        display: grid;
+        place-items: center;
+      }
+      .action:hover {
+        background: #f6eaf0;
+        color: var(--red);
+        border-color: #e2ccd5;
+      }
+      .table-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 11px 17px;
+        color: #7a8994;
+        font-size: 12px;
+      }
+      .page-size {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+      }
+      .page-size select {
+        height: 29px;
+        border: 1px solid #d9e2e7;
+        border-radius: 5px;
+        font-size: 10px;
+        padding: 0 8px;
+      }
+      .pagination .page-link {
+        font-size: 10px;
+        color: #617481;
+        border-color: #e0e6ea;
+      }
+      .pagination .active .page-link {
+        background: var(--red);
+        border-color: var(--red);
+        color: #fff;
+      }
+
+      /* Input-BD-style table tools, column visibility and pagination */
+      .table-heading {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 9px;
+        flex: 1 1 auto;
+        min-width: 0;
+      }
+      .table-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 16px;
+      }
+      .table-tools {
+        flex: 0 0 auto;
+        margin-left: auto;
+        align-self: flex-start;
+      }
+      .table-search {
+        position: relative;
+        width: 300px;
+        max-width: 100%;
+      }
+      .table-search i {
+        position: absolute;
+        left: 11px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #8a99a5;
+      }
+      .table-search input {
+        width: 100%;
+        height: 33px;
+        padding: 6px 10px 6px 32px;
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        font-size: 11px;
+      }
+      .tool-icon-btn {
+        width: 34px;
+        padding: 0;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+      }
+      .column-menu {
+        min-width: 235px;
+        max-height: 350px;
+        overflow-y: auto;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        box-shadow: 0 8px 24px #071b2d22;
+        padding: 10px 12px;
+        z-index: 1080;
+      }
+      .column-menu .form-check {
+        margin: 5px 0;
+        font-size: 11px;
+      }
+      .column-menu .form-check-input:checked {
+        background-color: var(--red);
+        border-color: var(--red);
+      }
+      .column-hidden {
+        display: none !important;
+      }
+      .table-footer {
+        gap: 14px;
+        flex-wrap: wrap;
+      }
+      .footer-controls {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 18px;
+        margin-left: auto;
+      }
+      .records-table th[data-sort-key] {
+        cursor: pointer;
+        user-select: none;
+      }
+      .records-table th[data-sort-key]:hover {
+        color: #627582;
+      }
+      .sort-indicator {
+        margin-left: 4px;
+        color: #627582;
+      }
+      .engineering-table th.sticky-col,
+      .engineering-table td.sticky-col {
+        position: sticky !important;
+      }
+      .engineering-table thead tr.col-head th.sticky-col {
+        position: sticky !important;
+        z-index: 20 !important;
+        background: #f5f7f9 !important;
+      }
+      /* Freeze the full PROJECT / MATERIAL block and its four underlying columns. */
+      .engineering-table thead tr.group-head th.base-group {
+        position: sticky !important;
+        top: 0 !important;
+        left: 0 !important;
+        z-index: 30 !important;
+        background: #edf2f5 !important;
+        box-shadow: 3px 0 5px #071b2d18;
+        text-align: center;
+        box-sizing: border-box;
+      }
+      .engineering-table thead tr.group-head th:not(.base-group) {
+        position: relative;
+        z-index: 8;
+      }
+      /* Opaque frozen cells: scrolled columns must never show through them. */
+      .engineering-table thead tr.col-head th.sticky-col {
+        background-color: #f5f7f9 !important;
+        background-clip: padding-box;
+        isolation: isolate;
+      }
+      .engineering-table tbody td.sticky-col {
+        background-color: #ffffff !important;
+        background-clip: padding-box;
+        isolation: isolate;
+      }
+      .engineering-table tbody tr:nth-child(even) td.sticky-col {
+        background-color: #fbfcfd !important;
+      }
+      .engineering-table tbody tr:hover td.sticky-col {
+        background-color: #f5f9fb !important;
+      }
+      .engineering-table tbody td.sticky-col {
+        position: sticky !important;
+        z-index: 5 !important;
+      }
+      .engineering-table tbody tr:nth-child(even) td.sticky-col {
+        background: #fbfcfd !important;
+      }
+      .engineering-table tbody tr:hover td.sticky-col {
+        background: #f5f9fb !important;
+      }
+      .engineering-table .sticky-col-3 {
+        box-shadow: 3px 0 5px #071b2d18;
+      }
+      .table-tools {
+        flex-wrap: wrap;
+        justify-content: flex-end;
+      }
+      .table-tools-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+      }
+      .table-tools-row .table-search {
+        flex: 0 1 300px;
+      }
+      .table-tools-row .table-tools {
+        margin-left: auto;
+      }
+      .show-hide-search {
+        font-size: 13px;
+      }
+      @media (max-width: 700px) {
+        .table-tools-row {
+          align-items: stretch;
+          flex-direction: column;
+        }
+        .table-tools-row .table-search {
+          width: 100%;
+          flex-basis: auto;
+        }
+        .table-tools-row .table-tools {
+          margin-left: 0;
+          justify-content: flex-end;
+        }
+      }
+      @media (max-width: 700px) {
+        .table-heading,
+        .table-search {
+          width: 100%;
+        }
+        .footer-controls {
+          width: 100%;
+          margin-left: 0;
+          justify-content: space-between;
+          flex-wrap: wrap;
+        }
+      }
+
+      @media (max-width: 1100px) {
+        .filter-grid {
+          grid-template-columns: 1fr 1fr 1fr;
+        }
+        .filter-actions {
+          grid-column: 1/-1;
+        }
+      }
+      @media (max-width: 700px) {
+        .top-menu {
+          display: none;
+        }
+        .page {
+          padding: 18px 14px;
+        }
+        .page-title-row {
+          flex-direction: column;
+          gap: 12px;
+        }
+        .filter-grid {
+          grid-template-columns: 1fr;
+        }
+        .filter-actions {
+          grid-column: auto;
+        }
+        .profile-name {
+          display: none;
+        }
+      }
+
+      .section-nav {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 11px 15px;
+        background: #f8fafb;
+        border-bottom: 1px solid #e0e7eb;
+        flex-wrap: wrap;
+      }
+      .section-label {
+        font-size: 9px;
+        text-transform: uppercase;
+        letter-spacing: 0.65px;
+        font-weight: 800;
+        color: #6d7d88;
+        margin-right: 4px;
+      }
+      .section-btn {
+        border: 1px solid #d8e1e6;
+        background: #fff;
+        color: #566b78;
+        border-radius: 16px;
+        padding: 6px 11px;
+        font-size: 9px;
+        font-weight: 800;
+        cursor: pointer;
+      }
+      .section-btn:hover {
+        box-shadow: 0 2px 7px #071b2d12;
+      }
+      .section-btn.active {
+        color: #fff;
+        border-color: var(--red);
+        background: var(--red);
+      }
+      .section-btn .dot {
+        display: inline-block;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        margin-right: 5px;
+        background: #7991a0;
+      }
+      .section-btn.tdp .dot {
+        background: #6d91b1;
+      }
+      .section-btn.feas .dot {
+        background: #8f7290;
+      }
+      .section-btn.bom .dot {
+        background: #8aa46b;
+      }
+      .section-btn.sst .dot {
+        background: #a27d55;
+      }
+      .section-btn.eng .dot {
+        background: #6d9a9a;
+      }
+      .section-helper {
+        margin-left: auto;
+        font-size: 11px;
+        color: #81909a;
+      }
+      .section-panel {
+        padding: 10px 15px;
+        background: #fff;
+        border-bottom: 1px solid #e1e7eb;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+      }
+      .section-panel-title {
+        font-size: 11px;
+        font-weight: 800;
+        color: var(--navy);
+      }
+      .section-panel-desc {
+        font-size: 9px;
+        color: #81909a;
+        margin-top: 2px;
+      }
+      .section-toggle {
+        border: 1px solid #d7e0e5;
+        background: #fff;
+        color: #627581;
+        border-radius: 5px;
+        font-size: 9px;
+        font-weight: 800;
+        padding: 6px 10px;
+      }
+
+      .engineering-table-wrap {
+        position: relative;
+        overflow: auto;
+        max-height: 570px;
+        scroll-behavior: smooth;
+        scrollbar-width: thin;
+        scrollbar-color: #aebdc7 #f3f6f8;
+      }
+      .engineering-table-wrap::-webkit-scrollbar {
+        height: 10px;
+        width: 10px;
+      }
+      .engineering-table-wrap::-webkit-scrollbar-track {
+        background: #f3f6f8;
+      }
+      .engineering-table-wrap::-webkit-scrollbar-thumb {
+        background: #b5c2ca;
+        border-radius: 10px;
+      }
+      .engineering-table {
+        border-collapse: separate;
+        border-spacing: 0;
+        min-width: 2300px;
+        width: max-content;
+        table-layout: fixed;
+      }
+      .engineering-table th,
+      .engineering-table td {
+        white-space: nowrap;
+        position: relative;
+      }
+      .engineering-table thead {
+        position: sticky;
+        top: 0;
+        z-index: 8;
+      }
+      .engineering-table thead th {
+        border-right: 1px solid #dce4e9;
+      }
+      .engineering-table tbody td {
+        padding: 8px 10px;
+      }
+      .engineering-table tbody tr:nth-child(even) td {
+        background: #fbfcfd;
+      }
+      .engineering-table tbody tr:hover td {
+        background: #f5f9fb;
+      }
+      .section-end {
+        border-right: 2px solid #cbd7de !important;
+      }
+      .section-nav {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        padding: 10px 15px;
+        background: #f8fafb;
+        border-bottom: 1px solid #e0e7eb;
+        flex-wrap: wrap;
+      }
+      .section-label {
+        font-size: 9px;
+        text-transform: uppercase;
+        letter-spacing: 0.65px;
+        font-weight: 800;
+        color: #6d7d88;
+        margin-right: 4px;
+      }
+      .section-btn {
+        border: 1px solid #d8e1e6;
+        background: #fff;
+        color: #566b78;
+        border-radius: 16px;
+        padding: 6px 11px;
+        font-size: 9px;
+        font-weight: 800;
+        cursor: pointer;
+        transition: all 0.15s ease;
+      }
+      .section-btn:hover {
+        background: #f2f6f8;
+        transform: translateY(-1px);
+      }
+      .section-btn.active {
+        color: #fff;
+        border-color: var(--red);
+        background: var(--red);
+        box-shadow: 0 2px 7px #e31b2330;
+      }
+      .section-btn .dot {
+        display: inline-block;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        margin-right: 5px;
+        background: #7991a0;
+      }
+      .section-btn.tdp .dot {
+        background: #6d91b1;
+      }
+      .section-btn.feas .dot {
+        background: #8f7290;
+      }
+      .section-btn.bom .dot {
+        background: #8aa46b;
+      }
+      .section-btn.sst .dot {
+        background: #a27d55;
+      }
+      .section-btn.eng .dot {
+        background: #6d9a9a;
+      }
+      .section-helper {
+        margin-left: auto;
+        font-size: 9px;
+        color: #81909a;
+      }
+      .section-panel {
+        padding: 9px 15px;
+        background: #fff;
+        border-bottom: 1px solid #e1e7eb;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+      }
+      .section-panel-title {
+        font-size: 11px;
+        font-weight: 800;
+        color: var(--navy);
+      }
+      .section-panel-desc {
+        font-size: 9px;
+        color: #81909a;
+        margin-top: 2px;
+      }
+      .section-actions {
+        display: flex;
+        gap: 6px;
+        align-items: center;
+      }
+      .section-toggle,
+      .show-all-btn {
+        border: 1px solid #d7e0e5;
+        background: #fff;
+        color: #627581;
+        border-radius: 5px;
+        font-size: 9px;
+        font-weight: 800;
+        padding: 6px 10px;
+        cursor: pointer;
+      }
+      .section-toggle:hover,
+      .show-all-btn:hover {
+        background: #f4f7f8;
+        color: var(--navy);
+      }
+      .section-toggle:disabled {
+        cursor: default;
+      }
+      .section-hidden {
+        display: none !important;
+      }
+      .section-anchor {
+        scroll-margin-left: 12px;
+      }
+
+      /* Scroll-overlap fix: opaque sticky headers and frozen identity columns. */
+      .engineering-table-wrap {
+        isolation: isolate;
+        position: relative;
+        overflow: auto;
+        overscroll-behavior: contain;
+      }
+      .engineering-table {
+        border-collapse: separate !important;
+        border-spacing: 0 !important;
+      }
+      .engineering-table thead tr.group-head th {
+        position: sticky;
+        top: 0;
+        z-index: 12;
+        background: #edf2f5 !important;
+        background-clip: padding-box;
+      }
+      .engineering-table thead tr.col-head th {
+        position: sticky;
+        top: 32px;
+        z-index: 11;
+        background: #f5f7f9 !important;
+        background-clip: padding-box;
+      }
+      .engineering-table thead tr.col-head th.sticky-col {
+        z-index: 40 !important;
+        background: #f5f7f9 !important;
+      }
+      .engineering-table thead tr.group-head th.base-group {
+        z-index: 50 !important;
+        left: 0 !important;
+        background: #edf2f5 !important;
+        box-shadow: 3px 0 5px #071b2d18;
+      }
+      /* Frozen cells must be fully opaque so horizontally scrolling cells never
+         show through them. Keep row striping/hover colours opaque as well. */
+      .engineering-table thead tr.col-head th.sticky-col {
+        position: sticky !important;
+        z-index: 60 !important;
+        background-color: #f5f7f9 !important;
+        background-image: none !important;
+        background-clip: padding-box !important;
+        isolation: isolate;
+        border-right: 1px solid #dce4e9 !important;
+      }
+      .engineering-table tbody td.sticky-col {
+        position: sticky !important;
+        z-index: 30 !important;
+        background-color: #ffffff !important;
+        background-image: none !important;
+        background-clip: padding-box !important;
+        isolation: isolate;
+        border-right: 1px solid #e1e7eb !important;
+      }
+      .engineering-table tbody tr:nth-child(even) td.sticky-col {
+        background-color: #fbfcfd !important;
+      }
+      .engineering-table tbody tr:hover td.sticky-col {
+        background-color: #f5f9fb !important;
+      }
+      .engineering-table thead tr.group-head th.base-group {
+        position: sticky !important;
+        left: 0 !important;
+        z-index: 70 !important;
+        background-color: #edf2f5 !important;
+        background-image: none !important;
+        background-clip: padding-box !important;
+        isolation: isolate;
+        box-shadow: 3px 0 5px #071b2d18;
+      }
+      .engineering-table .sticky-col-3 {
+        box-shadow: 3px 0 5px #071b2d18;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="container-fluid px-4">
+        <div
+          class="header-inner d-flex align-items-center justify-content-between gap-3"
+        >
+          <a class="mahindra-logo" href="#"
+            ><img src="mahindra_rise_red.png" alt="Mahindra"
+          /></a>
+          <nav class="top-menu">
+            <a href="mahindra_engineering_dashboard.html"
+              ><i class="bi bi-grid-1x2 me-1"></i>Dashboard</a
+            >
+            <a href="mahindra_engineering_input_bd.html"
+              ><i class="bi bi-folder2-open me-1"></i>Input BD</a
+            >
+            <a href="mahindra_programs.html"
+              ><i class="bi bi-folder2-open me-1"></i>Programs</a
+            >
+            <a href="mahindra_engineering_records.html" class="active"
+              ><i class="bi bi-folder2-open me-1"></i>Engineering 1</a
+            >
+            <a href="mahindra_engineering_records_new.html"
+              ><i class="bi bi-folder2-open me-1"></i>Engineering 2</a
+            >
+            <a href="#"><i class="bi bi-bar-chart-line me-1"></i>Reports</a>
+          </nav>
+          <div class="dropdown">
+            <button
+              class="profile-btn dropdown-toggle"
+              data-bs-toggle="dropdown"
+            >
+              <div>
+                <div class="profile-name">Priyank Jain</div>
+                <div class="profile-role">Engineering User</div>
+              </div>
+              <span class="avatar">PJ</span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end mt-2">
+              <li>
+                <a class="dropdown-item" href="#"
+                  ><i class="bi bi-person me-2"></i>My Profile</a
+                >
+              </li>
+              <li>
+                <a class="dropdown-item" href="#"
+                  ><i class="bi bi-gear me-2"></i>Settings</a
+                >
+              </li>
+              <li><hr class="dropdown-divider" /></li>
+              <li>
+                <a
+                  class="dropdown-item text-danger"
+                  href="mahindra_engineering_login.html"
+                  ><i class="bi bi-box-arrow-right me-2"></i>Logout</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="page">
+      <div class="page-title-row">
+        <div>
+          <h5 class="title mb-1">Engineering Document Records</h5>
+          <div class="title-accent"></div>
+        </div>
+      </div>
+
+      <section class="filter-card">
+        <div class="filter-grid">
+          <div>
+            <div class="filter-label">MASPL</div>
+            <input
+              id="docNo"
+              class="form-control filter-control"
+              placeholder="Search MASPL"
+            />
+          </div>
+          <div>
+            <div class="filter-label">Project Name</div>
+            <input
+              id="project"
+              class="form-control filter-control"
+              placeholder="Search project name"
+            />
+          </div>
+          <div>
+            <div class="filter-label">Type</div>
+            <input
+              id="material"
+              class="form-control filter-control"
+              placeholder="Search Type"
+            />
+          </div>
+          <div>
+            <div class="filter-label">Status</div>
+            <select id="status" class="form-select filter-control">
+              <option value="">All</option>
+              <option>Pending Program Review</option>
+              <option>Approved</option>
+              <option>In Progress</option>
+              <option>Completed</option>
+            </select>
+          </div>
+          <div class="filter-actions">
+            <button class="apply" onclick="applyFilters()">
+              <i class="bi bi-funnel me-1"></i>Apply</button
+            ><button class="clear" onclick="clearFilters()" title="Clear">
+              <i class="bi bi-arrow-counterclockwise"></i>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section class="table-card">
+        <div class="table-head">
+          <div class="table-heading">
+            <div class="table-title">
+              Engineering Records (<span id="recordCount">10</span>)
+            </div>
+          </div>
+        </div>
+
+        <div class="section-nav">
+          <span class="section-label">Jump to section</span>
+          <button
+            class="section-btn active"
+            data-target="identity"
+            onclick="goSection('identity')"
+          >
+            Identity
+          </button>
+          <button
+            class="section-btn tdp"
+            data-target="tdp"
+            onclick="goSection('tdp')"
+          >
+            <span class="dot"></span>TDP
+          </button>
+          <button
+            class="section-btn feas"
+            data-target="feas"
+            onclick="goSection('feas')"
+          >
+            <span class="dot"></span>Feasibility
+          </button>
+          <button
+            class="section-btn bom"
+            data-target="bom"
+            onclick="goSection('bom')"
+          >
+            <span class="dot"></span>BOM Creation
+          </button>
+          <button
+            class="section-btn sst"
+            data-target="sst"
+            onclick="goSection('sst')"
+          >
+            <span class="dot"></span>SST / Qualification
+          </button>
+          <button
+            class="section-btn eng"
+            data-target="eng"
+            onclick="goSection('eng')"
+          >
+            <span class="dot"></span>Engineering
+          </button>
+          <span class="section-helper"
+            ><i class="bi bi-arrows-horizontal me-1"></i>Horizontal scroll
+            available</span
+          >
+        </div>
+        <div class="section-panel table-tools-row">
+          <div class="table-search">
+            <i class="bi bi-search"></i>
+            <input
+              id="globalSearch"
+              type="search"
+              placeholder="Search..."
+              aria-label="Search all engineering records"
+              oninput="handleGlobalSearch()"
+            />
+          </div>
+          <div class="table-tools">
+            <button
+              type="button"
+              class="tool-btn tool-icon-btn"
+              onclick="exportCSV()"
+              title="Export CSV"
+              aria-label="Export CSV"
+              data-bs-toggle="tooltip"
+            >
+              <i class="bi bi-download"></i>
+            </button>
+            <button
+              type="button"
+              class="tool-btn tool-icon-btn"
+              onclick="
+                document.getElementById('engineeringExcelUpload').click()
+              "
+              title="Upload Excel"
+              aria-label="Upload Excel"
+              data-bs-toggle="tooltip"
+            >
+              <i class="bi bi-file-earmark-excel"></i>
+            </button>
+            <input
+              type="file"
+              id="engineeringExcelUpload"
+              accept=".xlsx,.xls,.csv"
+              hidden
+              onchange="uploadEngineeringExcel(event)"
+            />
+            <div class="dropdown">
+              <button
+                type="button"
+                class="tool-btn dropdown-toggle"
+                id="engineeringColumnsDropdown"
+                data-bs-toggle="dropdown"
+                data-bs-auto-close="outside"
+                aria-expanded="false"
+              >
+                <i class="bi bi-layout-three-columns me-1"></i>Columns
+              </button>
+              <div
+                class="dropdown-menu dropdown-menu-end column-menu"
+                id="engineeringColumnMenu"
+                aria-labelledby="engineeringColumnsDropdown"
+              >
+                <div
+                  class="d-flex justify-content-between align-items-center mb-2 show-hide-search"
+                >
+                  <strong>Show / hide columns</strong
+                  ><button
+                    type="button"
+                    class="btn btn-sm btn-link p-0"
+                    onclick="toggleAllEngineeringColumns(true)"
+                  >
+                    Show all
+                  </button>
+                </div>
+                <div id="engineeringColumnCheckboxes"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="engineering-table-wrap" id="engineeringTableWrap">
+          <table class="records-table engineering-table">
+            <thead>
+              <tr class="group-head">
+                <th colspan="4" class="base-group">PROJECT / MATERIAL</th>
+                <th
+                  colspan="3"
+                  class="tdp-group section-anchor"
+                  data-group="tdp"
+                  id="group-tdp"
+                >
+                  TDP
+                </th>
+                <th
+                  colspan="3"
+                  class="feas-group section-anchor"
+                  data-group="feas"
+                  id="group-feas"
+                >
+                  FEASIBILITY STUDY
+                </th>
+                <th
+                  colspan="4"
+                  class="bom-group section-anchor"
+                  data-group="bom"
+                  id="group-bom"
+                >
+                  BOM CREATION
+                </th>
+                <th
+                  colspan="2"
+                  class="sst-group section-anchor"
+                  data-group="sst"
+                  id="group-sst"
+                >
+                  SST / QUALIFICATION
+                </th>
+                <th
+                  colspan="2"
+                  class="eng-group section-anchor"
+                  data-group="eng"
+                  id="group-eng"
+                >
+                  ENGINEERING
+                </th>
+              </tr>
+              <tr class="col-head">
+                <th>SR. No.</th>
+                <th>Customer</th>
+                <th>Part Number</th>
+                <th>Customer Material Code</th>
+                <th class="tdp-col">Process</th>
+                <th class="tdp-col">TDP Plan Date</th>
+                <th class="tdp-col section-end">TDP Availability</th>
+                <th class="feas-col">Feasibility Plan Date</th>
+                <th class="feas-col">Feasibility Actual Date</th>
+                <th class="feas-col section-end">Feasibility Study</th>
+                <th class="bom-col">RM BOM Status</th>
+                <th class="bom-col">Consumable BOM Status</th>
+                <th class="bom-col">HW BOM Status</th>
+                <th class="bom-col section-end">BOM Overall</th>
+                <th class="sst-col">SST Process Qualification Requirements</th>
+                <th class="sst-col section-end">
+                  SST Process Needed Qualification
+                </th>
+                <th class="eng-col">Engineering Status</th>
+                <th class="eng-col">Remarks</th>
+              </tr>
+            </thead>
+            <tbody id="recordBody"></tbody>
+          </table>
+        </div>
+
+        <div class="table-footer">
+          <div>
+            Showing <strong id="showing">1–10</strong> of
+            <strong id="total">10</strong> records
+          </div>
+          <div class="footer-controls">
+            <nav aria-label="Engineering records pagination">
+              <ul
+                class="pagination pagination-sm mb-0"
+                id="engineeringPagination"
+              ></ul>
+            </nav>
+            <div class="page-size">
+              <label for="engineeringPageSize">Rows per page</label
+              ><select
+                id="engineeringPageSize"
+                onchange="changeEngineeringPageSize()"
+              >
+                <option value="10">10</option>
+                <option value="25">25</option>
+                <option value="50">50</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+    <script>
+      const records = [
+        {
+          customer: "MSAYZX0005",
+          part: "Z5791303430400",
+          material: "Z579-13034-304-00",
+          process: "ROUTING+PB",
+          tdpPlan: "10/13/2023",
+          tdpAvail: "TDP AVAILABLE",
+          feasPlan: "11/12/2023",
+          feasActual: "11/12/2023",
+          feas: "FEASIBILITY STUDY COMPLETED",
+          rm: "COMPLETED",
+          cons: "COMPLETED",
+          hw: "COMPLETED",
+          bom: "COMPLETED",
+          sstReq: "NO",
+          sstNeed: "NA",
+          eng: "COMPLETED",
+          remarks: "—",
+        },
+        {
+          customer: "MSAYZX0005",
+          part: "Z5791303330400",
+          material: "Z579-13033-304-00",
+          process: "ROUTING",
+          tdpPlan: "10/13/2023",
+          tdpAvail: "TDP AVAILABLE",
+          feasPlan: "11/12/2023",
+          feasActual: "11/12/2023",
+          feas: "FEASIBILITY STUDY COMPLETED",
+          rm: "COMPLETED",
+          cons: "COMPLETED",
+          hw: "COMPLETED",
+          bom: "COMPLETED",
+          sstReq: "NO",
+          sstNeed: "NA",
+          eng: "COMPLETED",
+          remarks: "—",
+        },
+        {
+          customer: "MSAYZX0005",
+          part: "Z5791303730400",
+          material: "Z579-13037-304-00",
+          process: "ROUTING",
+          tdpPlan: "4/24/2025",
+          tdpAvail: "TDP AVAILABLE",
+          feasPlan: "5/24/2025",
+          feasActual: "5/24/2025",
+          feas: "FEASIBILITY STUDY COMPLETED",
+          rm: "COMPLETED",
+          cons: "COMPLETED",
+          hw: "COMPLETED",
+          bom: "COMPLETED",
+          sstReq: "NO",
+          sstNeed: "NA",
+          eng: "COMPLETED",
+          remarks: "—",
+        },
+        {
+          customer: "MSAYZX0005",
+          part: "Z5791303530400",
+          material: "Z579-13035-304-00",
+          process: "LASER+HET+PRESS",
+          tdpPlan: "1/22/2025",
+          tdpAvail: "TDP AVAILABLE",
+          feasPlan: "2/21/2025",
+          feasActual: "2/21/2025",
+          feas: "FEASIBILITY STUDY COMPLETED",
+          rm: "COMPLETED",
+          cons: "COMPLETED",
+          hw: "COMPLETED",
+          bom: "COMPLETED",
+          sstReq: "NO",
+          sstNeed: "NA",
+          eng: "COMPLETED",
+          remarks: "—",
+        },
+        {
+          customer: "MSAYZX0005",
+          part: "Z5791319730300",
+          material: "Z579-13197-303-00",
+          process: "ROUTING+PB",
+          tdpPlan: "1/18/2024",
+          tdpAvail: "TDP AVAILABLE",
+          feasPlan: "2/17/2024",
+          feasActual: "2/17/2024",
+          feas: "FEASIBILITY STUDY COMPLETED",
+          rm: "COMPLETED",
+          cons: "COMPLETED",
+          hw: "COMPLETED",
+          bom: "COMPLETED",
+          sstReq: "NO",
+          sstNeed: "NA",
+          eng: "COMPLETED",
+          remarks: "—",
+        },
+        {
+          customer: "MSAYZX0005",
+          part: "Z5791303130400",
+          material: "Z579-13031-304-00",
+          process: "ROUTING+PB",
+          tdpPlan: "10/8/2023",
+          tdpAvail: "TDP AVAILABLE",
+          feasPlan: "11/7/2023",
+          feasActual: "11/7/2023",
+          feas: "FEASIBILITY STUDY COMPLETED",
+          rm: "COMPLETED",
+          cons: "COMPLETED",
+          hw: "COMPLETED",
+          bom: "COMPLETED",
+          sstReq: "NO",
+          sstNeed: "NA",
+          eng: "COMPLETED",
+          remarks: "—",
+        },
+        {
+          customer: "MSAYZX0005",
+          part: "Z5391064000000",
+          material: "Z539-10640-000-00",
+          process: "ROUTING+PB",
+          tdpPlan: "8/24/2024",
+          tdpAvail: "TDP AVAILABLE",
+          feasPlan: "9/23/2024",
+          feasActual: "9/23/2024",
+          feas: "FEASIBILITY STUDY COMPLETED",
+          rm: "COMPLETED",
+          cons: "COMPLETED",
+          hw: "COMPLETED",
+          bom: "COMPLETED",
+          sstReq: "NO",
+          sstNeed: "NA",
+          eng: "COMPLETED",
+          remarks: "—",
+        },
+        {
+          customer: "MSAYZX0005",
+          part: "X5393680130300",
+          material: "X539-36801-303-00",
+          process: "ROUTING+PB+HF",
+          tdpPlan: "10/11/2024",
+          tdpAvail: "TDP AVAILABLE",
+          feasPlan: "11/10/2024",
+          feasActual: "11/10/2024",
+          feas: "FEASIBILITY STUDY COMPLETED",
+          rm: "COMPLETED",
+          cons: "COMPLETED",
+          hw: "COMPLETED",
+          bom: "COMPLETED",
+          sstReq: "NO",
+          sstNeed: "NA",
+          eng: "COMPLETED",
+          remarks: "—",
+        },
+        {
+          customer: "MSAYZX0005",
+          part: "Z5391067830000",
+          material: "Z539-10678-300-00",
+          process: "",
+          tdpPlan: "11/13/2023",
+          tdpAvail: "TDP AVAILABLE",
+          feasPlan: "12/13/2023",
+          feasActual: "12/13/2023",
+          feas: "FEASIBILITY STUDY COMPLETED",
+          rm: "COMPLETED",
+          cons: "COMPLETED",
+          hw: "COMPLETED",
+          bom: "COMPLETED",
+          sstReq: "NO",
+          sstNeed: "NA",
+          eng: "COMPLETED",
+          remarks: "—",
+        },
+        {
+          customer: "MSAYZX0005",
+          part: "Z5393680130400",
+          material: "Z539-36801-304-00",
+          process: "ROUTING+PB",
+          tdpPlan: "7/1/2023",
+          tdpAvail: "TDP AVAILABLE",
+          feasPlan: "7/31/2023",
+          feasActual: "7/31/2023",
+          feas: "FEASIBILITY STUDY COMPLETED",
+          rm: "COMPLETED",
+          cons: "COMPLETED",
+          hw: "COMPLETED",
+          bom: "COMPLETED",
+          sstReq: "NO",
+          sstNeed: "NA",
+          eng: "COMPLETED",
+          remarks: "—",
+        },
+        {
+          customer: "MSAYZX0005",
+          part: "Z5393680130600",
+          material: "Z539-36801-306-00",
+          process: "ROUTING+CHAMFER-PB",
+          tdpPlan: "9/8/2023",
+          tdpAvail: "TDP AVAILABLE",
+          feasPlan: "10/8/2023",
+          feasActual: "10/8/2023",
+          feas: "FEASIBILITY STUDY COMPLETED",
+          rm: "COMPLETED",
+          cons: "COMPLETED",
+          hw: "COMPLETED",
+          bom: "COMPLETED",
+          sstReq: "NO",
+          sstNeed: "NA",
+          eng: "COMPLETED",
+          remarks: "—",
+        },
+        {
+          customer: "MSAYZX0005",
+          part: "Z5791303430400",
+          material: "Z579-13034-304-00",
+          process: "ROUTING+PB",
+          tdpPlan: "10/13/2023",
+          tdpAvail: "TDP AVAILABLE",
+          feasPlan: "11/12/2023",
+          feasActual: "11/12/2023",
+          feas: "FEASIBILITY STUDY COMPLETED",
+          rm: "COMPLETED",
+          cons: "COMPLETED",
+          hw: "COMPLETED",
+          bom: "COMPLETED",
+          sstReq: "NO",
+          sstNeed: "NA",
+          eng: "COMPLETED",
+          remarks: "—",
+        },
+        {
+          customer: "MSAYZX0005",
+          part: "Z5791303330400",
+          material: "Z579-13033-304-00",
+          process: "ROUTING",
+          tdpPlan: "10/13/2023",
+          tdpAvail: "TDP AVAILABLE",
+          feasPlan: "11/12/2023",
+          feasActual: "11/12/2023",
+          feas: "FEASIBILITY STUDY COMPLETED",
+          rm: "COMPLETED",
+          cons: "COMPLETED",
+          hw: "COMPLETED",
+          bom: "COMPLETED",
+          sstReq: "NO",
+          sstNeed: "NA",
+          eng: "COMPLETED",
+          remarks: "—",
+        },
+        {
+          customer: "MSAYZX0005",
+          part: "Z5791303730400",
+          material: "Z579-13037-304-00",
+          process: "ROUTING",
+          tdpPlan: "4/24/2025",
+          tdpAvail: "TDP AVAILABLE",
+          feasPlan: "5/24/2025",
+          feasActual: "5/24/2025",
+          feas: "FEASIBILITY STUDY COMPLETED",
+          rm: "COMPLETED",
+          cons: "COMPLETED",
+          hw: "COMPLETED",
+          bom: "COMPLETED",
+          sstReq: "NO",
+          sstNeed: "NA",
+          eng: "COMPLETED",
+          remarks: "—",
+        },
+        {
+          customer: "MSAYZX0005",
+          part: "Z5791303530400",
+          material: "Z579-13035-304-00",
+          process: "LASER+HET+PRESS",
+          tdpPlan: "1/22/2025",
+          tdpAvail: "TDP AVAILABLE",
+          feasPlan: "2/21/2025",
+          feasActual: "2/21/2025",
+          feas: "FEASIBILITY STUDY COMPLETED",
+          rm: "COMPLETED",
+          cons: "COMPLETED",
+          hw: "COMPLETED",
+          bom: "COMPLETED",
+          sstReq: "NO",
+          sstNeed: "NA",
+          eng: "COMPLETED",
+          remarks: "—",
+        },
+        {
+          customer: "MSAYZX0005",
+          part: "Z5791319730300",
+          material: "Z579-13197-303-00",
+          process: "ROUTING+PB",
+          tdpPlan: "1/18/2024",
+          tdpAvail: "TDP AVAILABLE",
+          feasPlan: "2/17/2024",
+          feasActual: "2/17/2024",
+          feas: "FEASIBILITY STUDY COMPLETED",
+          rm: "COMPLETED",
+          cons: "COMPLETED",
+          hw: "COMPLETED",
+          bom: "COMPLETED",
+          sstReq: "NO",
+          sstNeed: "NA",
+          eng: "COMPLETED",
+          remarks: "—",
+        },
+        {
+          customer: "MSAYZX0005",
+          part: "Z5791303130400",
+          material: "Z579-13031-304-00",
+          process: "ROUTING+PB",
+          tdpPlan: "10/8/2023",
+          tdpAvail: "TDP AVAILABLE",
+          feasPlan: "11/7/2023",
+          feasActual: "11/7/2023",
+          feas: "FEASIBILITY STUDY COMPLETED",
+          rm: "COMPLETED",
+          cons: "COMPLETED",
+          hw: "COMPLETED",
+          bom: "COMPLETED",
+          sstReq: "NO",
+          sstNeed: "NA",
+          eng: "COMPLETED",
+          remarks: "—",
+        },
+        {
+          customer: "MSAYZX0005",
+          part: "Z5391064000000",
+          material: "Z539-10640-000-00",
+          process: "ROUTING+PB",
+          tdpPlan: "8/24/2024",
+          tdpAvail: "TDP AVAILABLE",
+          feasPlan: "9/23/2024",
+          feasActual: "9/23/2024",
+          feas: "FEASIBILITY STUDY COMPLETED",
+          rm: "COMPLETED",
+          cons: "COMPLETED",
+          hw: "COMPLETED",
+          bom: "COMPLETED",
+          sstReq: "NO",
+          sstNeed: "NA",
+          eng: "COMPLETED",
+          remarks: "—",
+        },
+        {
+          customer: "MSAYZX0005",
+          part: "X5393680130300",
+          material: "X539-36801-303-00",
+          process: "ROUTING+PB+HF",
+          tdpPlan: "10/11/2024",
+          tdpAvail: "TDP AVAILABLE",
+          feasPlan: "11/10/2024",
+          feasActual: "11/10/2024",
+          feas: "FEASIBILITY STUDY COMPLETED",
+          rm: "COMPLETED",
+          cons: "COMPLETED",
+          hw: "COMPLETED",
+          bom: "COMPLETED",
+          sstReq: "NO",
+          sstNeed: "NA",
+          eng: "COMPLETED",
+          remarks: "—",
+        },
+        {
+          customer: "MSAYZX0005",
+          part: "Z5391067830000",
+          material: "Z539-10678-300-00",
+          process: "",
+          tdpPlan: "11/13/2023",
+          tdpAvail: "TDP AVAILABLE",
+          feasPlan: "12/13/2023",
+          feasActual: "12/13/2023",
+          feas: "FEASIBILITY STUDY COMPLETED",
+          rm: "COMPLETED",
+          cons: "COMPLETED",
+          hw: "COMPLETED",
+          bom: "COMPLETED",
+          sstReq: "NO",
+          sstNeed: "NA",
+          eng: "COMPLETED",
+          remarks: "—",
+        },
+        {
+          customer: "MSAYZX0005",
+          part: "Z5393680130400",
+          material: "Z539-36801-304-00",
+          process: "ROUTING+PB",
+          tdpPlan: "7/1/2023",
+          tdpAvail: "TDP AVAILABLE",
+          feasPlan: "7/31/2023",
+          feasActual: "7/31/2023",
+          feas: "FEASIBILITY STUDY COMPLETED",
+          rm: "COMPLETED",
+          cons: "COMPLETED",
+          hw: "COMPLETED",
+          bom: "COMPLETED",
+          sstReq: "NO",
+          sstNeed: "NA",
+          eng: "COMPLETED",
+          remarks: "—",
+        },
+        {
+          customer: "MSAYZX0005",
+          part: "Z5393680130600",
+          material: "Z539-36801-306-00",
+          process: "ROUTING+CHAMFER-PB",
+          tdpPlan: "9/8/2023",
+          tdpAvail: "TDP AVAILABLE",
+          feasPlan: "10/8/2023",
+          feasActual: "10/8/2023",
+          feas: "FEASIBILITY STUDY COMPLETED",
+          rm: "COMPLETED",
+          cons: "COMPLETED",
+          hw: "COMPLETED",
+          bom: "COMPLETED",
+          sstReq: "NO",
+          sstNeed: "NA",
+          eng: "COMPLETED",
+          remarks: "—",
+        },
+        {
+          customer: "MSAYZX0005",
+          part: "Z5791303430400",
+          material: "Z579-13034-304-00",
+          process: "ROUTING+PB",
+          tdpPlan: "10/13/2023",
+          tdpAvail: "TDP AVAILABLE",
+          feasPlan: "11/12/2023",
+          feasActual: "11/12/2023",
+          feas: "FEASIBILITY STUDY COMPLETED",
+          rm: "COMPLETED",
+          cons: "COMPLETED",
+          hw: "COMPLETED",
+          bom: "COMPLETED",
+          sstReq: "NO",
+          sstNeed: "NA",
+          eng: "COMPLETED",
+          remarks: "—",
+        },
+        {
+          customer: "MSAYZX0005",
+          part: "Z5791303330400",
+          material: "Z579-13033-304-00",
+          process: "ROUTING",
+          tdpPlan: "10/13/2023",
+          tdpAvail: "TDP AVAILABLE",
+          feasPlan: "11/12/2023",
+          feasActual: "11/12/2023",
+          feas: "FEASIBILITY STUDY COMPLETED",
+          rm: "COMPLETED",
+          cons: "COMPLETED",
+          hw: "COMPLETED",
+          bom: "COMPLETED",
+          sstReq: "NO",
+          sstNeed: "NA",
+          eng: "COMPLETED",
+          remarks: "—",
+        },
+        {
+          customer: "MSAYZX0005",
+          part: "Z5791303730400",
+          material: "Z579-13037-304-00",
+          process: "ROUTING",
+          tdpPlan: "4/24/2025",
+          tdpAvail: "TDP AVAILABLE",
+          feasPlan: "5/24/2025",
+          feasActual: "5/24/2025",
+          feas: "FEASIBILITY STUDY COMPLETED",
+          rm: "COMPLETED",
+          cons: "COMPLETED",
+          hw: "COMPLETED",
+          bom: "COMPLETED",
+          sstReq: "NO",
+          sstNeed: "NA",
+          eng: "COMPLETED",
+          remarks: "—",
+        },
+        {
+          customer: "MSAYZX0005",
+          part: "Z5791303530400",
+          material: "Z579-13035-304-00",
+          process: "LASER+HET+PRESS",
+          tdpPlan: "1/22/2025",
+          tdpAvail: "TDP AVAILABLE",
+          feasPlan: "2/21/2025",
+          feasActual: "2/21/2025",
+          feas: "FEASIBILITY STUDY COMPLETED",
+          rm: "COMPLETED",
+          cons: "COMPLETED",
+          hw: "COMPLETED",
+          bom: "COMPLETED",
+          sstReq: "NO",
+          sstNeed: "NA",
+          eng: "COMPLETED",
+          remarks: "—",
+        },
+        {
+          customer: "MSAYZX0005",
+          part: "Z5791319730300",
+          material: "Z579-13197-303-00",
+          process: "ROUTING+PB",
+          tdpPlan: "1/18/2024",
+          tdpAvail: "TDP AVAILABLE",
+          feasPlan: "2/17/2024",
+          feasActual: "2/17/2024",
+          feas: "FEASIBILITY STUDY COMPLETED",
+          rm: "COMPLETED",
+          cons: "COMPLETED",
+          hw: "COMPLETED",
+          bom: "COMPLETED",
+          sstReq: "NO",
+          sstNeed: "NA",
+          eng: "COMPLETED",
+          remarks: "—",
+        },
+        {
+          customer: "MSAYZX0005",
+          part: "Z5791303130400",
+          material: "Z579-13031-304-00",
+          process: "ROUTING+PB",
+          tdpPlan: "10/8/2023",
+          tdpAvail: "TDP AVAILABLE",
+          feasPlan: "11/7/2023",
+          feasActual: "11/7/2023",
+          feas: "FEASIBILITY STUDY COMPLETED",
+          rm: "COMPLETED",
+          cons: "COMPLETED",
+          hw: "COMPLETED",
+          bom: "COMPLETED",
+          sstReq: "NO",
+          sstNeed: "NA",
+          eng: "COMPLETED",
+          remarks: "—",
+        },
+        {
+          customer: "MSAYZX0005",
+          part: "Z5391064000000",
+          material: "Z539-10640-000-00",
+          process: "ROUTING+PB",
+          tdpPlan: "8/24/2024",
+          tdpAvail: "TDP AVAILABLE",
+          feasPlan: "9/23/2024",
+          feasActual: "9/23/2024",
+          feas: "FEASIBILITY STUDY COMPLETED",
+          rm: "COMPLETED",
+          cons: "COMPLETED",
+          hw: "COMPLETED",
+          bom: "COMPLETED",
+          sstReq: "NO",
+          sstNeed: "NA",
+          eng: "COMPLETED",
+          remarks: "—",
+        },
+        {
+          customer: "MSAYZX0005",
+          part: "X5393680130300",
+          material: "X539-36801-303-00",
+          process: "ROUTING+PB+HF",
+          tdpPlan: "10/11/2024",
+          tdpAvail: "TDP AVAILABLE",
+          feasPlan: "11/10/2024",
+          feasActual: "11/10/2024",
+          feas: "FEASIBILITY STUDY COMPLETED",
+          rm: "COMPLETED",
+          cons: "COMPLETED",
+          hw: "COMPLETED",
+          bom: "COMPLETED",
+          sstReq: "NO",
+          sstNeed: "NA",
+          eng: "COMPLETED",
+          remarks: "—",
+        },
+        {
+          customer: "MSAYZX0005",
+          part: "Z5391067830000",
+          material: "Z539-10678-300-00",
+          process: "",
+          tdpPlan: "11/13/2023",
+          tdpAvail: "TDP AVAILABLE",
+          feasPlan: "12/13/2023",
+          feasActual: "12/13/2023",
+          feas: "FEASIBILITY STUDY COMPLETED",
+          rm: "COMPLETED",
+          cons: "COMPLETED",
+          hw: "COMPLETED",
+          bom: "COMPLETED",
+          sstReq: "NO",
+          sstNeed: "NA",
+          eng: "COMPLETED",
+          remarks: "—",
+        },
+        {
+          customer: "MSAYZX0005",
+          part: "Z5393680130400",
+          material: "Z539-36801-304-00",
+          process: "ROUTING+PB",
+          tdpPlan: "7/1/2023",
+          tdpAvail: "TDP AVAILABLE",
+          feasPlan: "7/31/2023",
+          feasActual: "7/31/2023",
+          feas: "FEASIBILITY STUDY COMPLETED",
+          rm: "COMPLETED",
+          cons: "COMPLETED",
+          hw: "COMPLETED",
+          bom: "COMPLETED",
+          sstReq: "NO",
+          sstNeed: "NA",
+          eng: "COMPLETED",
+          remarks: "—",
+        },
+        {
+          customer: "MSAYZX0005",
+          part: "Z5393680130600",
+          material: "Z539-36801-306-00",
+          process: "ROUTING+CHAMFER-PB",
+          tdpPlan: "9/8/2023",
+          tdpAvail: "TDP AVAILABLE",
+          feasPlan: "10/8/2023",
+          feasActual: "10/8/2023",
+          feas: "FEASIBILITY STUDY COMPLETED",
+          rm: "COMPLETED",
+          cons: "COMPLETED",
+          hw: "COMPLETED",
+          bom: "COMPLETED",
+          sstReq: "NO",
+          sstNeed: "NA",
+          eng: "COMPLETED",
+          remarks: "—",
+        },
+        {
+          customer: "MSAYZX0005",
+          part: "Z5791303430400",
+          material: "Z579-13034-304-00",
+          process: "ROUTING+PB",
+          tdpPlan: "10/13/2023",
+          tdpAvail: "TDP AVAILABLE",
+          feasPlan: "11/12/2023",
+          feasActual: "11/12/2023",
+          feas: "FEASIBILITY STUDY COMPLETED",
+          rm: "COMPLETED",
+          cons: "COMPLETED",
+          hw: "COMPLETED",
+          bom: "COMPLETED",
+          sstReq: "NO",
+          sstNeed: "NA",
+          eng: "COMPLETED",
+          remarks: "—",
+        },
+        {
+          customer: "MSAYZX0005",
+          part: "Z5791303330400",
+          material: "Z579-13033-304-00",
+          process: "ROUTING",
+          tdpPlan: "10/13/2023",
+          tdpAvail: "TDP AVAILABLE",
+          feasPlan: "11/12/2023",
+          feasActual: "11/12/2023",
+          feas: "FEASIBILITY STUDY COMPLETED",
+          rm: "COMPLETED",
+          cons: "COMPLETED",
+          hw: "COMPLETED",
+          bom: "COMPLETED",
+          sstReq: "NO",
+          sstNeed: "NA",
+          eng: "COMPLETED",
+          remarks: "—",
+        },
+        {
+          customer: "MSAYZX0005",
+          part: "Z5791303730400",
+          material: "Z579-13037-304-00",
+          process: "ROUTING",
+          tdpPlan: "4/24/2025",
+          tdpAvail: "TDP AVAILABLE",
+          feasPlan: "5/24/2025",
+          feasActual: "5/24/2025",
+          feas: "FEASIBILITY STUDY COMPLETED",
+          rm: "COMPLETED",
+          cons: "COMPLETED",
+          hw: "COMPLETED",
+          bom: "COMPLETED",
+          sstReq: "NO",
+          sstNeed: "NA",
+          eng: "COMPLETED",
+          remarks: "—",
+        },
+        {
+          customer: "MSAYZX0005",
+          part: "Z5791303530400",
+          material: "Z579-13035-304-00",
+          process: "LASER+HET+PRESS",
+          tdpPlan: "1/22/2025",
+          tdpAvail: "TDP AVAILABLE",
+          feasPlan: "2/21/2025",
+          feasActual: "2/21/2025",
+          feas: "FEASIBILITY STUDY COMPLETED",
+          rm: "COMPLETED",
+          cons: "COMPLETED",
+          hw: "COMPLETED",
+          bom: "COMPLETED",
+          sstReq: "NO",
+          sstNeed: "NA",
+          eng: "COMPLETED",
+          remarks: "—",
+        },
+        {
+          customer: "MSAYZX0005",
+          part: "Z5791319730300",
+          material: "Z579-13197-303-00",
+          process: "ROUTING+PB",
+          tdpPlan: "1/18/2024",
+          tdpAvail: "TDP AVAILABLE",
+          feasPlan: "2/17/2024",
+          feasActual: "2/17/2024",
+          feas: "FEASIBILITY STUDY COMPLETED",
+          rm: "COMPLETED",
+          cons: "COMPLETED",
+          hw: "COMPLETED",
+          bom: "COMPLETED",
+          sstReq: "NO",
+          sstNeed: "NA",
+          eng: "COMPLETED",
+          remarks: "—",
+        },
+        {
+          customer: "MSAYZX0005",
+          part: "Z5791303130400",
+          material: "Z579-13031-304-00",
+          process: "ROUTING+PB",
+          tdpPlan: "10/8/2023",
+          tdpAvail: "TDP AVAILABLE",
+          feasPlan: "11/7/2023",
+          feasActual: "11/7/2023",
+          feas: "FEASIBILITY STUDY COMPLETED",
+          rm: "COMPLETED",
+          cons: "COMPLETED",
+          hw: "COMPLETED",
+          bom: "COMPLETED",
+          sstReq: "NO",
+          sstNeed: "NA",
+          eng: "COMPLETED",
+          remarks: "—",
+        },
+        {
+          customer: "MSAYZX0005",
+          part: "Z5391064000000",
+          material: "Z539-10640-000-00",
+          process: "ROUTING+PB",
+          tdpPlan: "8/24/2024",
+          tdpAvail: "TDP AVAILABLE",
+          feasPlan: "9/23/2024",
+          feasActual: "9/23/2024",
+          feas: "FEASIBILITY STUDY COMPLETED",
+          rm: "COMPLETED",
+          cons: "COMPLETED",
+          hw: "COMPLETED",
+          bom: "COMPLETED",
+          sstReq: "NO",
+          sstNeed: "NA",
+          eng: "COMPLETED",
+          remarks: "—",
+        },
+        {
+          customer: "MSAYZX0005",
+          part: "X5393680130300",
+          material: "X539-36801-303-00",
+          process: "ROUTING+PB+HF",
+          tdpPlan: "10/11/2024",
+          tdpAvail: "TDP AVAILABLE",
+          feasPlan: "11/10/2024",
+          feasActual: "11/10/2024",
+          feas: "FEASIBILITY STUDY COMPLETED",
+          rm: "COMPLETED",
+          cons: "COMPLETED",
+          hw: "COMPLETED",
+          bom: "COMPLETED",
+          sstReq: "NO",
+          sstNeed: "NA",
+          eng: "COMPLETED",
+          remarks: "—",
+        },
+        {
+          customer: "MSAYZX0005",
+          part: "Z5391067830000",
+          material: "Z539-10678-300-00",
+          process: "",
+          tdpPlan: "11/13/2023",
+          tdpAvail: "TDP AVAILABLE",
+          feasPlan: "12/13/2023",
+          feasActual: "12/13/2023",
+          feas: "FEASIBILITY STUDY COMPLETED",
+          rm: "COMPLETED",
+          cons: "COMPLETED",
+          hw: "COMPLETED",
+          bom: "COMPLETED",
+          sstReq: "NO",
+          sstNeed: "NA",
+          eng: "COMPLETED",
+          remarks: "—",
+        },
+        {
+          customer: "MSAYZX0005",
+          part: "Z5393680130400",
+          material: "Z539-36801-304-00",
+          process: "ROUTING+PB",
+          tdpPlan: "7/1/2023",
+          tdpAvail: "TDP AVAILABLE",
+          feasPlan: "7/31/2023",
+          feasActual: "7/31/2023",
+          feas: "FEASIBILITY STUDY COMPLETED",
+          rm: "COMPLETED",
+          cons: "COMPLETED",
+          hw: "COMPLETED",
+          bom: "COMPLETED",
+          sstReq: "NO",
+          sstNeed: "NA",
+          eng: "COMPLETED",
+          remarks: "—",
+        },
+        {
+          customer: "MSAYZX0005",
+          part: "Z5393680130600",
+          material: "Z539-36801-306-00",
+          process: "ROUTING+CHAMFER-PB",
+          tdpPlan: "9/8/2023",
+          tdpAvail: "TDP AVAILABLE",
+          feasPlan: "10/8/2023",
+          feasActual: "10/8/2023",
+          feas: "FEASIBILITY STUDY COMPLETED",
+          rm: "COMPLETED",
+          cons: "COMPLETED",
+          hw: "COMPLETED",
+          bom: "COMPLETED",
+          sstReq: "NO",
+          sstNeed: "NA",
+          eng: "COMPLETED",
+          remarks: "—",
+        },
+      ];
+
+      const engineeringColumns = [
+        { key: "sr", label: "SR. No.", group: "identity" },
+        { key: "customer", label: "Customer", group: "identity" },
+        { key: "part", label: "Part Number", group: "identity" },
+        { key: "material", label: "Customer Material Code", group: "identity" },
+        { key: "process", label: "Process", group: "tdp" },
+        { key: "tdpPlan", label: "TDP Plan Date", group: "tdp" },
+        { key: "tdpAvail", label: "TDP Availability", group: "tdp" },
+        { key: "feasPlan", label: "Feasibility Plan Date", group: "feas" },
+        { key: "feasActual", label: "Feasibility Actual Date", group: "feas" },
+        { key: "feas", label: "Feasibility Study", group: "feas" },
+        { key: "rm", label: "RM BOM Status", group: "bom" },
+        { key: "cons", label: "Consumable BOM Status", group: "bom" },
+        { key: "hw", label: "HW BOM Status", group: "bom" },
+        { key: "bom", label: "BOM Overall", group: "bom" },
+        {
+          key: "sstReq",
+          label: "SST Process Qualification Requirements",
+          group: "sst",
+        },
+        {
+          key: "sstNeed",
+          label: "SST Process Needed Qualification",
+          group: "sst",
+        },
+        { key: "eng", label: "Engineering Status", group: "eng" },
+        { key: "remarks", label: "Remarks", group: "eng" },
+      ];
+      let engineeringCurrentPage = 1;
+      let engineeringPageSize = 10;
+      let engineeringSortKey = "";
+      let engineeringSortDirection = "asc";
+      const engineeringHiddenColumns = new Set();
+      const escEngineering = (value) =>
+        String(value ?? "").replace(
+          /[&<>"']/g,
+          (ch) =>
+            ({
+              "&": "&amp;",
+              "<": "&lt;",
+              ">": "&gt;",
+              '"': "&quot;",
+              "'": "&#39;",
+            })[ch],
+        );
+
+      function getFilteredEngineeringRecords() {
+        const doc = (document.getElementById("docNo")?.value || "")
+          .trim()
+          .toLowerCase();
+        const customer = (document.getElementById("customer")?.value || "")
+          .trim()
+          .toLowerCase();
+        const project = (document.getElementById("project")?.value || "")
+          .trim()
+          .toLowerCase();
+        const material = (document.getElementById("material")?.value || "")
+          .trim()
+          .toLowerCase();
+        const status = (document.getElementById("status")?.value || "")
+          .trim()
+          .toLowerCase();
+        const global = (document.getElementById("globalSearch")?.value || "")
+          .trim()
+          .toLowerCase();
+        let result = records
+          .map((record, index) => ({ record, index }))
+          .filter(({ record: r }) => {
+            const matchDoc =
+              !doc ||
+              String(r.part ?? "")
+                .toLowerCase()
+                .includes(doc);
+            const matchCustomer =
+              !customer ||
+              String(r.customer ?? "")
+                .toLowerCase()
+                .includes(customer);
+            const matchProject = !project || "abs".includes(project);
+            const matchMaterial =
+              !material ||
+              String(r.material ?? "")
+                .toLowerCase()
+                .includes(material);
+            const statusValue = String(r.eng ?? "").toLowerCase();
+            const matchStatus =
+              !status ||
+              (status === "pending program review"
+                ? statusValue.includes("pending")
+                : statusValue === status ||
+                  (status === "approved" && statusValue.includes("approved")) ||
+                  (status === "in progress" &&
+                    statusValue.includes("progress")) ||
+                  (status === "completed" &&
+                    statusValue.includes("completed")));
+            const matchGlobal =
+              !global ||
+              engineeringColumns.some((col) =>
+                String(r[col.key] ?? "")
+                  .toLowerCase()
+                  .includes(global),
+              );
+            return (
+              matchDoc &&
+              matchCustomer &&
+              matchProject &&
+              matchMaterial &&
+              matchStatus &&
+              matchGlobal
+            );
+          });
+        if (engineeringSortKey)
+          result.sort((a, b) => {
+            const av = String(a.record[engineeringSortKey] ?? ""),
+              bv = String(b.record[engineeringSortKey] ?? "");
+            const cmp = av.localeCompare(bv, undefined, {
+              numeric: true,
+              sensitivity: "base",
+            });
+            return engineeringSortDirection === "asc" ? cmp : -cmp;
+          });
+        return result;
+      }
+      function render() {
+        const found = getFilteredEngineeringRecords();
+        const total = found.length;
+        const totalPages = Math.max(1, Math.ceil(total / engineeringPageSize));
+        engineeringCurrentPage = Math.max(
+          1,
+          Math.min(engineeringCurrentPage, totalPages),
+        );
+        const start = (engineeringCurrentPage - 1) * engineeringPageSize;
+        const visible = found.slice(start, start + engineeringPageSize);
+        document.getElementById("recordBody").innerHTML = visible
+          .map(
+            ({ record: r, index }) => `
+          <tr>${engineeringColumns.map((col) => `<td data-col-index="${engineeringColumns.indexOf(col)}" class="${["customer", "part", "material"].includes(col.key) ? (col.key === "customer" ? "customer-code" : col.key === "part" ? "doc-link" : "material-code") : ""} ${["tdpAvail", "feas", "bom", "sstNeed"].includes(col.key) ? "section-end" : ""}">${escEngineering(col.key === "sr" ? start + visible.indexOf(found.find((item) => item.index === index)) + 1 : r[col.key] || "—")}</td>`).join("")}</tr>
+        `,
+          )
+          .join("");
+        document.getElementById("recordCount").textContent = total;
+        document.getElementById("total").textContent = total;
+        document.getElementById("showing").textContent = total
+          ? `${start + 1}–${Math.min(start + engineeringPageSize, total)}`
+          : "0–0";
+        renderEngineeringPagination(totalPages);
+        updateEngineeringSortIndicators();
+        applyEngineeringColumnVisibility();
+        updateEngineeringGroupHeaders();
+      }
+      function applyFilters() {
+        engineeringCurrentPage = 1;
+        render();
+      }
+      function handleGlobalSearch() {
+        engineeringCurrentPage = 1;
+        render();
+      }
+      function changeEngineeringPageSize() {
+        engineeringPageSize =
+          Number(document.getElementById("engineeringPageSize").value) || 10;
+        engineeringCurrentPage = 1;
+        render();
+      }
+      function goToEngineeringPage(page) {
+        const pages = Math.max(
+          1,
+          Math.ceil(
+            getFilteredEngineeringRecords().length / engineeringPageSize,
+          ),
+        );
+        if (page >= 1 && page <= pages) {
+          engineeringCurrentPage = page;
+          render();
+        }
+      }
+      function renderEngineeringPagination(totalPages) {
+        const pagination = document.getElementById("engineeringPagination");
+        const item = (page, label, disabled = false, active = false) =>
+          `<li class="page-item ${disabled ? "disabled" : ""} ${active ? "active" : ""}"><button type="button" class="page-link" ${disabled ? "disabled" : ""} onclick="goToEngineeringPage(${page})">${label}</button></li>`;
+        let html = item(
+          engineeringCurrentPage - 1,
+          "‹",
+          engineeringCurrentPage === 1,
+        );
+        const low = Math.max(1, engineeringCurrentPage - 2),
+          high = Math.min(totalPages, engineeringCurrentPage + 2);
+        if (low > 1) {
+          html += item(1, "1", false, engineeringCurrentPage === 1);
+          if (low > 2)
+            html +=
+              '<li class="page-item disabled"><span class="page-link">…</span></li>';
+        }
+        for (let page = low; page <= high; page++)
+          html += item(
+            page,
+            String(page),
+            false,
+            page === engineeringCurrentPage,
+          );
+        if (high < totalPages) {
+          if (high < totalPages - 1)
+            html +=
+              '<li class="page-item disabled"><span class="page-link">…</span></li>';
+          html += item(
+            totalPages,
+            String(totalPages),
+            false,
+            engineeringCurrentPage === totalPages,
+          );
+        }
+        html += item(
+          engineeringCurrentPage + 1,
+          "›",
+          engineeringCurrentPage === totalPages,
+        );
+        pagination.innerHTML = html;
+      }
+      function updateEngineeringSortIndicators() {
+        document
+          .querySelectorAll(
+            ".engineering-table thead tr.col-head th[data-sort-key]",
+          )
+          .forEach((th) => {
+            const key = th.dataset.sortKey;
+            th.querySelector(".sort-indicator")?.remove();
+            const span = document.createElement("span");
+            span.className = "sort-indicator";
+            span.textContent =
+              key === engineeringSortKey
+                ? engineeringSortDirection === "asc"
+                  ? "↑"
+                  : "↓"
+                : "↕";
+            th.appendChild(span);
+          });
+      }
+      function initEngineeringSorting() {
+        const headers = document.querySelectorAll(
+          ".engineering-table thead tr.col-head th",
+        );
+        headers.forEach((th, index) => {
+          const col = engineeringColumns[index];
+          if (!col) return;
+          th.dataset.sortKey = col.key;
+          th.title = "Click to sort";
+          th.addEventListener("click", () => {
+            if (engineeringSortKey === col.key)
+              engineeringSortDirection =
+                engineeringSortDirection === "asc" ? "desc" : "asc";
+            else {
+              engineeringSortKey = col.key;
+              engineeringSortDirection = "asc";
+            }
+            engineeringCurrentPage = 1;
+            render();
+          });
+        });
+      }
+      function initEngineeringColumnSelector() {
+        const host = document.getElementById("engineeringColumnCheckboxes");
+        host.innerHTML = engineeringColumns
+          .map(
+            (col, index) =>
+              `<div class="form-check"><input class="form-check-input engineering-column-toggle" type="checkbox" id="engineering-column-${index}" data-column="${index}" checked><label class="form-check-label" for="engineering-column-${index}">${escEngineering(col.label)}</label></div>`,
+          )
+          .join("");
+        host.querySelectorAll(".engineering-column-toggle").forEach((box) =>
+          box.addEventListener("change", () => {
+            const index = Number(box.dataset.column);
+            if (box.checked) engineeringHiddenColumns.delete(index);
+            else engineeringHiddenColumns.add(index);
+            applyEngineeringColumnVisibility();
+            updateEngineeringGroupHeaders();
+            updateEngineeringStickyColumns();
+          }),
+        );
+      }
+      function toggleAllEngineeringColumns(show) {
+        engineeringHiddenColumns.clear();
+        document
+          .querySelectorAll(".engineering-column-toggle")
+          .forEach((box) => {
+            box.checked = show;
+            if (!show) engineeringHiddenColumns.add(Number(box.dataset.column));
+          });
+        applyEngineeringColumnVisibility();
+        updateEngineeringGroupHeaders();
+        updateEngineeringStickyColumns();
+      }
+      function applyEngineeringColumnVisibility() {
+        document
+          .querySelectorAll(".engineering-table tr.col-head th")
+          .forEach((cell, index) =>
+            cell.classList.toggle(
+              "column-hidden",
+              engineeringHiddenColumns.has(index),
+            ),
+          );
+        document
+          .querySelectorAll(".engineering-table tbody tr")
+          .forEach((row) =>
+            Array.from(row.cells).forEach((cell, index) =>
+              cell.classList.toggle(
+                "column-hidden",
+                engineeringHiddenColumns.has(index),
+              ),
+            ),
+          );
+      }
+      function updateEngineeringGroupHeaders() {
+        const groups = [
+          { key: "identity", selector: ".base-group" },
+          { key: "tdp", selector: "#group-tdp" },
+          { key: "feas", selector: "#group-feas" },
+          { key: "bom", selector: "#group-bom" },
+          { key: "sst", selector: "#group-sst" },
+          { key: "eng", selector: "#group-eng" },
+        ];
+        groups.forEach((group) => {
+          const cell = document.querySelector(group.selector);
+          if (!cell) return;
+          const count = engineeringColumns.filter(
+            (col, index) =>
+              col.group === group.key && !engineeringHiddenColumns.has(index),
+          ).length;
+          cell.colSpan = Math.max(1, count);
+          cell.classList.toggle("column-hidden", count === 0);
+        });
+        updateEngineeringStickyColumns();
+      }
+      function updateEngineeringStickyColumns() {
+        const table = document.querySelector(".engineering-table");
+        if (!table || !table.tHead || !table.tHead.rows.length) return;
+        const headerRow = table.querySelector("thead tr.col-head");
+        if (!headerRow) return;
+        // Remove old sticky offsets before recalculating.
+        table.querySelectorAll(".sticky-col, .sticky-col-3").forEach((cell) => {
+          cell.classList.remove("sticky-col", "sticky-col-3");
+          cell.style.left = "";
+          cell.style.zIndex = "";
+        });
+        const headers = Array.from(headerRow.cells);
+        const rows = Array.from(table.querySelectorAll("tbody tr"));
+        let left = 0;
+        let frozenCount = 0;
+        // Freeze the first four identity columns:
+        // SL. NO., Customer, Part Number, Customer Material Code.
+        headers.forEach((th, index) => {
+          if (index >= 4 || engineeringHiddenColumns.has(index)) return;
+          const width = th.getBoundingClientRect().width;
+          if (!width) return;
+          th.classList.add("sticky-col");
+          th.style.left = `${left}px`;
+          th.style.zIndex = "20";
+          rows.forEach((row) => {
+            const td = row.cells[index];
+            if (!td || engineeringHiddenColumns.has(index)) return;
+            td.classList.add("sticky-col");
+            td.style.left = `${left}px`;
+            td.style.zIndex = "5";
+          });
+          frozenCount++;
+          if (frozenCount === 4) {
+            th.classList.add("sticky-col-3");
+            rows.forEach((row) => {
+              if (row.cells[index]) {
+                row.cells[index].classList.add("sticky-col-3");
+              }
+            });
+          }
+          left += width;
+        });
+        // Keep the PROJECT / MATERIAL group header at the left.
+        // Do not override its width: colspan should determine its natural width.
+        const baseGroup = table.querySelector(
+          "thead tr.group-head th.base-group",
+        );
+        if (baseGroup) {
+          baseGroup.style.left = "0px";
+          baseGroup.style.width = "";
+          baseGroup.style.minWidth = "";
+          baseGroup.style.zIndex = "70";
+        }
+      }
+      function clearFilters() {
+        [
+          "docNo",
+          "customer",
+          "project",
+          "material",
+          "status",
+          "globalSearch",
+        ].forEach((id) => {
+          const el = document.getElementById(id);
+          if (el) el.value = "";
+        });
+        engineeringCurrentPage = 1;
+        render();
+      }
+      function uploadEngineeringExcel(event) {
+        const file = event.target.files?.[0];
+        if (!file) return;
+        if (typeof XLSX === "undefined") {
+          alert(
+            "Excel library could not load. Check your internet connection.",
+          );
+          event.target.value = "";
+          return;
+        }
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          try {
+            const workbook = XLSX.read(e.target.result, {
+              type: "array",
+              cellDates: false,
+            });
+            const sheet = workbook.Sheets[workbook.SheetNames[0]];
+            const rows = XLSX.utils.sheet_to_json(sheet, {
+              header: 1,
+              defval: "",
+              raw: false,
+            });
+            if (rows.length < 2) {
+              alert(
+                "The file must contain a header row and at least one data row.",
+              );
+              return;
+            }
+            const norm = (v) =>
+              String(v ?? "")
+                .toLowerCase()
+                .replace(/[^a-z0-9]/g, "");
+            const sourceHeaders = rows[0].map(norm);
+            const aliases = {
+              sr: ["srno", "serialno", "srno"],
+              customer: ["customer", "customercode"],
+              part: ["partnumber", "partno", "docno"],
+              material: ["customermaterialcode", "material", "materialcode"],
+              process: ["process"],
+              tdpPlan: ["tdpplandate"],
+              tdpAvail: ["tdpavailability"],
+              feasPlan: ["feasibilityplandate"],
+              feasActual: ["feasibilityactualdate"],
+              feas: ["feasibilitystudy"],
+              rm: ["rmbomstatus", "rmbom"],
+              cons: ["consumablebomstatus", "consumablebom"],
+              hw: ["hwbomstatus", "hwbom"],
+              bom: ["bomoverall"],
+              sstReq: [
+                "sstprocessqualificationrequirements",
+                "sstrequirements",
+              ],
+              sstNeed: [
+                "sstprocessneededqualification",
+                "sstneededqualification",
+              ],
+              eng: ["engineeringstatus"],
+              remarks: ["remarks"],
+            };
+            const mapping = engineeringColumns.map((col) =>
+              sourceHeaders.findIndex((h) =>
+                [norm(col.label), ...(aliases[col.key] || [])].includes(h),
+              ),
+            );
+            const missing = ["customer", "part", "material"].filter(
+              (key) =>
+                mapping[engineeringColumns.findIndex((c) => c.key === key)] < 0,
+            );
+            if (missing.length) {
+              alert(
+                "Missing required columns: " +
+                  missing.join(", ") +
+                  ". Use the Engineering Records column headings.",
+              );
+              return;
+            }
+            const imported = rows
+              .slice(1)
+              .filter((row) => row.some((v) => String(v).trim() !== ""));
+            if (!imported.length) {
+              alert("No data rows found in the selected file.");
+              return;
+            }
+            if (!confirm(`Import ${imported.length} engineering record(s)?`))
+              return;
+            imported.forEach((row) => {
+              const record = {};
+              engineeringColumns.forEach((col, i) => {
+                const idx = mapping[i];
+                record[col.key] =
+                  col.key === "sr"
+                    ? String(records.length + 1)
+                    : String(idx >= 0 ? (row[idx] ?? "") : "").trim();
+              });
+              records.push(record);
+            });
+            engineeringCurrentPage = 1;
+            render();
+            alert(`${imported.length} record(s) imported successfully.`);
+          } catch (err) {
+            console.error(err);
+            alert(
+              "Unable to read this file. Please check its format and headings.",
+            );
+          } finally {
+            event.target.value = "";
+          }
+        };
+        reader.readAsArrayBuffer(file);
+      }
+      function exportCSV() {
+        const filtered = getFilteredEngineeringRecords();
+        const quote = (value) => `"${String(value ?? "").replace(/"/g, '""')}"`;
+        const rows = [
+          engineeringColumns.map((col) => quote(col.label)).join(","),
+          ...filtered.map(({ record }) =>
+            engineeringColumns.map((col) => quote(record[col.key])).join(","),
+          ),
+        ];
+        const blob = new Blob(["\uFEFF" + rows.join("\r\n")], {
+          type: "text/csv;charset=utf-8;",
+        });
+        const url = URL.createObjectURL(blob),
+          a = document.createElement("a");
+        a.href = url;
+        a.download = "engineering-records.csv";
+        a.click();
+        setTimeout(() => URL.revokeObjectURL(url), 1000);
+      }
+
+      const sectionInfo = {
+        identity: [
+          "Project Identity",
+          "Customer, part number and customer material code.",
+        ],
+        tdp: ["TDP", "TDP process, plan date and availability information."],
+        feas: [
+          "Feasibility Study",
+          "Planned and actual feasibility dates and study completion status.",
+        ],
+        bom: [
+          "BOM Creation",
+          "RM, consumable, hardware and overall BOM status.",
+        ],
+        sst: [
+          "SST / Qualification",
+          "Qualification requirements and qualification status.",
+        ],
+        eng: ["Engineering", "Engineering status and remarks."],
+      };
+      const groupCols = {
+        tdp: [5, 6, 7],
+        feas: [8, 9, 10],
+        bom: [11, 12, 13, 14],
+        sst: [15, 16],
+        eng: [17, 18],
+      };
+      const sectionState = {
+        tdp: false,
+        feas: false,
+        bom: false,
+        sst: false,
+        eng: false,
+      };
+
+      function goSection(name) {
+        // Keep the active jump button in sync with the selected section.
+        document.querySelectorAll(".section-btn").forEach((button) => {
+          button.classList.toggle("active", button.dataset.target === name);
+        });
+
+        const wrap = document.getElementById("engineeringTableWrap");
+        const table = wrap?.querySelector(".engineering-table");
+        if (!wrap || !table) return;
+
+        // Identity always means the actual far-left edge of the table.
+        if (name === "identity") {
+          wrap.scrollTo({ left: 0, behavior: "auto" });
+          wrap.scrollLeft = 0;
+          return;
+        }
+
+        // Recompute sticky offsets after column visibility changes.
+        updateEngineeringStickyColumns();
+
+        // Target the first visible column in the requested section, rather
+        // than the spanning group header (whose position can be misleading
+        // when sticky columns and hidden columns are involved).
+        const headers = Array.from(
+          table.querySelectorAll("thead tr.col-head th"),
+        );
+        const targetIndex = engineeringColumns.findIndex(
+          (col, index) =>
+            col.group === name && !engineeringHiddenColumns.has(index),
+        );
+        if (targetIndex < 0 || !headers[targetIndex]) return;
+
+        const targetHeader = headers[targetIndex];
+        const wrapRect = wrap.getBoundingClientRect();
+
+        // Width of the visible frozen identity block. The section should start
+        // immediately to its right, never underneath it.
+        let frozenWidth = 0;
+        headers.forEach((header, index) => {
+          if (index < 4 && !engineeringHiddenColumns.has(index)) {
+            frozenWidth += header.getBoundingClientRect().width;
+          }
+        });
+
+        // Convert the target's current viewport position into scroll content
+        // coordinates, then offset by the frozen block. This works regardless
+        // of the current horizontal scroll position.
+        const targetContentLeft =
+          wrap.scrollLeft +
+          targetHeader.getBoundingClientRect().left -
+          wrapRect.left;
+        const desiredLeft = Math.max(0, targetContentLeft - frozenWidth - 2);
+
+        wrap.scrollTo({ left: desiredLeft, behavior: "smooth" });
+      }
+      initEngineeringColumnSelector();
+      initEngineeringSorting();
+      render();
+      window.addEventListener("resize", updateEngineeringStickyColumns);
+      document
+        .querySelectorAll('[data-bs-toggle="tooltip"]')
+        .forEach((el) => bootstrap.Tooltip.getOrCreateInstance(el));
+    </script>
+  </body>
+</html>

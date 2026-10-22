@@ -1,0 +1,3271 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Mahindra Engineering Records</title>
+    <link
+      rel="stylesheet"
+      href="https://fontsstorage.blob.core.windows.net/html/css/georama.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --red: #a9153d;
+        --red-soft: #f7e9ee;
+        --navy: #071b2d;
+        --ink: #243746;
+        --muted: #71818d;
+        --bg: #f3f6f8;
+        --surface: #fff;
+        --border: #dce4e9;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "Georama-Regular", Arial, sans-serif;
+        font-size: 12px;
+      }
+      .topbar {
+        height: 68px;
+        background: #fff;
+        border-bottom: 2px solid #a9153d;
+        box-shadow: 0 1px 5px rgba(7, 27, 45, 0.06);
+      }
+      .header-inner {
+        height: 68px;
+      }
+      .mahindra-logo img {
+        width: 170px;
+        height: auto;
+      }
+      .top-menu {
+        display: flex;
+        gap: 4px;
+        align-items: center;
+      }
+      .top-menu a {
+        color: #465967;
+        text-decoration: none;
+        padding: 11px 16px;
+        border-radius: 6px;
+        font-size: 12px;
+        font-weight: 700;
+      }
+      .top-menu a:hover,
+      .top-menu a.active {
+        background: #f5eaf0;
+        color: var(--red);
+      }
+      .top-menu a.active {
+        box-shadow: inset 0 -2px 0 var(--red);
+      }
+      .profile-btn {
+        border: 0;
+        background: transparent;
+        color: var(--ink);
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        padding: 5px 7px;
+      }
+      .avatar {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: #a9153d;
+        color: #fff;
+        display: grid;
+        place-items: center;
+        font-weight: 800;
+        font-size: 11px;
+      }
+      .profile-name {
+        font-size: 12px;
+        font-weight: 800;
+        text-align: left;
+      }
+      .profile-role {
+        font-size: 11px;
+        color: #7b8993;
+      }
+      .dropdown-menu {
+        border: 1px solid var(--border);
+        box-shadow: 0 8px 24px #071b2d22;
+        border-radius: 8px;
+      }
+      .dropdown-item {
+        font-size: 12px;
+        padding: 9px 14px;
+      }
+
+      .page {
+        padding: 24px 28px 40px;
+        max-width: 1500px;
+        margin: auto;
+      }
+      .breadcrumb {
+        font-size: 10px;
+        color: #82909a;
+        margin-bottom: 7px;
+      }
+      .breadcrumb strong {
+        color: #4e6270;
+      }
+      .page-title-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 16px;
+      }
+      .page-title {
+        font-size: 23px;
+        font-weight: 800;
+        color: var(--navy);
+        margin: 0;
+      }
+      .page-subtitle {
+        font-size: 11px;
+        color: #71818d;
+        margin-top: 5px;
+      }
+      .title-accent {
+        height: 3px;
+        width: 45px;
+        background: var(--red);
+        border-radius: 3px;
+        margin-top: 9px;
+      }
+      .title {
+        font-weight: 800;
+        color: var(--navy);
+      }
+      .header-actions {
+        display: flex;
+        gap: 8px;
+      }
+      .btn-light-action {
+        height: 36px;
+        border: 1px solid #d5dfe5;
+        background: #fff;
+        color: #526672;
+        border-radius: 6px;
+        font-size: 11px;
+        font-weight: 700;
+        padding: 0 13px;
+      }
+      .btn-primary-mahindra {
+        height: 36px;
+        background: var(--red);
+        border: 1px solid var(--red);
+        color: #fff;
+        border-radius: 6px;
+        font-size: 11px;
+        font-weight: 800;
+        padding: 0 15px;
+      }
+      .btn-primary-mahindra:hover {
+        background: #8f1234;
+        color: #fff;
+      }
+
+      .tabs {
+        display: flex;
+        gap: 24px;
+        border-bottom: 1px solid #d9e1e6;
+        margin-bottom: 15px;
+      }
+      .tabs a {
+        padding: 9px 2px 10px;
+        color: #617481;
+        text-decoration: none;
+        font-size: 11px;
+        font-weight: 700;
+        position: relative;
+      }
+      .tabs a.active {
+        color: var(--red);
+      }
+      .tabs a.active:after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: -1px;
+        height: 2px;
+        background: var(--red);
+      }
+
+      .filter-card {
+        background: #fff;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        box-shadow: 0 2px 9px #071b2d0c;
+        padding: 15px 17px 16px;
+        margin-bottom: 14px;
+      }
+      .filter-grid {
+        display: grid;
+        grid-template-columns: 1.35fr 1fr 1fr 1.25fr 1fr auto;
+        gap: 11px;
+        align-items: end;
+      }
+      .filter-label {
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        font-weight: 800;
+        color: #687a87;
+        margin-bottom: 5px;
+      }
+      .filter-control {
+        height: 37px;
+        border: 1px solid #d5dfe6;
+        border-radius: 6px;
+        font-size: 12px;
+        color: #415563;
+        background: #fff;
+      }
+      .filter-control:focus {
+        border-color: #bb7088;
+        box-shadow: 0 0 0 3px rgba(169, 21, 61, 0.07);
+      }
+      .filter-actions {
+        display: flex;
+        gap: 7px;
+      }
+      .apply {
+        height: 37px;
+        background: var(--red);
+        color: #fff;
+        border: 1px solid var(--red);
+        font-size: 11px;
+        font-weight: 800;
+        padding: 0 16px;
+        border-radius: 6px;
+      }
+      .clear {
+        height: 37px;
+        border: 1px solid #d5dfe6;
+        background: #fff;
+        color: #657682;
+        border-radius: 6px;
+        width: 38px;
+      }
+
+      .table-card {
+        background: #fff;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        box-shadow: 0 2px 9px #071b2d0c;
+        overflow: hidden;
+      }
+      .table-head {
+        padding: 15px 17px 11px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .table-title {
+        font-size: 16px;
+        font-weight: 800;
+        color: var(--navy);
+      }
+      .table-meta {
+        font-size: 10px;
+        color: #7a8994;
+        margin-top: 3px;
+      }
+      .table-tools {
+        display: flex;
+        gap: 7px;
+      }
+      .tool-btn {
+        height: 32px;
+        border: 1px solid #d7e0e5;
+        background: #fff;
+        border-radius: 6px;
+        color: #617481;
+        font-size: 10px;
+        padding: 0 11px;
+        font-weight: 700;
+      }
+      .table-wrap {
+        overflow: auto;
+        border-top: 1px solid #e2e8ec;
+      }
+      .records-table {
+        width: 100%;
+        min-width: 1550px;
+        border-collapse: separate;
+        border-spacing: 0;
+      }
+      .records-table th {
+        background: #f5f7f9;
+        color: #627582;
+        border-right: 1px solid #edf1f4;
+        border-bottom: 1px solid #dce4e9;
+        padding: 10px 9px;
+        font-size: 8px;
+        line-height: 1.25;
+        text-transform: uppercase;
+        letter-spacing: 0.3px;
+        white-space: nowrap;
+      }
+      .records-table td {
+        padding: 10px 9px;
+        color: #405463;
+        border-right: 1px solid #f0f3f5;
+        border-bottom: 1px solid #e8edf0;
+        font-size: 10px;
+        white-space: nowrap;
+      }
+      .records-table tbody tr:hover td {
+        background: #fbfcfd;
+      }
+      .records-table th:first-child,
+      .records-table td:first-child {
+        padding-left: 16px;
+      }
+      .doc-link {
+        color: #3e6e96;
+        font-weight: 800;
+      }
+      .project-name {
+        font-weight: 700;
+        color: #344e60;
+      }
+      .material-code,
+      .customer-code {
+        font-weight: 700;
+        color: #556c7a;
+      }
+      .status {
+        display: inline-flex;
+        padding: 4px 8px;
+        border-radius: 12px;
+        font-size: 8px;
+        font-weight: 800;
+      }
+      .pending {
+        background: #f8e9ee;
+        color: #95506a;
+      }
+      .approved {
+        background: #e7f3ec;
+        color: #477463;
+      }
+      .progress {
+        background: #e9f0f6;
+        color: #4e718d;
+      }
+      .completed {
+        background: #e5f2ec;
+        color: #3e725f;
+      }
+      .action-group {
+        display: flex;
+        gap: 4px;
+      }
+      .action {
+        width: 27px;
+        height: 25px;
+        border: 1px solid #e0e6ea;
+        background: #fff;
+        color: #71818d;
+        border-radius: 5px;
+        display: grid;
+        place-items: center;
+      }
+      .action:hover {
+        background: #f6eaf0;
+        color: var(--red);
+        border-color: #e2ccd5;
+      }
+      .table-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 11px 17px;
+        color: #7a8994;
+        font-size: 12px;
+      }
+      .page-size {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+      }
+      .page-size select {
+        height: 29px;
+        border: 1px solid #d9e2e7;
+        border-radius: 5px;
+        font-size: 10px;
+        padding: 0 8px;
+      }
+      .pagination .page-link {
+        font-size: 10px;
+        color: #617481;
+        border-color: #e0e6ea;
+      }
+      .pagination .active .page-link {
+        background: var(--red);
+        border-color: var(--red);
+        color: #fff;
+      }
+      @media (max-width: 1100px) {
+        .filter-grid {
+          grid-template-columns: 1fr 1fr 1fr;
+        }
+        .filter-actions {
+          grid-column: 1/-1;
+        }
+      }
+      @media (max-width: 700px) {
+        .top-menu {
+          display: none;
+        }
+        .page {
+          padding: 18px 14px;
+        }
+        .page-title-row {
+          flex-direction: column;
+          gap: 12px;
+        }
+        .filter-grid {
+          grid-template-columns: 1fr;
+        }
+        .filter-actions {
+          grid-column: auto;
+        }
+        .profile-name {
+          display: none;
+        }
+      }
+
+      .section-nav {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 11px 15px;
+        background: #f8fafb;
+        border-bottom: 1px solid #e0e7eb;
+        flex-wrap: wrap;
+      }
+      .section-label {
+        font-size: 9px;
+        text-transform: uppercase;
+        letter-spacing: 0.65px;
+        font-weight: 800;
+        color: #6d7d88;
+        margin-right: 4px;
+      }
+      .section-btn {
+        border: 1px solid #d8e1e6;
+        background: #fff;
+        color: #566b78;
+        border-radius: 16px;
+        padding: 6px 11px;
+        font-size: 9px;
+        font-weight: 800;
+        cursor: pointer;
+      }
+      .section-btn:hover {
+        box-shadow: 0 2px 7px #071b2d12;
+      }
+      .section-btn.active {
+        color: #fff;
+        border-color: var(--red);
+        background: var(--red);
+      }
+      .section-btn .dot {
+        display: inline-block;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        margin-right: 5px;
+        background: #7991a0;
+      }
+      .section-btn.tdp .dot {
+        background: #6d91b1;
+      }
+      .section-btn.feas .dot {
+        background: #8f7290;
+      }
+      .section-btn.bom .dot {
+        background: #8aa46b;
+      }
+      .section-btn.sst .dot {
+        background: #a27d55;
+      }
+      .section-btn.eng .dot {
+        background: #6d9a9a;
+      }
+      .section-helper {
+        margin-left: auto;
+        font-size: 9px;
+        color: #81909a;
+      }
+      .section-panel {
+        padding: 10px 15px;
+        background: #fff;
+        border-bottom: 1px solid #e1e7eb;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+      }
+      .section-panel-title {
+        font-size: 11px;
+        font-weight: 800;
+        color: var(--navy);
+      }
+      .section-panel-desc {
+        font-size: 9px;
+        color: #81909a;
+        margin-top: 2px;
+      }
+      .section-toggle {
+        border: 1px solid #d7e0e5;
+        background: #fff;
+        color: #627581;
+        border-radius: 5px;
+        font-size: 9px;
+        font-weight: 800;
+        padding: 6px 10px;
+      }
+
+      .table-head-toolbar {
+        gap: 18px;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+      .table-heading-block {
+        min-width: 180px;
+      }
+      .table-toolbar-controls {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 10px;
+        flex: 1 1 620px;
+        min-width: 0;
+      }
+      .global-search-wrap {
+        position: relative;
+        flex: 1 1 260px;
+        max-width: 370px;
+        min-width: 190px;
+      }
+      .global-search-wrap > i {
+        position: absolute;
+        left: 11px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #82909a;
+        font-size: 12px;
+      }
+      .global-search-wrap input {
+        width: 100%;
+        height: 34px;
+        border: 1px solid #d7e0e5;
+        border-radius: 6px;
+        padding: 0 11px 0 32px;
+        color: var(--ink);
+        font-size: 11px;
+        outline: none;
+      }
+      .global-search-wrap input:focus {
+        border-color: #bb7088;
+        box-shadow: 0 0 0 3px rgba(169, 21, 61, 0.07);
+      }
+      .table-tools {
+        align-items: center;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+      }
+      .columns-menu {
+        min-width: 205px;
+        font-size: 11px;
+        box-shadow: 0 8px 24px #071b2d22;
+      }
+      .columns-menu-title {
+        font-weight: 800;
+        color: var(--navy);
+        padding: 5px 8px 8px;
+        border-bottom: 1px solid #edf1f4;
+        margin-bottom: 5px;
+      }
+      .columns-menu label {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        padding: 7px 8px;
+        border-radius: 4px;
+        cursor: pointer;
+        white-space: nowrap;
+      }
+      .columns-menu label:hover {
+        background: #f5f7f9;
+      }
+      .columns-menu input {
+        accent-color: var(--red);
+      }
+      .table-footer {
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+      .table-footer-controls {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 18px;
+        margin-left: auto;
+      }
+      .page-size {
+        margin: 0;
+        white-space: nowrap;
+      }
+      .page-size select {
+        margin-left: 5px;
+        background: #fff;
+      }
+      #pagination .page-link {
+        min-width: 28px;
+        text-align: center;
+        cursor: pointer;
+      }
+      #pagination .page-item.disabled .page-link {
+        cursor: not-allowed;
+      }
+      .engineering-section.section-hidden {
+        display: none !important;
+      }
+      /* In Show All mode, keep the complete Project / Material section frozen at the left. */
+      .engineering-table.show-all-mode .project-section {
+        position: sticky;
+        left: 0;
+        z-index: 8;
+        align-self: stretch;
+        background: #fff;
+        box-shadow: 5px 0 8px rgba(7, 27, 45, 0.1);
+      }
+      .engineering-table.show-all-mode .project-section .section-header,
+      .engineering-table.show-all-mode .project-section th {
+        position: sticky;
+        z-index: 9;
+      }
+      .engineering-table.show-all-mode .project-section .section-content {
+        background: #fff;
+      }
+      @media (max-width: 900px) {
+        .table-toolbar-controls {
+          flex-wrap: wrap;
+          justify-content: flex-start;
+        }
+        .global-search-wrap {
+          max-width: none;
+          flex-basis: 100%;
+        }
+        .table-footer-controls {
+          width: 100%;
+          justify-content: flex-end;
+        }
+      }
+
+      /* =========================================================
+  ENGINEERING TABLE - SIMPLE, CONSISTENT DESIGN
+  ========================================================= */
+      .engineering-table-wrap {
+        width: 100%;
+        height: 560px;
+        overflow: auto;
+        background: #fff;
+        border-top: 1px solid var(--border);
+        scrollbar-width: thin;
+        scrollbar-color: #b8c4cc #f3f6f8;
+      }
+      .engineering-table {
+        display: flex;
+        width: 100%;
+        min-width: 900px;
+        min-height: 100%;
+        background: #fff;
+      }
+      /* Collapsed section */
+      .engineering-section {
+        display: flex;
+        flex: 0 0 48px;
+        min-width: 48px;
+        min-height: 100%;
+        overflow: hidden;
+        background: #fff;
+        border-right: 1px solid var(--border);
+        transition: flex-basis 0.25s ease;
+      }
+      /* One section expanded */
+      .engineering-section.expanded {
+        flex: 1 1 0;
+        min-width: 0;
+      }
+      /* Project section when open */
+      .project-section.expanded {
+        min-width: 0;
+      }
+      /* =========================================================
+  VERTICAL BAR - VISIBLE ONLY WHEN COLLAPSED
+  ========================================================= */
+      .section-vertical-bar {
+        flex: 0 0 48px;
+        width: 48px;
+        min-height: 100%;
+        padding: 12px 5px;
+        border: 0;
+        border-right: 1px solid var(--border);
+        background: #eef2f5;
+        color: #405463;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        transition: background 0.15s ease;
+      }
+      .section-vertical-bar:hover {
+        background: #e1e8ed;
+      }
+      .vertical-text {
+        writing-mode: vertical-rl;
+        transform: rotate(180deg);
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: 0.6px;
+        white-space: nowrap;
+      }
+      .vertical-icon {
+        font-size: 14px;
+      }
+      /* Hide the vertical bar completely when expanded */
+      .engineering-section.expanded .section-vertical-bar {
+        display: none;
+      }
+      /* =========================================================
+  SECTION CONTENT
+  ========================================================= */
+      .section-content {
+        flex: 1 1 auto;
+        min-width: 0;
+        background: #fff;
+        overflow-x: auto;
+        overflow-y: hidden;
+      }
+      /* Hide content when collapsed */
+      .engineering-section:not(.expanded) .section-content {
+        display: none;
+      }
+      /* =========================================================
+  SIMPLE SECTION HEADER
+  ========================================================= */
+      .section-header {
+        height: 42px;
+        padding: 0 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: #f1f4f6;
+        color: #344b5a;
+        border-bottom: 1px solid var(--border);
+        font-size: 11px;
+        font-weight: 800;
+        text-transform: uppercase;
+        white-space: nowrap;
+      }
+      .engineering-section.expanded .section-header {
+        background: #f1f4f6;
+        color: #344b5a;
+        border-top: 2px solid var(--red);
+      }
+      .section-collapse {
+        width: 27px;
+        height: 27px;
+        flex-shrink: 0;
+        display: grid;
+        place-items: center;
+        border: 1px solid #d5dfe5;
+        border-radius: 5px;
+        background: #fff;
+        color: #526672;
+        cursor: pointer;
+      }
+      .section-collapse:hover {
+        background: #e7edf1;
+      }
+      /* =========================================================
+  INNER TABLE
+  ========================================================= */
+      .section-content table {
+        width: 100%;
+        border-collapse: collapse;
+        table-layout: auto;
+      }
+      .section-content th {
+        height: 43px;
+        padding: 8px 10px;
+        background: #f5f7f9;
+        color: #536777;
+        border: 1px solid #e0e6eb;
+        font-size: 11px;
+        line-height: 1.3;
+        font-weight: 800;
+        text-transform: uppercase;
+        white-space: nowrap;
+      }
+      .section-content td {
+        height: 40px;
+        padding: 8px 10px;
+        background: #fff;
+        color: #405463;
+        border: 1px solid #e8edf0;
+        font-size: 10px;
+        white-space: nowrap;
+      }
+      .section-content tbody tr:nth-child(even) td {
+        background: #fafbfc;
+      }
+      .section-content tbody tr:hover td {
+        background: #f1f5f8;
+      }
+      /* =========================================================
+  SHOW ALL - SINGLE OUTER HORIZONTAL SCROLLBAR
+  ========================================================= */
+      .engineering-table-wrap.show-all-mode {
+        overflow-x: auto;
+        overflow-y: auto;
+      }
+      .engineering-table.show-all-mode {
+        width: max-content;
+        min-width: 100%;
+        min-height: 100%;
+        align-items: stretch;
+      }
+      .engineering-table.show-all-mode .engineering-section {
+        flex: 0 0 auto;
+        width: max-content;
+        min-width: 0;
+        overflow: visible;
+      }
+      .engineering-table.show-all-mode .section-vertical-bar {
+        display: none;
+      }
+      .engineering-table.show-all-mode .section-content {
+        flex: 0 0 auto;
+        width: max-content;
+        min-width: 0;
+        overflow: visible;
+      }
+      .engineering-table.show-all-mode .section-content table {
+        width: max-content;
+        min-width: 100%;
+      }
+      /* Allow long headings and data to determine column width */
+      .engineering-table.show-all-mode .section-content th,
+      .engineering-table.show-all-mode .section-content td {
+        white-space: nowrap;
+      }
+      /* Responsive layout */
+      @media (max-width: 900px) {
+        .engineering-table {
+          min-width: 650px;
+        }
+        .section-vertical-bar {
+          flex-basis: 44px;
+          width: 44px;
+        }
+      }
+      .stage-action-btn {
+        border: 1px solid #a9153d;
+        color: #a9153d;
+        background: white;
+        border-radius: 5px;
+        padding: 5px 9px;
+        font-size: 10px;
+        font-weight: 700;
+        white-space: nowrap;
+      }
+      .stage-action-btn:disabled {
+        border-color: #d8e0e6;
+        color: #a0aab3;
+        background: #f5f7f9;
+        cursor: not-allowed;
+      }
+      .workflow-input {
+        font-size: 12px;
+      }
+      .modal-title {
+        font-weight: 800;
+        color: #071b2d;
+      }
+      .modal-header {
+        border-top: 3px solid #a9153d;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="container-fluid px-4">
+        <div
+          class="header-inner d-flex align-items-center justify-content-between gap-3"
+        >
+          <a class="mahindra-logo" href="#"
+            ><img src="mahindra_rise_red.png" alt="Mahindra"
+          /></a>
+          <nav class="top-menu">
+            <a href="mahindra_engineering_dashboard.html"
+              ><i class="bi bi-grid-1x2 me-1"></i>Dashboard</a
+            >
+            <a href="mahindra_engineering_input_bd.html"
+              ><i class="bi bi-folder2-open me-1"></i>Input BD</a
+            >
+            <a href="mahindra_programs.html"
+              ><i class="bi bi-folder2-open me-1"></i>Programs</a
+            >
+            <a href="mahindra_engineering_records.html"
+              ><i class="bi bi-folder2-open me-1"></i>Engineering 1</a
+            >
+            <a href="mahindra_engineering_records_new.html" class="active"
+              ><i class="bi bi-folder2-open me-1"></i>Engineering 2</a
+            >
+            <a href="#"><i class="bi bi-bar-chart-line me-1"></i>Reports</a>
+          </nav>
+          <div class="dropdown">
+            <button
+              class="profile-btn dropdown-toggle"
+              data-bs-toggle="dropdown"
+            >
+              <div>
+                <div class="profile-name">Priyank Jain</div>
+                <div class="profile-role">Engineering User</div>
+              </div>
+              <span class="avatar">PJ</span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end mt-2">
+              <li>
+                <a class="dropdown-item" href="#"
+                  ><i class="bi bi-person me-2"></i>My Profile</a
+                >
+              </li>
+              <li>
+                <a class="dropdown-item" href="#"
+                  ><i class="bi bi-gear me-2"></i>Settings</a
+                >
+              </li>
+              <li><hr class="dropdown-divider" /></li>
+              <li>
+                <a
+                  class="dropdown-item text-danger"
+                  href="mahindra_engineering_login.html"
+                  ><i class="bi bi-box-arrow-right me-2"></i>Logout</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="page">
+      <div class="page-title-row">
+        <div>
+          <h5 class="title mb-1">Engineering Document Records</h5>
+          <div class="title-accent"></div>
+        </div>
+      </div>
+
+      <section class="filter-card">
+        <div class="filter-grid">
+          <div>
+            <div class="filter-label">MASPL</div>
+            <input
+              id="docNo"
+              class="form-control filter-control"
+              placeholder="Search MASPL"
+            />
+          </div>
+          <div>
+            <div class="filter-label">Project Name</div>
+            <input
+              id="project"
+              class="form-control filter-control"
+              placeholder="Search project name"
+            />
+          </div>
+          <div>
+            <div class="filter-label">Type</div>
+            <input
+              id="material"
+              class="form-control filter-control"
+              placeholder="Search Type"
+            />
+          </div>
+          <div>
+            <div class="filter-label">Status</div>
+            <select id="status" class="form-select filter-control">
+              <option value="">All</option>
+              <option>Pending Program Review</option>
+              <option>Approved</option>
+              <option>In Progress</option>
+              <option>Completed</option>
+            </select>
+          </div>
+          <div class="filter-actions">
+            <button class="apply" onclick="applyFilters()">
+              <i class="bi bi-funnel me-1"></i>Apply</button
+            ><button class="clear" onclick="clearFilters()" title="Clear">
+              <i class="bi bi-arrow-counterclockwise"></i>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section class="table-card">
+        <div class="table-head table-head-toolbar">
+          <div class="table-heading-block">
+            <div class="table-title">
+              Engineering Records
+              <span class="table-meta">(<span id="recordCount">10</span>)</span>
+            </div>
+          </div>
+          <div class="table-toolbar-controls">
+            <div class="global-search-wrap">
+              <i class="bi bi-search"></i>
+              <input
+                id="globalSearch"
+                type="search"
+                aria-label="Search all engineering records"
+                placeholder="Search..."
+                oninput="handleGlobalSearch()"
+              />
+            </div>
+            <div class="table-tools">
+              <button
+                class="tool-btn"
+                onclick="exportCSV()"
+                title="Export filtered records to CSV"
+              >
+                <i class="bi bi-download me-1"></i>Export
+              </button>
+              <button
+                class="tool-btn"
+                onclick="document.getElementById('excelUpload').click()"
+                title="Upload Excel file"
+              >
+                <i class="bi bi-upload me-1"></i>Upload
+              </button>
+              <input
+                id="excelUpload"
+                type="file"
+                accept=".xlsx,.xls,.csv"
+                hidden
+                onchange="uploadExcel(event)"
+              />
+              <div class="dropdown">
+                <button
+                  class="tool-btn dropdown-toggle"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <i class="bi bi-sliders me-1"></i>Columns
+                </button>
+                <div class="dropdown-menu dropdown-menu-end columns-menu p-2">
+                  <div class="columns-menu-title">Show sections</div>
+                  <label
+                    ><input
+                      type="checkbox"
+                      checked
+                      onchange="
+                        toggleSectionVisibility('project', this.checked)
+                      "
+                    />
+                    Project / Material</label
+                  >
+                  <label
+                    ><input
+                      type="checkbox"
+                      checked
+                      onchange="toggleSectionVisibility('tdp', this.checked)"
+                    />
+                    TDP</label
+                  >
+                  <label
+                    ><input
+                      type="checkbox"
+                      checked
+                      onchange="toggleSectionVisibility('feas', this.checked)"
+                    />
+                    Feasibility Study</label
+                  >
+                  <label
+                    ><input
+                      type="checkbox"
+                      checked
+                      onchange="toggleSectionVisibility('bom', this.checked)"
+                    />
+                    BOM Creation</label
+                  >
+                  <label
+                    ><input
+                      type="checkbox"
+                      checked
+                      onchange="toggleSectionVisibility('sst', this.checked)"
+                    />
+                    SST / Qualification</label
+                  >
+                  <label
+                    ><input
+                      type="checkbox"
+                      checked
+                      onchange="toggleSectionVisibility('eng', this.checked)"
+                    />
+                    Engineering</label
+                  >
+                </div>
+              </div>
+              <button
+                id="showAllButton"
+                class="tool-btn"
+                onclick="expandAllSections()"
+                title="Show all sections"
+              >
+                <i class="bi bi-arrows-expand me-1"></i>Show all
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="engineering-table-wrap">
+          <div class="engineering-table" id="engineeringTable">
+            <!-- PROJECT / MATERIAL -->
+            <div
+              class="engineering-section project-section"
+              data-section="project"
+            >
+              <button
+                class="section-vertical-bar project-bar"
+                onclick="openEngineeringSection('project')"
+              >
+                <span class="vertical-icon">
+                  <i class="bi bi-folder2-open"></i>
+                </span>
+                <span class="vertical-text">PROJECT / MATERIAL</span>
+              </button>
+              <div class="section-content">
+                <div class="section-header project-header">
+                  <span>
+                    <i class="bi bi-folder2-open me-1"></i>
+                    PROJECT / MATERIAL
+                  </span>
+                  <button
+                    class="section-collapse"
+                    onClick="collapseEngineeringSections(event)"
+                  >
+                    <i class="bi bi-chevron-left"></i>
+                  </button>
+                </div>
+                <div>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>SR. NO.</th>
+                        <th>CUSTOMER</th>
+                        <th>PART NUMBER</th>
+                        <th>CUSTOMER MATERIAL CODE</th>
+                      </tr>
+                    </thead>
+                    <tbody id="projectBody"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <!-- TDP -->
+            <div class="engineering-section" data-section="tdp">
+              <button
+                class="section-vertical-bar tdp-bar"
+                onclick="openEngineeringSection('tdp')"
+              >
+                <span class="vertical-icon">
+                  <i class="bi bi-file-earmark-text"></i>
+                </span>
+                <span class="vertical-text">TDP</span>
+              </button>
+              <div class="section-content">
+                <div class="section-header tdp-header">
+                  <span>
+                    <i class="bi bi-file-earmark-text me-1"></i>
+                    TDP
+                  </span>
+                  <button
+                    class="section-collapse"
+                    onclick="collapseEngineeringSections(event)"
+                  >
+                    <i class="bi bi-chevron-left"></i>
+                  </button>
+                </div>
+                <div>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>PROCESS</th>
+                        <th>TDP PLAN DATE</th>
+                        <th>TDP AVAILABILITY</th>
+                        <th>TAKE ACTION</th>
+                      </tr>
+                    </thead>
+                    <tbody id="tdpBody"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <!-- FEASIBILITY -->
+            <div class="engineering-section" data-section="feas">
+              <button
+                class="section-vertical-bar feas-bar"
+                onclick="openEngineeringSection('feas')"
+              >
+                <span class="vertical-icon">
+                  <i class="bi bi-clipboard-check"></i>
+                </span>
+                <span class="vertical-text"> FEASIBILITY STUDY </span>
+              </button>
+              <div class="section-content">
+                <div class="section-header feas-header">
+                  <span>
+                    <i class="bi bi-clipboard-check me-1"></i>
+                    FEASIBILITY STUDY
+                  </span>
+                  <button
+                    class="section-collapse"
+                    onclick="collapseEngineeringSections(event)"
+                  >
+                    <i class="bi bi-chevron-left"></i>
+                  </button>
+                </div>
+                <div>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>FEASIBILITY PLAN DATE</th>
+                        <th>FEASIBILITY ACTUAL DATE</th>
+                        <th>FEASIBILITY STUDY</th>
+                        <th>TAKE ACTION</th>
+                      </tr>
+                    </thead>
+                    <tbody id="feasBody"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <!-- BOM -->
+            <div class="engineering-section" data-section="bom">
+              <button
+                class="section-vertical-bar bom-bar"
+                onclick="openEngineeringSection('bom')"
+              >
+                <span class="vertical-icon">
+                  <i class="bi bi-box-seam"></i>
+                </span>
+                <span class="vertical-text"> BOM CREATION </span>
+              </button>
+              <div class="section-content">
+                <div class="section-header bom-header">
+                  <span>
+                    <i class="bi bi-box-seam me-1"></i>
+                    BOM CREATION
+                  </span>
+                  <button
+                    class="section-collapse"
+                    onclick="collapseEngineeringSections(event)"
+                  >
+                    <i class="bi bi-chevron-left"></i>
+                  </button>
+                </div>
+                <div>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>RM BOM STATUS</th>
+                        <th>CONSUMABLE BOM STATUS</th>
+                        <th>HW BOM STATUS</th>
+                        <th>BOM OVERALL</th>
+                        <th>TAKE ACTION</th>
+                      </tr>
+                    </thead>
+                    <tbody id="bomBody"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <!-- SST -->
+            <div class="engineering-section" data-section="sst">
+              <button
+                class="section-vertical-bar sst-bar"
+                onclick="openEngineeringSection('sst')"
+              >
+                <span class="vertical-icon">
+                  <i class="bi bi-shield-check"></i>
+                </span>
+                <span class="vertical-text"> SST / QUALIFICATION </span>
+              </button>
+              <div class="section-content">
+                <div class="section-header sst-header">
+                  <span>
+                    <i class="bi bi-shield-check me-1"></i>
+                    SST / QUALIFICATION
+                  </span>
+                  <button
+                    class="section-collapse"
+                    onclick="collapseEngineeringSections(event)"
+                  >
+                    <i class="bi bi-chevron-left"></i>
+                  </button>
+                </div>
+                <div>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>SST PROCESS QUALIFICATION REQUIREMENTS</th>
+                        <th>SST PROCESS NEEDED QUALIFICATION</th>
+                        <th>TAKE ACTION</th>
+                      </tr>
+                    </thead>
+                    <tbody id="sstBody"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <div class="engineering-section" data-section="customer">
+              <button
+                class="section-vertical-bar"
+                onclick="openEngineeringSection('customer')"
+              >
+                <i class="bi bi-layout-text-window"></i
+                ><span class="vertical-text">CUSTOMER APPROVAL</span>
+              </button>
+              <div class="section-content">
+                <div class="section-header">
+                  <span>CUSTOMER APPROVAL</span
+                  ><button
+                    class="section-collapse"
+                    onclick="collapseEngineeringSections(event)"
+                  >
+                    <i class="bi bi-chevron-left"></i>
+                  </button>
+                </div>
+                <div>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>SST PROCESS QUALIFICATION REQUIREMENTS</th>
+                        <th>SST PROCESS QUALIFICATION STATUS</th>
+                        <th>FPQ APPROVAL REQUIRED</th>
+                        <th>FPQ APPROVAL STATUS</th>
+                        <th>LAI APPROVAL STATUS</th>
+                        <th>TAKE ACTION</th>
+                      </tr>
+                    </thead>
+                    <tbody id="stageBody_customer"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="engineering-section" data-section="concurrence">
+              <button
+                class="section-vertical-bar"
+                onclick="openEngineeringSection('concurrence')"
+              >
+                <i class="bi bi-layout-text-window"></i
+                ><span class="vertical-text">CONCURRENCE</span>
+              </button>
+              <div class="section-content">
+                <div class="section-header">
+                  <span>CONCURRENCE</span
+                  ><button
+                    class="section-collapse"
+                    onclick="collapseEngineeringSections(event)"
+                  >
+                    <i class="bi bi-chevron-left"></i>
+                  </button>
+                </div>
+                <div>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>CONCURRENCE NEEDED</th>
+                        <th>CONCURRENCE PLAN DATE</th>
+                        <th>CONCURRENCE ACTUAL DATE</th>
+                        <th>CONCURRENCE STATUS</th>
+                        <th>CUSTOMER APPROVAL</th>
+                        <th>TAKE ACTION</th>
+                      </tr>
+                    </thead>
+                    <tbody id="stageBody_concurrence"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="engineering-section" data-section="toolapproval">
+              <button
+                class="section-vertical-bar"
+                onclick="openEngineeringSection('toolapproval')"
+              >
+                <i class="bi bi-layout-text-window"></i
+                ><span class="vertical-text">TOOL APPROVAL</span>
+              </button>
+              <div class="section-content">
+                <div class="section-header">
+                  <span>TOOL APPROVAL</span
+                  ><button
+                    class="section-collapse"
+                    onclick="collapseEngineeringSections(event)"
+                  >
+                    <i class="bi bi-chevron-left"></i>
+                  </button>
+                </div>
+                <div>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>TOOLS NEEDED?</th>
+                        <th>TOOL CONCEPT</th>
+                        <th>TOOL CONCEPT APPROVAL</th>
+                        <th>TOOL DESIGN</th>
+                        <th>TOOL DESIGN APPROVAL</th>
+                        <th>TAKE ACTION</th>
+                      </tr>
+                    </thead>
+                    <tbody id="stageBody_toolapproval"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="engineering-section" data-section="tools">
+              <button
+                class="section-vertical-bar"
+                onclick="openEngineeringSection('tools')"
+              >
+                <i class="bi bi-layout-text-window"></i
+                ><span class="vertical-text">TOOLS</span>
+              </button>
+              <div class="section-content">
+                <div class="section-header">
+                  <span>TOOLS</span
+                  ><button
+                    class="section-collapse"
+                    onclick="collapseEngineeringSections(event)"
+                  >
+                    <i class="bi bi-chevron-left"></i>
+                  </button>
+                </div>
+                <div>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>TOOL TYPE</th>
+                        <th>NO OF TOOLS</th>
+                        <th>TOOL COMMITTED DATE</th>
+                        <th>TOOL ACTUAL DATE</th>
+                        <th>TOOL AVAILABILITY</th>
+                        <th>TOOL HANDOVER</th>
+                        <th>TOOL FABRICATION</th>
+                        <th>TOOL NUMBER</th>
+                        <th>TAKE ACTION</th>
+                      </tr>
+                    </thead>
+                    <tbody id="stageBody_tools"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="engineering-section" data-section="raw">
+              <button
+                class="section-vertical-bar"
+                onclick="openEngineeringSection('raw')"
+              >
+                <i class="bi bi-layout-text-window"></i
+                ><span class="vertical-text">RAW MATERIAL & BOI</span>
+              </button>
+              <div class="section-content">
+                <div class="section-header">
+                  <span>RAW MATERIAL & BOI</span
+                  ><button
+                    class="section-collapse"
+                    onclick="collapseEngineeringSections(event)"
+                  >
+                    <i class="bi bi-chevron-left"></i>
+                  </button>
+                </div>
+                <div>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>RM CODE</th>
+                        <th>THICKNESS</th>
+                        <th>RM NEED DATE</th>
+                        <th>BOI NEED DATE</th>
+                        <th>RM STATUS</th>
+                        <th>BOI STATUS</th>
+                        <th>TAKE ACTION</th>
+                      </tr>
+                    </thead>
+                    <tbody id="stageBody_raw"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="engineering-section" data-section="nc">
+              <button
+                class="section-vertical-bar"
+                onclick="openEngineeringSection('nc')"
+              >
+                <i class="bi bi-layout-text-window"></i
+                ><span class="vertical-text">NC PROGRAM STATUS</span>
+              </button>
+              <div class="section-content">
+                <div class="section-header">
+                  <span>NC PROGRAM STATUS</span
+                  ><button
+                    class="section-collapse"
+                    onclick="collapseEngineeringSections(event)"
+                  >
+                    <i class="bi bi-chevron-left"></i>
+                  </button>
+                </div>
+                <div>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>NC PROGRAM TYPE</th>
+                        <th>NC PROGRAM PLAN DATE</th>
+                        <th>NC PROGRAM ACTUAL DATE</th>
+                        <th>NC PROGRAM COMPLETION</th>
+                        <th>NC PROGRAM RELEASE</th>
+                        <th>TAKE ACTION</th>
+                      </tr>
+                    </thead>
+                    <tbody id="stageBody_nc"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="engineering-section" data-section="launch">
+              <button
+                class="section-vertical-bar"
+                onclick="openEngineeringSection('launch')"
+              >
+                <i class="bi bi-layout-text-window"></i
+                ><span class="vertical-text">FAI LAUNCH STATUS</span>
+              </button>
+              <div class="section-content">
+                <div class="section-header">
+                  <span>FAI LAUNCH STATUS</span
+                  ><button
+                    class="section-collapse"
+                    onclick="collapseEngineeringSections(event)"
+                  >
+                    <i class="bi bi-chevron-left"></i>
+                  </button>
+                </div>
+                <div>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>WO PLAN DATE</th>
+                        <th>WO DATE</th>
+                        <th>WO STATUS</th>
+                        <th>DELINQUENCY</th>
+                        <th>LAUNCH STATUS</th>
+                        <th>DEPENDENCY</th>
+                        <th>TAKE ACTION</th>
+                      </tr>
+                    </thead>
+                    <tbody id="stageBody_launch"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="engineering-section" data-section="issue">
+              <button
+                class="section-vertical-bar"
+                onclick="openEngineeringSection('issue')"
+              >
+                <i class="bi bi-layout-text-window"></i
+                ><span class="vertical-text">ISSUE OF RM</span>
+              </button>
+              <div class="section-content">
+                <div class="section-header">
+                  <span>ISSUE OF RM</span
+                  ><button
+                    class="section-collapse"
+                    onclick="collapseEngineeringSections(event)"
+                  >
+                    <i class="bi bi-chevron-left"></i>
+                  </button>
+                </div>
+                <div>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>RM ISSUE PLAN DATE</th>
+                        <th>RM ISSUE ACTUAL DATE</th>
+                        <th>RM ISSUE STATUS</th>
+                        <th>TAKE ACTION</th>
+                      </tr>
+                    </thead>
+                    <tbody id="stageBody_issue"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="engineering-section" data-section="comp">
+              <button
+                class="section-vertical-bar"
+                onclick="openEngineeringSection('comp')"
+              >
+                <i class="bi bi-layout-text-window"></i
+                ><span class="vertical-text">COMP</span>
+              </button>
+              <div class="section-content">
+                <div class="section-header">
+                  <span>COMP</span
+                  ><button
+                    class="section-collapse"
+                    onclick="collapseEngineeringSections(event)"
+                  >
+                    <i class="bi bi-chevron-left"></i>
+                  </button>
+                </div>
+                <div>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>COMP PLAN DATE</th>
+                        <th>COMP ACTUAL DATE</th>
+                        <th>COMP STATUS</th>
+                        <th>TAKE ACTION</th>
+                      </tr>
+                    </thead>
+                    <tbody id="stageBody_comp"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="engineering-section" data-section="partconfig">
+              <button
+                class="section-vertical-bar"
+                onclick="openEngineeringSection('partconfig')"
+              >
+                <i class="bi bi-layout-text-window"></i
+                ><span class="vertical-text">PART CONFIG</span>
+              </button>
+              <div class="section-content">
+                <div class="section-header">
+                  <span>PART CONFIG</span
+                  ><button
+                    class="section-collapse"
+                    onclick="collapseEngineeringSections(event)"
+                  >
+                    <i class="bi bi-chevron-left"></i>
+                  </button>
+                </div>
+                <div>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>PART CONFIG PLAN DATE</th>
+                        <th>PART CONFIG ACTUAL DATE</th>
+                        <th>PART CONFIG STATUS</th>
+                        <th>TAKE ACTION</th>
+                      </tr>
+                    </thead>
+                    <tbody id="stageBody_partconfig"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="engineering-section" data-section="assy">
+              <button
+                class="section-vertical-bar"
+                onclick="openEngineeringSection('assy')"
+              >
+                <i class="bi bi-layout-text-window"></i
+                ><span class="vertical-text">ASSY</span>
+              </button>
+              <div class="section-content">
+                <div class="section-header">
+                  <span>ASSY</span
+                  ><button
+                    class="section-collapse"
+                    onclick="collapseEngineeringSections(event)"
+                  >
+                    <i class="bi bi-chevron-left"></i>
+                  </button>
+                </div>
+                <div>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>ASSY PLAN DATE</th>
+                        <th>ASSY ACTUAL DATE</th>
+                        <th>ASSY STATUS</th>
+                        <th>TAKE ACTION</th>
+                      </tr>
+                    </thead>
+                    <tbody id="stageBody_assy"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="engineering-section" data-section="inspection">
+              <button
+                class="section-vertical-bar"
+                onclick="openEngineeringSection('inspection')"
+              >
+                <i class="bi bi-layout-text-window"></i
+                ><span class="vertical-text">FINAL INSPECTION</span>
+              </button>
+              <div class="section-content">
+                <div class="section-header">
+                  <span>FINAL INSPECTION</span
+                  ><button
+                    class="section-collapse"
+                    onclick="collapseEngineeringSections(event)"
+                  >
+                    <i class="bi bi-chevron-left"></i>
+                  </button>
+                </div>
+                <div>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>FINAL INSPECTION PLAN DATE</th>
+                        <th>FINAL INSPECTION ACTUAL DATE</th>
+                        <th>FI & SST COMPLETION</th>
+                        <th>FI & LC COMPLETION</th>
+                        <th>TAKE ACTION</th>
+                      </tr>
+                    </thead>
+                    <tbody id="stageBody_inspection"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="engineering-section" data-section="fai">
+              <button
+                class="section-vertical-bar"
+                onclick="openEngineeringSection('fai')"
+              >
+                <i class="bi bi-layout-text-window"></i
+                ><span class="vertical-text">FAI SUBMISSION</span>
+              </button>
+              <div class="section-content">
+                <div class="section-header">
+                  <span>FAI SUBMISSION</span
+                  ><button
+                    class="section-collapse"
+                    onclick="collapseEngineeringSections(event)"
+                  >
+                    <i class="bi bi-chevron-left"></i>
+                  </button>
+                </div>
+                <div>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>FAI SUBMISSION PLAN DATE</th>
+                        <th>FAI SUBMISSION ACTUAL DATE</th>
+                        <th>FAI SUBMISSION REVIEW</th>
+                        <th>FAI SUBMISSION DELAY</th>
+                        <th>FAI SUBMISSION STATUS</th>
+                        <th>TAKE ACTION</th>
+                      </tr>
+                    </thead>
+                    <tbody id="stageBody_fai"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <!-- ENGINEERING -->
+            <div class="engineering-section" data-section="eng">
+              <button
+                class="section-vertical-bar eng-bar"
+                onclick="openEngineeringSection('eng')"
+              >
+                <span class="vertical-icon">
+                  <i class="bi bi-gear"></i>
+                </span>
+                <span class="vertical-text"> ENGINEERING </span>
+              </button>
+              <div class="section-content">
+                <div class="section-header eng-header">
+                  <span>
+                    <i class="bi bi-gear me-1"></i>
+                    ENGINEERING
+                  </span>
+                  <button
+                    class="section-collapse"
+                    onclick="collapseEngineeringSections(event)"
+                  >
+                    <i class="bi bi-chevron-left"></i>
+                  </button>
+                </div>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>ENGINEERING STATUS</th>
+                      <th>REMARKS</th>
+                    </tr>
+                  </thead>
+                  <tbody id="engBody"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="table-footer">
+          <div class="table-footer-info">
+            Showing <strong id="showing">1 to 10</strong> of
+            <strong id="total">10</strong> records
+          </div>
+          <div class="table-footer-controls">
+            <label class="page-size" for="pageSizeSelect">
+              Rows per page
+              <select id="pageSizeSelect" onchange="changePageSize(this.value)">
+                <option value="10" selected>10</option>
+                <option value="25">25</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+              </select>
+            </label>
+            <nav aria-label="Engineering records pagination">
+              <ul id="pagination" class="pagination pagination-sm mb-0"></ul>
+            </nav>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div class="modal fade" id="workflowStageModal" tabindex="-1">
+      <div class="modal-dialog modal-xl modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="workflowModalTitle">Stage Action</h5>
+            <button class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <form
+            id="workflowStageForm"
+            onsubmit="
+              event.preventDefault();
+              saveWorkflowStage();
+            "
+          >
+            <div class="modal-body">
+              <div class="row g-3" id="workflowModalFields"></div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-outline-secondary"
+                data-bs-dismiss="modal"
+              >
+                Cancel</button
+              ><button type="submit" class="btn btn-primary-mahindra">
+                Submit Stage
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+    <script>
+      const WORKFLOW_STAGES = [
+        {
+          key: "tdp",
+          title: "TDP",
+          fields: [
+            "PROCESS",
+            "TDP PLAN DATE",
+            "TDP ACTUAL DATE",
+            "TDP AVAILABILITY",
+            "TDP STATUS",
+          ],
+        },
+        {
+          key: "feas",
+          title: "FEASIBILITY STUDY",
+          fields: [
+            "FEASIBILITY PLAN DATE",
+            "FEASIBILITY ACTUAL DATE",
+            "FEASIBILITY STUDY",
+            "FEASIBILITY STATUS",
+          ],
+        },
+        {
+          key: "bom",
+          title: "BOM CREATION",
+          fields: [
+            "RM BOM STATUS",
+            "CONSUMABLE BOM STATUS",
+            "HW BOM STATUS",
+            "BOM OVERALL",
+          ],
+        },
+        {
+          key: "customer",
+          title: "CUSTOMER APPROVAL",
+          fields: [
+            "SST PROCESS QUALIFICATION REQUIREMENTS",
+            "SST PROCESS QUALIFICATION STATUS",
+            "FPQ APPROVAL REQUIRED",
+            "FPQ APPROVAL STATUS",
+            "LAI APPROVAL STATUS",
+          ],
+        },
+        {
+          key: "concurrence",
+          title: "CONCURRENCE",
+          fields: [
+            "CONCURRENCE NEEDED",
+            "CONCURRENCE PLAN DATE",
+            "CONCURRENCE ACTUAL DATE",
+            "CONCURRENCE STATUS",
+            "CUSTOMER APPROVAL",
+          ],
+        },
+        {
+          key: "toolapproval",
+          title: "TOOL APPROVAL",
+          fields: [
+            "TOOLS NEEDED?",
+            "TOOL CONCEPT",
+            "TOOL CONCEPT APPROVAL",
+            "TOOL DESIGN",
+            "TOOL DESIGN APPROVAL",
+          ],
+        },
+        {
+          key: "tools",
+          title: "TOOLS",
+          fields: [
+            "TOOL TYPE",
+            "NO OF TOOLS",
+            "TOOL COMMITTED DATE",
+            "TOOL ACTUAL DATE",
+            "TOOL AVAILABILITY",
+            "TOOL HANDOVER",
+            "TOOL FABRICATION",
+            "TOOL NUMBER",
+          ],
+        },
+        {
+          key: "raw",
+          title: "RAW MATERIAL & BOI",
+          fields: [
+            "RM CODE",
+            "THICKNESS",
+            "RM NEED DATE",
+            "BOI NEED DATE",
+            "RM STATUS",
+            "BOI STATUS",
+          ],
+        },
+        {
+          key: "nc",
+          title: "NC PROGRAM STATUS",
+          fields: [
+            "NC PROGRAM TYPE",
+            "NC PROGRAM PLAN DATE",
+            "NC PROGRAM ACTUAL DATE",
+            "NC PROGRAM COMPLETION",
+            "NC PROGRAM RELEASE",
+          ],
+        },
+        {
+          key: "launch",
+          title: "FAI LAUNCH STATUS",
+          fields: [
+            "WO PLAN DATE",
+            "WO DATE",
+            "WO STATUS",
+            "DELINQUENCY",
+            "LAUNCH STATUS",
+            "DEPENDENCY",
+          ],
+        },
+        {
+          key: "issue",
+          title: "ISSUE OF RM",
+          fields: [
+            "RM ISSUE PLAN DATE",
+            "RM ISSUE ACTUAL DATE",
+            "RM ISSUE STATUS",
+          ],
+        },
+        {
+          key: "comp",
+          title: "COMP",
+          fields: ["COMP PLAN DATE", "COMP ACTUAL DATE", "COMP STATUS"],
+        },
+        {
+          key: "partconfig",
+          title: "PART CONFIG",
+          fields: [
+            "PART CONFIG PLAN DATE",
+            "PART CONFIG ACTUAL DATE",
+            "PART CONFIG STATUS",
+          ],
+        },
+        {
+          key: "sst",
+          title: "SST",
+          fields: [
+            "SST PROCESS QUALIFICATION REQUIREMENTS",
+            "SST PROCESS NEEDED QUALIFICATION",
+            "SST STATUS",
+          ],
+        },
+        {
+          key: "assy",
+          title: "ASSY",
+          fields: ["ASSY PLAN DATE", "ASSY ACTUAL DATE", "ASSY STATUS"],
+        },
+        {
+          key: "inspection",
+          title: "FINAL INSPECTION",
+          fields: [
+            "FINAL INSPECTION PLAN DATE",
+            "FINAL INSPECTION ACTUAL DATE",
+            "FI & SST COMPLETION",
+            "FI & LC COMPLETION",
+          ],
+        },
+        {
+          key: "fai",
+          title: "FAI SUBMISSION",
+          fields: [
+            "FAI SUBMISSION PLAN DATE",
+            "FAI SUBMISSION ACTUAL DATE",
+            "FAI SUBMISSION REVIEW",
+            "FAI SUBMISSION DELAY",
+            "FAI SUBMISSION STATUS",
+          ],
+        },
+      ];
+      const workflowSaved = {};
+      let workflowCurrent = null;
+      function escapeWorkflow(value) {
+        return String(value ?? "").replace(
+          /[&<>"']/g,
+          (c) =>
+            ({
+              "&": "&amp;",
+              "<": "&lt;",
+              ">": "&gt;",
+              '"': "&quot;",
+              "'": "&#39;",
+            })[c],
+        );
+      }
+      function workflowKey(x) {
+        return String(x.part || x.material || x.customer);
+      }
+      function isStageDone(x, key) {
+        return Boolean(workflowSaved[workflowKey(x)]?.[key]);
+      }
+      function stageAction(x, key) {
+        const index = WORKFLOW_STAGES.findIndex((z) => z.key === key);
+        const unlocked =
+          index === 0 || isStageDone(x, WORKFLOW_STAGES[index - 1].key);
+        const done = isStageDone(x, key);
+        return `<button class="stage-action-btn" ${unlocked ? "" : 'disabled title="Submit previous stage first"'} onclick="openStageModal('${encodeURIComponent(workflowKey(x))}','${key}')"><i class="bi bi-${done ? "check-circle" : "pencil-square"} me-1"></i>${done ? "Edit Entry" : unlocked ? "Take Action" : "Locked"}</button>`;
+      }
+      function openStageModal(encoded, key) {
+        const record = records.find(
+          (x) => workflowKey(x) === decodeURIComponent(encoded),
+        );
+        const stage = WORKFLOW_STAGES.find((x) => x.key === key);
+        if (!record || !stage) return;
+        const i = WORKFLOW_STAGES.indexOf(stage);
+        if (i > 0 && !isStageDone(record, WORKFLOW_STAGES[i - 1].key)) return;
+        workflowCurrent = { record, stage };
+        document.getElementById("workflowModalTitle").textContent =
+          stage.title + " — " + (record.part || "");
+        const previous = record.workflowFields?.[key] || {};
+        document.getElementById("workflowModalFields").innerHTML = stage.fields
+          .map((field, j) => {
+            const value = previous[field] || "";
+            const type = /DATE/i.test(field) ? "date" : "text";
+            return `<div class="col-md-4 col-sm-6"><label class="form-label fw-bold">${escapeWorkflow(field)}</label><input class="form-control workflow-input" data-field="${escapeWorkflow(field)}" type="${type}" value="${escapeWorkflow(value)}" required></div>`;
+          })
+          .join("");
+        bootstrap.Modal.getOrCreateInstance(
+          document.getElementById("workflowStageModal"),
+        ).show();
+      }
+      function saveWorkflowStage() {
+        if (!workflowCurrent) return;
+        const form = document.getElementById("workflowStageForm");
+        if (!form.reportValidity()) return;
+        const { record, stage } = workflowCurrent;
+        record.workflowFields ||= {};
+        record.workflowFields[stage.key] = {};
+        form
+          .querySelectorAll("[data-field]")
+          .forEach(
+            (input) =>
+              (record.workflowFields[stage.key][input.dataset.field] =
+                input.value),
+          );
+        workflowSaved[workflowKey(record)] ||= {};
+        workflowSaved[workflowKey(record)][stage.key] = true;
+        bootstrap.Modal.getInstance(
+          document.getElementById("workflowStageModal"),
+        ).hide();
+        render();
+      }
+      document.addEventListener("DOMContentLoaded", () => {
+        const table = document.getElementById("engineeringTable");
+        const project = table.querySelector('[data-section="project"]');
+        let after = project;
+        WORKFLOW_STAGES.forEach((stage) => {
+          const el = table.querySelector(`[data-section="${stage.key}"]`);
+          if (el) {
+            after.after(el);
+            after = el;
+          }
+        });
+      });
+
+      const records = [
+        {
+          customer: "MSAYZX0005",
+          part: "Z5791303430400",
+          material: "Z579-13034-304-00",
+          process: "ROUTING+PB",
+          tdpPlan: "10/13/2023",
+          tdpAvail: "TDP AVAILABLE",
+          feasPlan: "11/12/2023",
+          feasActual: "11/12/2023",
+          feas: "FEASIBILITY STUDY COMPLETED",
+          rm: "COMPLETED",
+          cons: "COMPLETED",
+          hw: "COMPLETED",
+          bom: "COMPLETED",
+          sstReq: "NO",
+          sstNeed: "NA",
+          eng: "COMPLETED",
+          remarks: "—",
+        },
+        {
+          customer: "MSAYZX0005",
+          part: "Z5791303330400",
+          material: "Z579-13033-304-00",
+          process: "ROUTING",
+          tdpPlan: "10/13/2023",
+          tdpAvail: "TDP AVAILABLE",
+          feasPlan: "11/12/2023",
+          feasActual: "11/12/2023",
+          feas: "FEASIBILITY STUDY COMPLETED",
+          rm: "COMPLETED",
+          cons: "COMPLETED",
+          hw: "COMPLETED",
+          bom: "COMPLETED",
+          sstReq: "NO",
+          sstNeed: "NA",
+          eng: "COMPLETED",
+          remarks: "—",
+        },
+        {
+          customer: "MSAYZX0005",
+          part: "Z5791303730400",
+          material: "Z579-13037-304-00",
+          process: "ROUTING",
+          tdpPlan: "4/24/2025",
+          tdpAvail: "TDP AVAILABLE",
+          feasPlan: "5/24/2025",
+          feasActual: "5/24/2025",
+          feas: "FEASIBILITY STUDY COMPLETED",
+          rm: "COMPLETED",
+          cons: "COMPLETED",
+          hw: "COMPLETED",
+          bom: "COMPLETED",
+          sstReq: "NO",
+          sstNeed: "NA",
+          eng: "COMPLETED",
+          remarks: "—",
+        },
+        {
+          customer: "MSAYZX0005",
+          part: "Z5791303530400",
+          material: "Z579-13035-304-00",
+          process: "LASER+HET+PRESS",
+          tdpPlan: "1/22/2025",
+          tdpAvail: "TDP AVAILABLE",
+          feasPlan: "2/21/2025",
+          feasActual: "2/21/2025",
+          feas: "FEASIBILITY STUDY COMPLETED",
+          rm: "COMPLETED",
+          cons: "COMPLETED",
+          hw: "COMPLETED",
+          bom: "COMPLETED",
+          sstReq: "NO",
+          sstNeed: "NA",
+          eng: "COMPLETED",
+          remarks: "—",
+        },
+        {
+          customer: "MSAYZX0005",
+          part: "Z5791319730300",
+          material: "Z579-13197-303-00",
+          process: "ROUTING+PB",
+          tdpPlan: "1/18/2024",
+          tdpAvail: "TDP AVAILABLE",
+          feasPlan: "2/17/2024",
+          feasActual: "2/17/2024",
+          feas: "FEASIBILITY STUDY COMPLETED",
+          rm: "COMPLETED",
+          cons: "COMPLETED",
+          hw: "COMPLETED",
+          bom: "COMPLETED",
+          sstReq: "NO",
+          sstNeed: "NA",
+          eng: "COMPLETED",
+          remarks: "—",
+        },
+        {
+          customer: "MSAYZX0005",
+          part: "Z5791303130400",
+          material: "Z579-13031-304-00",
+          process: "ROUTING+PB",
+          tdpPlan: "10/8/2023",
+          tdpAvail: "TDP AVAILABLE",
+          feasPlan: "11/7/2023",
+          feasActual: "11/7/2023",
+          feas: "FEASIBILITY STUDY COMPLETED",
+          rm: "COMPLETED",
+          cons: "COMPLETED",
+          hw: "COMPLETED",
+          bom: "COMPLETED",
+          sstReq: "NO",
+          sstNeed: "NA",
+          eng: "COMPLETED",
+          remarks: "—",
+        },
+        {
+          customer: "MSAYZX0005",
+          part: "Z5391064000000",
+          material: "Z539-10640-000-00",
+          process: "ROUTING+PB",
+          tdpPlan: "8/24/2024",
+          tdpAvail: "TDP AVAILABLE",
+          feasPlan: "9/23/2024",
+          feasActual: "9/23/2024",
+          feas: "FEASIBILITY STUDY COMPLETED",
+          rm: "COMPLETED",
+          cons: "COMPLETED",
+          hw: "COMPLETED",
+          bom: "COMPLETED",
+          sstReq: "NO",
+          sstNeed: "NA",
+          eng: "COMPLETED",
+          remarks: "—",
+        },
+        {
+          customer: "MSAYZX0005",
+          part: "X5393680130300",
+          material: "X539-36801-303-00",
+          process: "ROUTING+PB+HF",
+          tdpPlan: "10/11/2024",
+          tdpAvail: "TDP AVAILABLE",
+          feasPlan: "11/10/2024",
+          feasActual: "11/10/2024",
+          feas: "FEASIBILITY STUDY COMPLETED",
+          rm: "COMPLETED",
+          cons: "COMPLETED",
+          hw: "COMPLETED",
+          bom: "COMPLETED",
+          sstReq: "NO",
+          sstNeed: "NA",
+          eng: "COMPLETED",
+          remarks: "—",
+        },
+        {
+          customer: "MSAYZX0005",
+          part: "Z5391067830000",
+          material: "Z539-10678-300-00",
+          process: "",
+          tdpPlan: "11/13/2023",
+          tdpAvail: "TDP AVAILABLE",
+          feasPlan: "12/13/2023",
+          feasActual: "12/13/2023",
+          feas: "FEASIBILITY STUDY COMPLETED",
+          rm: "COMPLETED",
+          cons: "COMPLETED",
+          hw: "COMPLETED",
+          bom: "COMPLETED",
+          sstReq: "NO",
+          sstNeed: "NA",
+          eng: "COMPLETED",
+          remarks: "—",
+        },
+        {
+          customer: "MSAYZX0005",
+          part: "Z5393680130400",
+          material: "Z539-36801-304-00",
+          process: "ROUTING+PB",
+          tdpPlan: "7/1/2023",
+          tdpAvail: "TDP AVAILABLE",
+          feasPlan: "7/31/2023",
+          feasActual: "7/31/2023",
+          feas: "FEASIBILITY STUDY COMPLETED",
+          rm: "COMPLETED",
+          cons: "COMPLETED",
+          hw: "COMPLETED",
+          bom: "COMPLETED",
+          sstReq: "NO",
+          sstNeed: "NA",
+          eng: "COMPLETED",
+          remarks: "—",
+        },
+        {
+          customer: "MSAYZX0005",
+          part: "Z5393680130600",
+          material: "Z539-36801-306-00",
+          process: "ROUTING+CHAMFER-PB",
+          tdpPlan: "9/8/2023",
+          tdpAvail: "TDP AVAILABLE",
+          feasPlan: "10/8/2023",
+          feasActual: "10/8/2023",
+          feas: "FEASIBILITY STUDY COMPLETED",
+          rm: "COMPLETED",
+          cons: "COMPLETED",
+          hw: "COMPLETED",
+          bom: "COMPLETED",
+          sstReq: "NO",
+          sstNeed: "NA",
+          eng: "COMPLETED",
+          remarks: "—",
+        },
+        {
+          customer: "MSAYZX0005",
+          part: "Z5791303430400",
+          material: "Z579-13034-304-00",
+          process: "ROUTING+PB",
+          tdpPlan: "10/13/2023",
+          tdpAvail: "TDP AVAILABLE",
+          feasPlan: "11/12/2023",
+          feasActual: "11/12/2023",
+          feas: "FEASIBILITY STUDY COMPLETED",
+          rm: "COMPLETED",
+          cons: "COMPLETED",
+          hw: "COMPLETED",
+          bom: "COMPLETED",
+          sstReq: "NO",
+          sstNeed: "NA",
+          eng: "COMPLETED",
+          remarks: "—",
+        },
+        {
+          customer: "MSAYZX0005",
+          part: "Z5791303330400",
+          material: "Z579-13033-304-00",
+          process: "ROUTING",
+          tdpPlan: "10/13/2023",
+          tdpAvail: "TDP AVAILABLE",
+          feasPlan: "11/12/2023",
+          feasActual: "11/12/2023",
+          feas: "FEASIBILITY STUDY COMPLETED",
+          rm: "COMPLETED",
+          cons: "COMPLETED",
+          hw: "COMPLETED",
+          bom: "COMPLETED",
+          sstReq: "NO",
+          sstNeed: "NA",
+          eng: "COMPLETED",
+          remarks: "—",
+        },
+        {
+          customer: "MSAYZX0005",
+          part: "Z5791303730400",
+          material: "Z579-13037-304-00",
+          process: "ROUTING",
+          tdpPlan: "4/24/2025",
+          tdpAvail: "TDP AVAILABLE",
+          feasPlan: "5/24/2025",
+          feasActual: "5/24/2025",
+          feas: "FEASIBILITY STUDY COMPLETED",
+          rm: "COMPLETED",
+          cons: "COMPLETED",
+          hw: "COMPLETED",
+          bom: "COMPLETED",
+          sstReq: "NO",
+          sstNeed: "NA",
+          eng: "COMPLETED",
+          remarks: "—",
+        },
+        {
+          customer: "MSAYZX0005",
+          part: "Z5791303530400",
+          material: "Z579-13035-304-00",
+          process: "LASER+HET+PRESS",
+          tdpPlan: "1/22/2025",
+          tdpAvail: "TDP AVAILABLE",
+          feasPlan: "2/21/2025",
+          feasActual: "2/21/2025",
+          feas: "FEASIBILITY STUDY COMPLETED",
+          rm: "COMPLETED",
+          cons: "COMPLETED",
+          hw: "COMPLETED",
+          bom: "COMPLETED",
+          sstReq: "NO",
+          sstNeed: "NA",
+          eng: "COMPLETED",
+          remarks: "—",
+        },
+        {
+          customer: "MSAYZX0005",
+          part: "Z5791319730300",
+          material: "Z579-13197-303-00",
+          process: "ROUTING+PB",
+          tdpPlan: "1/18/2024",
+          tdpAvail: "TDP AVAILABLE",
+          feasPlan: "2/17/2024",
+          feasActual: "2/17/2024",
+          feas: "FEASIBILITY STUDY COMPLETED",
+          rm: "COMPLETED",
+          cons: "COMPLETED",
+          hw: "COMPLETED",
+          bom: "COMPLETED",
+          sstReq: "NO",
+          sstNeed: "NA",
+          eng: "COMPLETED",
+          remarks: "—",
+        },
+        {
+          customer: "MSAYZX0005",
+          part: "Z5791303130400",
+          material: "Z579-13031-304-00",
+          process: "ROUTING+PB",
+          tdpPlan: "10/8/2023",
+          tdpAvail: "TDP AVAILABLE",
+          feasPlan: "11/7/2023",
+          feasActual: "11/7/2023",
+          feas: "FEASIBILITY STUDY COMPLETED",
+          rm: "COMPLETED",
+          cons: "COMPLETED",
+          hw: "COMPLETED",
+          bom: "COMPLETED",
+          sstReq: "NO",
+          sstNeed: "NA",
+          eng: "COMPLETED",
+          remarks: "—",
+        },
+        {
+          customer: "MSAYZX0005",
+          part: "Z5391064000000",
+          material: "Z539-10640-000-00",
+          process: "ROUTING+PB",
+          tdpPlan: "8/24/2024",
+          tdpAvail: "TDP AVAILABLE",
+          feasPlan: "9/23/2024",
+          feasActual: "9/23/2024",
+          feas: "FEASIBILITY STUDY COMPLETED",
+          rm: "COMPLETED",
+          cons: "COMPLETED",
+          hw: "COMPLETED",
+          bom: "COMPLETED",
+          sstReq: "NO",
+          sstNeed: "NA",
+          eng: "COMPLETED",
+          remarks: "—",
+        },
+        {
+          customer: "MSAYZX0005",
+          part: "X5393680130300",
+          material: "X539-36801-303-00",
+          process: "ROUTING+PB+HF",
+          tdpPlan: "10/11/2024",
+          tdpAvail: "TDP AVAILABLE",
+          feasPlan: "11/10/2024",
+          feasActual: "11/10/2024",
+          feas: "FEASIBILITY STUDY COMPLETED",
+          rm: "COMPLETED",
+          cons: "COMPLETED",
+          hw: "COMPLETED",
+          bom: "COMPLETED",
+          sstReq: "NO",
+          sstNeed: "NA",
+          eng: "COMPLETED",
+          remarks: "—",
+        },
+        {
+          customer: "MSAYZX0005",
+          part: "Z5391067830000",
+          material: "Z539-10678-300-00",
+          process: "",
+          tdpPlan: "11/13/2023",
+          tdpAvail: "TDP AVAILABLE",
+          feasPlan: "12/13/2023",
+          feasActual: "12/13/2023",
+          feas: "FEASIBILITY STUDY COMPLETED",
+          rm: "COMPLETED",
+          cons: "COMPLETED",
+          hw: "COMPLETED",
+          bom: "COMPLETED",
+          sstReq: "NO",
+          sstNeed: "NA",
+          eng: "COMPLETED",
+          remarks: "—",
+        },
+        {
+          customer: "MSAYZX0005",
+          part: "Z5393680130400",
+          material: "Z539-36801-304-00",
+          process: "ROUTING+PB",
+          tdpPlan: "7/1/2023",
+          tdpAvail: "TDP AVAILABLE",
+          feasPlan: "7/31/2023",
+          feasActual: "7/31/2023",
+          feas: "FEASIBILITY STUDY COMPLETED",
+          rm: "COMPLETED",
+          cons: "COMPLETED",
+          hw: "COMPLETED",
+          bom: "COMPLETED",
+          sstReq: "NO",
+          sstNeed: "NA",
+          eng: "COMPLETED",
+          remarks: "—",
+        },
+        {
+          customer: "MSAYZX0005",
+          part: "Z5393680130600",
+          material: "Z539-36801-306-00",
+          process: "ROUTING+CHAMFER-PB",
+          tdpPlan: "9/8/2023",
+          tdpAvail: "TDP AVAILABLE",
+          feasPlan: "10/8/2023",
+          feasActual: "10/8/2023",
+          feas: "FEASIBILITY STUDY COMPLETED",
+          rm: "COMPLETED",
+          cons: "COMPLETED",
+          hw: "COMPLETED",
+          bom: "COMPLETED",
+          sstReq: "NO",
+          sstNeed: "NA",
+          eng: "COMPLETED",
+          remarks: "—",
+        },
+        {
+          customer: "MSAYZX0005",
+          part: "Z5791303430400",
+          material: "Z579-13034-304-00",
+          process: "ROUTING+PB",
+          tdpPlan: "10/13/2023",
+          tdpAvail: "TDP AVAILABLE",
+          feasPlan: "11/12/2023",
+          feasActual: "11/12/2023",
+          feas: "FEASIBILITY STUDY COMPLETED",
+          rm: "COMPLETED",
+          cons: "COMPLETED",
+          hw: "COMPLETED",
+          bom: "COMPLETED",
+          sstReq: "NO",
+          sstNeed: "NA",
+          eng: "COMPLETED",
+          remarks: "—",
+        },
+        {
+          customer: "MSAYZX0005",
+          part: "Z5791303330400",
+          material: "Z579-13033-304-00",
+          process: "ROUTING",
+          tdpPlan: "10/13/2023",
+          tdpAvail: "TDP AVAILABLE",
+          feasPlan: "11/12/2023",
+          feasActual: "11/12/2023",
+          feas: "FEASIBILITY STUDY COMPLETED",
+          rm: "COMPLETED",
+          cons: "COMPLETED",
+          hw: "COMPLETED",
+          bom: "COMPLETED",
+          sstReq: "NO",
+          sstNeed: "NA",
+          eng: "COMPLETED",
+          remarks: "—",
+        },
+        {
+          customer: "MSAYZX0005",
+          part: "Z5791303730400",
+          material: "Z579-13037-304-00",
+          process: "ROUTING",
+          tdpPlan: "4/24/2025",
+          tdpAvail: "TDP AVAILABLE",
+          feasPlan: "5/24/2025",
+          feasActual: "5/24/2025",
+          feas: "FEASIBILITY STUDY COMPLETED",
+          rm: "COMPLETED",
+          cons: "COMPLETED",
+          hw: "COMPLETED",
+          bom: "COMPLETED",
+          sstReq: "NO",
+          sstNeed: "NA",
+          eng: "COMPLETED",
+          remarks: "—",
+        },
+        {
+          customer: "MSAYZX0005",
+          part: "Z5791303530400",
+          material: "Z579-13035-304-00",
+          process: "LASER+HET+PRESS",
+          tdpPlan: "1/22/2025",
+          tdpAvail: "TDP AVAILABLE",
+          feasPlan: "2/21/2025",
+          feasActual: "2/21/2025",
+          feas: "FEASIBILITY STUDY COMPLETED",
+          rm: "COMPLETED",
+          cons: "COMPLETED",
+          hw: "COMPLETED",
+          bom: "COMPLETED",
+          sstReq: "NO",
+          sstNeed: "NA",
+          eng: "COMPLETED",
+          remarks: "—",
+        },
+        {
+          customer: "MSAYZX0005",
+          part: "Z5791319730300",
+          material: "Z579-13197-303-00",
+          process: "ROUTING+PB",
+          tdpPlan: "1/18/2024",
+          tdpAvail: "TDP AVAILABLE",
+          feasPlan: "2/17/2024",
+          feasActual: "2/17/2024",
+          feas: "FEASIBILITY STUDY COMPLETED",
+          rm: "COMPLETED",
+          cons: "COMPLETED",
+          hw: "COMPLETED",
+          bom: "COMPLETED",
+          sstReq: "NO",
+          sstNeed: "NA",
+          eng: "COMPLETED",
+          remarks: "—",
+        },
+        {
+          customer: "MSAYZX0005",
+          part: "Z5791303130400",
+          material: "Z579-13031-304-00",
+          process: "ROUTING+PB",
+          tdpPlan: "10/8/2023",
+          tdpAvail: "TDP AVAILABLE",
+          feasPlan: "11/7/2023",
+          feasActual: "11/7/2023",
+          feas: "FEASIBILITY STUDY COMPLETED",
+          rm: "COMPLETED",
+          cons: "COMPLETED",
+          hw: "COMPLETED",
+          bom: "COMPLETED",
+          sstReq: "NO",
+          sstNeed: "NA",
+          eng: "COMPLETED",
+          remarks: "—",
+        },
+        {
+          customer: "MSAYZX0005",
+          part: "Z5391064000000",
+          material: "Z539-10640-000-00",
+          process: "ROUTING+PB",
+          tdpPlan: "8/24/2024",
+          tdpAvail: "TDP AVAILABLE",
+          feasPlan: "9/23/2024",
+          feasActual: "9/23/2024",
+          feas: "FEASIBILITY STUDY COMPLETED",
+          rm: "COMPLETED",
+          cons: "COMPLETED",
+          hw: "COMPLETED",
+          bom: "COMPLETED",
+          sstReq: "NO",
+          sstNeed: "NA",
+          eng: "COMPLETED",
+          remarks: "—",
+        },
+        {
+          customer: "MSAYZX0005",
+          part: "X5393680130300",
+          material: "X539-36801-303-00",
+          process: "ROUTING+PB+HF",
+          tdpPlan: "10/11/2024",
+          tdpAvail: "TDP AVAILABLE",
+          feasPlan: "11/10/2024",
+          feasActual: "11/10/2024",
+          feas: "FEASIBILITY STUDY COMPLETED",
+          rm: "COMPLETED",
+          cons: "COMPLETED",
+          hw: "COMPLETED",
+          bom: "COMPLETED",
+          sstReq: "NO",
+          sstNeed: "NA",
+          eng: "COMPLETED",
+          remarks: "—",
+        },
+        {
+          customer: "MSAYZX0005",
+          part: "Z5391067830000",
+          material: "Z539-10678-300-00",
+          process: "",
+          tdpPlan: "11/13/2023",
+          tdpAvail: "TDP AVAILABLE",
+          feasPlan: "12/13/2023",
+          feasActual: "12/13/2023",
+          feas: "FEASIBILITY STUDY COMPLETED",
+          rm: "COMPLETED",
+          cons: "COMPLETED",
+          hw: "COMPLETED",
+          bom: "COMPLETED",
+          sstReq: "NO",
+          sstNeed: "NA",
+          eng: "COMPLETED",
+          remarks: "—",
+        },
+        {
+          customer: "MSAYZX0005",
+          part: "Z5393680130400",
+          material: "Z539-36801-304-00",
+          process: "ROUTING+PB",
+          tdpPlan: "7/1/2023",
+          tdpAvail: "TDP AVAILABLE",
+          feasPlan: "7/31/2023",
+          feasActual: "7/31/2023",
+          feas: "FEASIBILITY STUDY COMPLETED",
+          rm: "COMPLETED",
+          cons: "COMPLETED",
+          hw: "COMPLETED",
+          bom: "COMPLETED",
+          sstReq: "NO",
+          sstNeed: "NA",
+          eng: "COMPLETED",
+          remarks: "—",
+        },
+        {
+          customer: "MSAYZX0005",
+          part: "Z5393680130600",
+          material: "Z539-36801-306-00",
+          process: "ROUTING+CHAMFER-PB",
+          tdpPlan: "9/8/2023",
+          tdpAvail: "TDP AVAILABLE",
+          feasPlan: "10/8/2023",
+          feasActual: "10/8/2023",
+          feas: "FEASIBILITY STUDY COMPLETED",
+          rm: "COMPLETED",
+          cons: "COMPLETED",
+          hw: "COMPLETED",
+          bom: "COMPLETED",
+          sstReq: "NO",
+          sstNeed: "NA",
+          eng: "COMPLETED",
+          remarks: "—",
+        },
+      ];
+
+      let currentPage = 1;
+      let pageSize = 10;
+      let filteredRecords = records.slice();
+
+      function getFilteredRecords() {
+        const d = (document.getElementById("docNo")?.value || "")
+          .trim()
+          .toLowerCase();
+        const c = (document.getElementById("customer")?.value || "")
+          .trim()
+          .toLowerCase();
+        const p = (document.getElementById("project")?.value || "")
+          .trim()
+          .toLowerCase();
+        const m = (document.getElementById("material")?.value || "")
+          .trim()
+          .toLowerCase();
+        const selectedStatus = (document.getElementById("status")?.value || "")
+          .trim()
+          .toLowerCase();
+        const q = (document.getElementById("globalSearch")?.value || "")
+          .trim()
+          .toLowerCase();
+
+        return records.filter((x) => {
+          const matchesDoc =
+            !d ||
+            String(x.part || "")
+              .toLowerCase()
+              .includes(d);
+          const matchesCustomer =
+            !c ||
+            String(x.customer || "")
+              .toLowerCase()
+              .includes(c);
+          const matchesProject =
+            !p ||
+            String(x.project || "")
+              .toLowerCase()
+              .includes(p);
+          const matchesMaterial =
+            !m ||
+            String(x.material || "")
+              .toLowerCase()
+              .includes(m);
+          const statusValue = String(x.eng || "").toLowerCase();
+          const matchesStatus =
+            !selectedStatus || statusValue.includes(selectedStatus);
+          const searchable = Object.values(x).join(" ").toLowerCase();
+          const matchesGlobal = !q || searchable.includes(q);
+          return (
+            matchesDoc &&
+            matchesCustomer &&
+            matchesProject &&
+            matchesMaterial &&
+            matchesStatus &&
+            matchesGlobal
+          );
+        });
+      }
+
+      function renderPagination(totalRows) {
+        const pagination = document.getElementById("pagination");
+        if (!pagination) return;
+        const totalPages = Math.max(1, Math.ceil(totalRows / pageSize));
+        currentPage = Math.min(currentPage, totalPages);
+        const item = (
+          label,
+          page,
+          disabled = false,
+          active = false,
+          aria = "",
+        ) =>
+          `<li class="page-item ${disabled ? "disabled" : ""} ${active ? "active" : ""}">
+             <button class="page-link" type="button" ${disabled ? "disabled" : ""} ${aria ? `aria-label="${aria}"` : ""}
+               onclick="goToPage(${page})">${label}</button></li>`;
+        let out = item(
+          "&laquo;",
+          currentPage - 1,
+          currentPage === 1,
+          false,
+          "Previous page",
+        );
+        let first = Math.max(1, currentPage - 2);
+        let last = Math.min(totalPages, first + 4);
+        first = Math.max(1, last - 4);
+        for (let n = first; n <= last; n++)
+          out += item(n, n, false, n === currentPage, `Page ${n}`);
+        out += item(
+          "&raquo;",
+          currentPage + 1,
+          currentPage === totalPages,
+          false,
+          "Next page",
+        );
+        pagination.innerHTML = out;
+      }
+
+      function render() {
+        filteredRecords = getFilteredRecords();
+        const totalRows = filteredRecords.length;
+        const totalPages = Math.max(1, Math.ceil(totalRows / pageSize));
+        currentPage = Math.min(currentPage, totalPages);
+        const startIndex = (currentPage - 1) * pageSize;
+        const rows = filteredRecords.slice(startIndex, startIndex + pageSize);
+
+        const projectBody = document.getElementById("projectBody");
+        if (projectBody)
+          projectBody.innerHTML = rows
+            .map(
+              (x, i) => `
+          <tr><td>${startIndex + i + 1}</td><td class="customer-code">${x.customer || "—"}</td>
+          <td class="doc-link">${x.part || "—"}</td><td class="material-code">${x.material || "—"}</td></tr>`,
+            )
+            .join("");
+
+        const tdpBody = document.getElementById("tdpBody");
+        if (tdpBody)
+          tdpBody.innerHTML = rows
+            .map(
+              (x) => `
+          <tr><td>${x.process || "—"}</td><td>${x.tdpPlan || "—"}</td><td>${x.tdpAvail || "—"}</td><td>${stageAction(x, "tdp")}</td></tr>`,
+            )
+            .join("");
+
+        const feasBody = document.getElementById("feasBody");
+        if (feasBody)
+          feasBody.innerHTML = rows
+            .map(
+              (x) => `
+          <tr><td>${x.feasPlan || "—"}</td><td>${x.feasActual || "—"}</td><td>${x.feas || "—"}</td><td>${stageAction(x, "feas")}</td></tr>`,
+            )
+            .join("");
+
+        const bomBody = document.getElementById("bomBody");
+        if (bomBody)
+          bomBody.innerHTML = rows
+            .map(
+              (x) => `
+          <tr><td>${x.rm || "—"}</td><td>${x.cons || "—"}</td><td>${x.hw || "—"}</td><td>${x.bom || "—"}</td><td>${stageAction(x, "bom")}</td></tr>`,
+            )
+            .join("");
+
+        const sstBody = document.getElementById("sstBody");
+        if (sstBody)
+          sstBody.innerHTML = rows
+            .map(
+              (x) => `
+          <tr><td>${x.sstReq || "—"}</td><td>${x.sstNeed || "—"}</td><td>${stageAction(x, "sst")}</td></tr>`,
+            )
+            .join("");
+
+        const engBody = document.getElementById("engBody");
+        if (engBody)
+          engBody.innerHTML = rows
+            .map(
+              (x) => `
+          <tr><td>${x.eng || "—"}</td><td>${x.remarks || "—"}</td></tr>`,
+            )
+            .join("");
+
+        WORKFLOW_STAGES.forEach((stage) => {
+          const body = document.getElementById("stageBody_" + stage.key);
+          if (!body) return;
+          body.innerHTML = rows
+            .map(
+              (x) =>
+                `<tr>${stage.fields.map((f) => `<td>${escapeWorkflow(x.workflowFields?.[stage.key]?.[f] || "—")}</td>`).join("")}<td>${stageAction(x, stage.key)}</td></tr>`,
+            )
+            .join("");
+        });
+        document.getElementById("recordCount").textContent = totalRows;
+        document.getElementById("total").textContent = totalRows;
+        document.getElementById("showing").textContent = totalRows
+          ? `${startIndex + 1} to ${Math.min(startIndex + pageSize, totalRows)}`
+          : "0";
+        renderPagination(totalRows);
+      }
+
+      function handleGlobalSearch() {
+        currentPage = 1;
+        render();
+      }
+
+      function goToPage(page) {
+        const totalPages = Math.max(
+          1,
+          Math.ceil(filteredRecords.length / pageSize),
+        );
+        if (page < 1 || page > totalPages) return;
+        currentPage = page;
+        render();
+      }
+
+      function changePageSize(value) {
+        pageSize = Math.max(1, Number(value) || 10);
+        currentPage = 1;
+        render();
+      }
+
+      function toggleSectionVisibility(sectionName, visible) {
+        const section = document.querySelector(
+          `.engineering-section[data-section="${sectionName}"]`,
+        );
+        if (!section) return;
+        section.classList.toggle("section-hidden", !visible);
+        // If Project / Material is hidden, there is no frozen section to keep in view.
+        if (sectionName === "project" && !visible) {
+          section.style.position = "static";
+        } else if (sectionName === "project" && visible) {
+          section.style.position = "";
+        }
+      }
+
+      function uploadExcel(event) {
+        const file = event.target.files && event.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          try {
+            let imported;
+            if (file.name.toLowerCase().endsWith(".csv")) {
+              const text = new TextDecoder().decode(e.target.result);
+              const lines = text.split(/\r?\n/).filter(Boolean);
+              const headers = (lines.shift() || "")
+                .split(",")
+                .map((h) => h.trim().toLowerCase());
+              imported = lines.map((line) => {
+                const vals = line.split(",");
+                const obj = {};
+                headers.forEach((h, i) => (obj[h] = (vals[i] || "").trim()));
+                return normalizeImportedRecord(obj);
+              });
+            } else {
+              if (typeof XLSX === "undefined")
+                throw new Error(
+                  "Excel parser did not load. Check your internet connection and try again.",
+                );
+              const workbook = XLSX.read(e.target.result, { type: "array" });
+              const sheet = workbook.Sheets[workbook.SheetNames[0]];
+              imported = XLSX.utils
+                .sheet_to_json(sheet, { defval: "" })
+                .map(normalizeImportedRecord);
+            }
+            if (!imported.length)
+              throw new Error("No data rows were found in the selected file.");
+            records.splice(0, records.length, ...imported);
+            currentPage = 1;
+            render();
+            alert(`Uploaded ${imported.length} records successfully.`);
+          } catch (err) {
+            alert("Could not upload this file: " + err.message);
+          } finally {
+            event.target.value = "";
+          }
+        };
+        reader.onerror = () => alert("Could not read the selected file.");
+        if (file.name.toLowerCase().endsWith(".csv"))
+          reader.readAsArrayBuffer(file);
+        else reader.readAsArrayBuffer(file);
+      }
+
+      function normalizeImportedRecord(row) {
+        const normalized = {};
+        Object.keys(row).forEach((k) => {
+          normalized[k.toLowerCase().replace(/[^a-z0-9]/g, "")] = row[k];
+        });
+        const pick = (...keys) => {
+          for (const key of keys) {
+            const value =
+              normalized[key.toLowerCase().replace(/[^a-z0-9]/g, "")];
+            if (value !== undefined && value !== null && value !== "")
+              return String(value);
+          }
+          return "";
+        };
+        return {
+          customer: pick("customer", "customer code"),
+          part: pick("part", "part number", "doc no", "document number"),
+          material: pick("material", "customer material code"),
+          process: pick("process"),
+          tdpPlan: pick("tdp plan date", "tdpPlan"),
+          tdpAvail: pick("tdp availability", "tdpAvail"),
+          feasPlan: pick("feasibility plan date", "feasPlan"),
+          feasActual: pick("feasibility actual date", "feasActual"),
+          feas: pick("feasibility study", "feas"),
+          rm: pick("rm bom status", "rm"),
+          cons: pick("consumable bom status", "cons"),
+          hw: pick("hw bom status", "hw"),
+          bom: pick("bom overall", "bom"),
+          sstReq: pick("sst process qualification requirements", "sstReq"),
+          sstNeed: pick("sst process needed qualification", "sstNeed"),
+          eng: pick("engineering status", "engineering", "eng"),
+          remarks: pick("remarks") || "—",
+        };
+      }
+
+      function applyFilters() {
+        currentPage = 1;
+        render();
+      }
+      function clearFilters() {
+        ["docNo", "customer", "project", "material"].forEach((id) => {
+          const element = document.getElementById(id);
+          if (element) {
+            element.value = "";
+          }
+        });
+
+        const status = document.getElementById("status");
+        if (status) {
+          status.value = "";
+        }
+
+        currentPage = 1;
+        render();
+      }
+
+      /* =========================================================
+  ENGINEERING SECTION CONTROLLER
+  ========================================================= */
+      let activeEngineeringSection = "project";
+      let showAllEngineeringSections = false;
+      const engineeringSections = [
+        "project",
+        "tdp",
+        "feas",
+        "bom",
+        "sst",
+        "eng",
+      ];
+      function getEngineeringElements() {
+        return {
+          wrapper: document.querySelector(".engineering-table-wrap"),
+          table: document.getElementById("engineeringTable"),
+          sections: document.querySelectorAll(".engineering-section"),
+        };
+      }
+      function updateEngineeringLayout() {
+        const { wrapper, table, sections } = getEngineeringElements();
+        if (!wrapper || !table) return;
+        wrapper.classList.toggle("show-all-mode", showAllEngineeringSections);
+        table.classList.toggle("show-all-mode", showAllEngineeringSections);
+        sections.forEach((section) => {
+          const isExpanded = section.classList.contains("expanded");
+          const bar = section.querySelector(".section-vertical-bar");
+          if (bar) {
+            bar.setAttribute("aria-expanded", String(isExpanded));
+            bar.title = isExpanded
+              ? "Section expanded"
+              : "Click to expand " + section.dataset.section;
+          }
+        });
+      }
+      function openEngineeringSection(sectionName) {
+        const { sections } = getEngineeringElements();
+        const selectedSection = document.querySelector(
+          `.engineering-section[data-section="${sectionName}"]`,
+        );
+        if (!selectedSection) return;
+        // Leave Show All mode when an individual section is selected.
+        showAllEngineeringSections = false;
+        // Clicking the already-open section collapses it.
+        const isAlreadyOpen = selectedSection.classList.contains("expanded");
+        sections.forEach((section) => {
+          section.classList.remove("expanded");
+        });
+        if (isAlreadyOpen) {
+          // Never leave the entire table collapsed.
+          const projectSection = document.querySelector(
+            '.engineering-section[data-section="project"]',
+          );
+          projectSection?.classList.add("expanded");
+          activeEngineeringSection = "project";
+        } else {
+          selectedSection.classList.add("expanded");
+          activeEngineeringSection = sectionName;
+        }
+        updateEngineeringLayout();
+      }
+      function collapseEngineeringSections(event) {
+        event?.stopPropagation();
+        const section = event?.currentTarget?.closest(".engineering-section");
+        if (!section) return;
+        // Use the same rule as clicking the vertical bar.
+        openEngineeringSection(section.dataset.section);
+      }
+      function expandAllSections() {
+        const { sections } = getEngineeringElements();
+        sections.forEach((section) => {
+          section.classList.add("expanded");
+        });
+        showAllEngineeringSections = true;
+        activeEngineeringSection = "all";
+        updateEngineeringLayout();
+        const showAllButton = document.getElementById("showAllButton");
+        if (showAllButton)
+          showAllButton.innerHTML =
+            '<i class="bi bi-arrows-expand me-1"></i>Show all';
+      }
+      // Initial page state: Project / Material open.
+      function initializeEngineeringSections() {
+        const { sections } = getEngineeringElements();
+        sections.forEach((section) => {
+          section.classList.remove("expanded");
+        });
+        const projectSection = document.querySelector(
+          '.engineering-section[data-section="project"]',
+        );
+        projectSection?.classList.add("expanded");
+        activeEngineeringSection = "project";
+        showAllEngineeringSections = false;
+        updateEngineeringLayout();
+      }
+
+      function exportCSV() {
+        const headers = [
+          "Customer",
+          "Part Number",
+          "Customer Material Code",
+          "Process",
+          "TDP Plan Date",
+          "TDP Availability",
+          "Feasibility Plan Date",
+          "Feasibility Actual Date",
+          "Feasibility Study",
+          "RM BOM",
+          "Consumable BOM",
+          "HW BOM",
+          "BOM Overall",
+          "SST Requirements",
+          "SST Needed Qualification",
+          "Engineering Status",
+          "Remarks",
+        ];
+        const keys = [
+          "customer",
+          "part",
+          "material",
+          "process",
+          "tdpPlan",
+          "tdpAvail",
+          "feasPlan",
+          "feasActual",
+          "feas",
+          "rm",
+          "cons",
+          "hw",
+          "bom",
+          "sstReq",
+          "sstNeed",
+          "eng",
+          "remarks",
+        ];
+        const csvCell = (value) =>
+          `"${String(value ?? "").replace(/"/g, '""')}"`;
+        const csv = [
+          headers.map(csvCell).join(","),
+          ...getFilteredRecords().map((x) =>
+            keys.map((k) => csvCell(x[k])).join(","),
+          ),
+        ].join("\r\n");
+        const a = document.createElement("a");
+        const url = URL.createObjectURL(
+          new Blob(["\ufeff" + csv], { type: "text/csv;charset=utf-8;" }),
+        );
+        a.href = url;
+        a.download = "engineering-records.csv";
+        a.click();
+        URL.revokeObjectURL(url);
+      }
+      render();
+      initializeEngineeringSections();
+    </script>
+  </body>
+</html>

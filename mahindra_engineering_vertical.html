@@ -1,0 +1,2145 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Mahindra Engineering Records</title>
+    <link
+      rel="stylesheet"
+      href="https://fontsstorage.blob.core.windows.net/html/css/georama.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --red: #a9153d;
+        --red-soft: #f7e9ee;
+        --navy: #071b2d;
+        --ink: #243746;
+        --muted: #71818d;
+        --bg: #f3f6f8;
+        --surface: #fff;
+        --border: #dce4e9;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "Georama-Regular", Arial, sans-serif;
+        font-size: 12px;
+      }
+      .topbar {
+        height: 68px;
+        background: #fff;
+        border-bottom: 2px solid #a9153d;
+        box-shadow: 0 1px 5px rgba(7, 27, 45, 0.06);
+      }
+      .header-inner {
+        height: 68px;
+      }
+      .mahindra-logo img {
+        width: 170px;
+        height: auto;
+      }
+      .top-menu {
+        display: flex;
+        gap: 4px;
+        align-items: center;
+      }
+      .top-menu a {
+        color: #465967;
+        text-decoration: none;
+        padding: 11px 16px;
+        border-radius: 6px;
+        font-size: 12px;
+        font-weight: 700;
+      }
+      .top-menu a:hover,
+      .top-menu a.active {
+        background: #f5eaf0;
+        color: var(--red);
+      }
+      .top-menu a.active {
+        box-shadow: inset 0 -2px 0 var(--red);
+      }
+      .profile-btn {
+        border: 0;
+        background: transparent;
+        color: var(--ink);
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        padding: 5px 7px;
+      }
+      .avatar {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: #a9153d;
+        color: #fff;
+        display: grid;
+        place-items: center;
+        font-weight: 800;
+        font-size: 11px;
+      }
+      .profile-name {
+        font-size: 12px;
+        font-weight: 800;
+        text-align: left;
+      }
+      .profile-role {
+        font-size: 11px;
+        color: #7b8993;
+      }
+      .dropdown-menu {
+        border: 1px solid var(--border);
+        box-shadow: 0 8px 24px #071b2d22;
+        border-radius: 8px;
+      }
+      .dropdown-item {
+        font-size: 12px;
+        padding: 9px 14px;
+      }
+
+      .page {
+        padding: 24px 28px 40px;
+        max-width: 1500px;
+        margin: auto;
+      }
+      .breadcrumb {
+        font-size: 10px;
+        color: #82909a;
+        margin-bottom: 7px;
+      }
+      .breadcrumb strong {
+        color: #4e6270;
+      }
+      .page-title-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 16px;
+      }
+      .page-title {
+        font-size: 23px;
+        font-weight: 800;
+        color: var(--navy);
+        margin: 0;
+      }
+      .page-subtitle {
+        font-size: 11px;
+        color: #71818d;
+        margin-top: 5px;
+      }
+      .title-accent {
+        height: 3px;
+        width: 45px;
+        background: var(--red);
+        border-radius: 3px;
+        margin-top: 9px;
+      }
+      .header-actions {
+        display: flex;
+        gap: 8px;
+      }
+      .btn-light-action {
+        height: 36px;
+        border: 1px solid #d5dfe5;
+        background: #fff;
+        color: #526672;
+        border-radius: 6px;
+        font-size: 11px;
+        font-weight: 700;
+        padding: 0 13px;
+      }
+      .btn-primary-mahindra {
+        height: 36px;
+        background: var(--red);
+        border: 1px solid var(--red);
+        color: #fff;
+        border-radius: 6px;
+        font-size: 11px;
+        font-weight: 800;
+        padding: 0 15px;
+      }
+      .btn-primary-mahindra:hover {
+        background: #8f1234;
+        color: #fff;
+      }
+
+      .tabs {
+        display: flex;
+        gap: 24px;
+        border-bottom: 1px solid #d9e1e6;
+        margin-bottom: 15px;
+      }
+      .tabs a {
+        padding: 9px 2px 10px;
+        color: #617481;
+        text-decoration: none;
+        font-size: 11px;
+        font-weight: 700;
+        position: relative;
+      }
+      .tabs a.active {
+        color: var(--red);
+      }
+      .tabs a.active:after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: -1px;
+        height: 2px;
+        background: var(--red);
+      }
+
+      .filter-card {
+        background: #fff;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        box-shadow: 0 2px 9px #071b2d0c;
+        padding: 15px 17px 16px;
+        margin-bottom: 14px;
+      }
+      .filter-grid {
+        display: grid;
+        grid-template-columns: 1.35fr 1fr 1fr 1.25fr 1fr auto;
+        gap: 11px;
+        align-items: end;
+      }
+      .filter-label {
+        font-size: 9px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        font-weight: 800;
+        color: #687a87;
+        margin-bottom: 5px;
+      }
+      .filter-control {
+        height: 37px;
+        border: 1px solid #d5dfe6;
+        border-radius: 6px;
+        font-size: 11px;
+        color: #415563;
+        background: #fff;
+      }
+      .filter-control:focus {
+        border-color: #bb7088;
+        box-shadow: 0 0 0 3px rgba(169, 21, 61, 0.07);
+      }
+      .filter-actions {
+        display: flex;
+        gap: 7px;
+      }
+      .apply {
+        height: 37px;
+        background: var(--red);
+        color: #fff;
+        border: 1px solid var(--red);
+        font-size: 10px;
+        font-weight: 800;
+        padding: 0 16px;
+        border-radius: 6px;
+      }
+      .clear {
+        height: 37px;
+        border: 1px solid #d5dfe6;
+        background: #fff;
+        color: #657682;
+        border-radius: 6px;
+        width: 38px;
+      }
+
+      .table-card {
+        background: #fff;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        box-shadow: 0 2px 9px #071b2d0c;
+        overflow: hidden;
+      }
+      .table-head {
+        padding: 15px 17px 11px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .table-title {
+        font-size: 16px;
+        font-weight: 800;
+        color: var(--navy);
+      }
+      .table-meta {
+        font-size: 10px;
+        color: #7a8994;
+        margin-top: 3px;
+      }
+      .table-tools {
+        display: flex;
+        gap: 7px;
+      }
+      .tool-btn {
+        height: 32px;
+        border: 1px solid #d7e0e5;
+        background: #fff;
+        border-radius: 6px;
+        color: #617481;
+        font-size: 10px;
+        padding: 0 11px;
+        font-weight: 700;
+      }
+      .table-wrap {
+        overflow: auto;
+        border-top: 1px solid #e2e8ec;
+      }
+      .records-table {
+        width: 100%;
+        min-width: 1550px;
+        border-collapse: separate;
+        border-spacing: 0;
+      }
+      .records-table th {
+        background: #f5f7f9;
+        color: #627582;
+        border-right: 1px solid #edf1f4;
+        border-bottom: 1px solid #dce4e9;
+        padding: 10px 9px;
+        font-size: 8px;
+        line-height: 1.25;
+        text-transform: uppercase;
+        letter-spacing: 0.3px;
+        white-space: nowrap;
+      }
+      .records-table td {
+        padding: 10px 9px;
+        color: #405463;
+        border-right: 1px solid #f0f3f5;
+        border-bottom: 1px solid #e8edf0;
+        font-size: 10px;
+        white-space: nowrap;
+      }
+      .records-table tbody tr:hover td {
+        background: #fbfcfd;
+      }
+      .records-table th:first-child,
+      .records-table td:first-child {
+        padding-left: 16px;
+      }
+      .doc-link {
+        color: #3e6e96;
+        font-weight: 800;
+      }
+      .project-name {
+        font-weight: 700;
+        color: #344e60;
+      }
+      .material-code,
+      .customer-code {
+        font-weight: 700;
+        color: #556c7a;
+      }
+      .status {
+        display: inline-flex;
+        padding: 4px 8px;
+        border-radius: 12px;
+        font-size: 8px;
+        font-weight: 800;
+      }
+      .pending {
+        background: #f8e9ee;
+        color: #95506a;
+      }
+      .approved {
+        background: #e7f3ec;
+        color: #477463;
+      }
+      .progress {
+        background: #e9f0f6;
+        color: #4e718d;
+      }
+      .completed {
+        background: #e5f2ec;
+        color: #3e725f;
+      }
+      .action-group {
+        display: flex;
+        gap: 4px;
+      }
+      .action {
+        width: 27px;
+        height: 25px;
+        border: 1px solid #e0e6ea;
+        background: #fff;
+        color: #71818d;
+        border-radius: 5px;
+        display: grid;
+        place-items: center;
+      }
+      .action:hover {
+        background: #f6eaf0;
+        color: var(--red);
+        border-color: #e2ccd5;
+      }
+      .table-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 11px 17px;
+        color: #7a8994;
+        font-size: 10px;
+      }
+      .page-size {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+      }
+      .page-size select {
+        height: 29px;
+        border: 1px solid #d9e2e7;
+        border-radius: 5px;
+        font-size: 10px;
+        padding: 0 8px;
+      }
+      .pagination .page-link {
+        font-size: 10px;
+        color: #617481;
+        border-color: #e0e6ea;
+      }
+      .pagination .active .page-link {
+        background: var(--red);
+        border-color: var(--red);
+        color: #fff;
+      }
+      @media (max-width: 1100px) {
+        .filter-grid {
+          grid-template-columns: 1fr 1fr 1fr;
+        }
+        .filter-actions {
+          grid-column: 1/-1;
+        }
+      }
+      @media (max-width: 700px) {
+        .top-menu {
+          display: none;
+        }
+        .page {
+          padding: 18px 14px;
+        }
+        .page-title-row {
+          flex-direction: column;
+          gap: 12px;
+        }
+        .filter-grid {
+          grid-template-columns: 1fr;
+        }
+        .filter-actions {
+          grid-column: auto;
+        }
+        .profile-name {
+          display: none;
+        }
+      }
+
+      .section-nav {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 11px 15px;
+        background: #f8fafb;
+        border-bottom: 1px solid #e0e7eb;
+        flex-wrap: wrap;
+      }
+      .section-label {
+        font-size: 9px;
+        text-transform: uppercase;
+        letter-spacing: 0.65px;
+        font-weight: 800;
+        color: #6d7d88;
+        margin-right: 4px;
+      }
+      .section-btn {
+        border: 1px solid #d8e1e6;
+        background: #fff;
+        color: #566b78;
+        border-radius: 16px;
+        padding: 6px 11px;
+        font-size: 9px;
+        font-weight: 800;
+        cursor: pointer;
+      }
+      .section-btn:hover {
+        box-shadow: 0 2px 7px #071b2d12;
+      }
+      .section-btn.active {
+        color: #fff;
+        border-color: var(--red);
+        background: var(--red);
+      }
+      .section-btn .dot {
+        display: inline-block;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        margin-right: 5px;
+        background: #7991a0;
+      }
+      .section-btn.tdp .dot {
+        background: #6d91b1;
+      }
+      .section-btn.feas .dot {
+        background: #8f7290;
+      }
+      .section-btn.bom .dot {
+        background: #8aa46b;
+      }
+      .section-btn.sst .dot {
+        background: #a27d55;
+      }
+      .section-btn.eng .dot {
+        background: #6d9a9a;
+      }
+      .section-helper {
+        margin-left: auto;
+        font-size: 9px;
+        color: #81909a;
+      }
+      .section-panel {
+        padding: 10px 15px;
+        background: #fff;
+        border-bottom: 1px solid #e1e7eb;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+      }
+      .section-panel-title {
+        font-size: 11px;
+        font-weight: 800;
+        color: var(--navy);
+      }
+      .section-panel-desc {
+        font-size: 9px;
+        color: #81909a;
+        margin-top: 2px;
+      }
+      .section-toggle {
+        border: 1px solid #d7e0e5;
+        background: #fff;
+        color: #627581;
+        border-radius: 5px;
+        font-size: 9px;
+        font-weight: 800;
+        padding: 6px 10px;
+      }
+
+      /* =========================================================
+  ENGINEERING TABLE - SIMPLE, CONSISTENT DESIGN
+  ========================================================= */
+      .engineering-table-wrap {
+        width: 100%;
+        height: 560px;
+        overflow: auto;
+        background: #fff;
+        border-top: 1px solid var(--border);
+        scrollbar-width: thin;
+        scrollbar-color: #b8c4cc #f3f6f8;
+      }
+      .engineering-table {
+        display: flex;
+        width: 100%;
+        min-width: 900px;
+        min-height: 100%;
+        background: #fff;
+      }
+      /* Collapsed section */
+      .engineering-section {
+        display: flex;
+        flex: 0 0 48px;
+        min-width: 48px;
+        min-height: 100%;
+        overflow: hidden;
+        background: #fff;
+        border-right: 1px solid var(--border);
+        transition: flex-basis 0.25s ease;
+      }
+      /* One section expanded */
+      .engineering-section.expanded {
+        flex: 1 1 0;
+        min-width: 0;
+      }
+      /* Project section when open */
+      .project-section.expanded {
+        min-width: 0;
+      }
+      /* =========================================================
+  VERTICAL BAR - VISIBLE ONLY WHEN COLLAPSED
+  ========================================================= */
+      .section-vertical-bar {
+        flex: 0 0 48px;
+        width: 48px;
+        min-height: 100%;
+        padding: 12px 5px;
+        border: 0;
+        border-right: 1px solid var(--border);
+        background: #eef2f5;
+        color: #405463;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        transition: background 0.15s ease;
+      }
+      .section-vertical-bar:hover {
+        background: #e1e8ed;
+      }
+      .vertical-text {
+        writing-mode: vertical-rl;
+        transform: rotate(180deg);
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: 0.6px;
+        white-space: nowrap;
+      }
+      .vertical-icon {
+        font-size: 14px;
+      }
+      /* Hide the vertical bar completely when expanded */
+      .engineering-section.expanded .section-vertical-bar {
+        display: none;
+      }
+      /* =========================================================
+  SECTION CONTENT
+  ========================================================= */
+      .section-content {
+        flex: 1 1 auto;
+        min-width: 0;
+        background: #fff;
+        overflow-x: auto;
+        overflow-y: hidden;
+      }
+      /* Hide content when collapsed */
+      .engineering-section:not(.expanded) .section-content {
+        display: none;
+      }
+      /* =========================================================
+  SIMPLE SECTION HEADER
+  ========================================================= */
+      .section-header {
+        height: 42px;
+        padding: 0 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: #f1f4f6;
+        color: #344b5a;
+        border-bottom: 1px solid var(--border);
+        font-size: 10px;
+        font-weight: 800;
+        text-transform: uppercase;
+        white-space: nowrap;
+      }
+      .engineering-section.expanded .section-header {
+        background: #f1f4f6;
+        color: #344b5a;
+        border-top: 2px solid var(--red);
+      }
+      .section-collapse {
+        width: 27px;
+        height: 27px;
+        flex-shrink: 0;
+        display: grid;
+        place-items: center;
+        border: 1px solid #d5dfe5;
+        border-radius: 5px;
+        background: #fff;
+        color: #526672;
+        cursor: pointer;
+      }
+      .section-collapse:hover {
+        background: #e7edf1;
+      }
+      /* =========================================================
+  INNER TABLE
+  ========================================================= */
+      .section-content table {
+        width: 100%;
+        border-collapse: collapse;
+        table-layout: auto;
+      }
+      .section-content th {
+        height: 43px;
+        padding: 8px 10px;
+        background: #f5f7f9;
+        color: #536777;
+        border: 1px solid #e0e6eb;
+        font-size: 8px;
+        line-height: 1.3;
+        font-weight: 800;
+        text-transform: uppercase;
+        white-space: nowrap;
+      }
+      .section-content td {
+        height: 40px;
+        padding: 8px 10px;
+        background: #fff;
+        color: #405463;
+        border: 1px solid #e8edf0;
+        font-size: 10px;
+        white-space: nowrap;
+      }
+      .section-content tbody tr:nth-child(even) td {
+        background: #fafbfc;
+      }
+      .section-content tbody tr:hover td {
+        background: #f1f5f8;
+      }
+      /* =========================================================
+  SHOW ALL - SINGLE OUTER HORIZONTAL SCROLLBAR
+  ========================================================= */
+      .engineering-table-wrap.show-all-mode {
+        overflow-x: auto;
+        overflow-y: auto;
+      }
+      .engineering-table.show-all-mode {
+        width: max-content;
+        min-width: 100%;
+        min-height: 100%;
+        align-items: stretch;
+      }
+      .engineering-table.show-all-mode .engineering-section {
+        flex: 0 0 auto;
+        width: max-content;
+        min-width: 0;
+        overflow: visible;
+      }
+      .engineering-table.show-all-mode .section-vertical-bar {
+        display: none;
+      }
+      .engineering-table.show-all-mode .section-content {
+        flex: 0 0 auto;
+        width: max-content;
+        min-width: 0;
+        overflow: visible;
+      }
+      .engineering-table.show-all-mode .section-content table {
+        width: max-content;
+        min-width: 100%;
+      }
+      /* Allow long headings and data to determine column width */
+      .engineering-table.show-all-mode .section-content th,
+      .engineering-table.show-all-mode .section-content td {
+        white-space: nowrap;
+      }
+      /* Responsive layout */
+      @media (max-width: 900px) {
+        .engineering-table {
+          min-width: 650px;
+        }
+        .section-vertical-bar {
+          flex-basis: 44px;
+          width: 44px;
+        }
+      }
+
+      /* Vertical accordion layout: each engineering section stacks full-width */
+      .engineering-table-wrap {
+        height: auto;
+        max-height: none;
+        overflow: visible;
+      }
+      .engineering-table {
+        display: block;
+        width: 100%;
+        min-width: 0;
+        min-height: 0;
+      }
+      .engineering-section,
+      .engineering-section.expanded,
+      .project-section.expanded {
+        display: block;
+        width: 100%;
+        min-width: 0;
+        min-height: 0;
+        overflow: visible;
+        border: 1px solid var(--border);
+        border-radius: 7px;
+        margin-bottom: 8px;
+        background: #fff;
+        flex: none;
+        transition: none;
+      }
+      .section-vertical-bar {
+        display: none !important;
+      }
+      .engineering-section .section-content,
+      .engineering-section:not(.expanded) .section-content {
+        display: block;
+        width: 100%;
+        min-width: 0;
+        overflow-x: auto;
+        overflow-y: visible;
+      }
+      .section-header {
+        height: 42px;
+        cursor: pointer;
+        user-select: none;
+      }
+      .section-header .section-collapse {
+        transform: rotate(90deg);
+      }
+      .engineering-section:not(.expanded) .section-content table {
+        display: none;
+      }
+      .engineering-section:not(.expanded) .section-header .section-collapse {
+        transform: rotate(0deg);
+      }
+      .engineering-section .section-content table {
+        width: 100%;
+        min-width: 620px;
+      }
+      .engineering-table.show-all-mode {
+        display: block;
+        width: 100%;
+        min-width: 0;
+      }
+      .engineering-table.show-all-mode .engineering-section {
+        width: 100%;
+        min-width: 0;
+        display: block;
+      }
+      .engineering-table.show-all-mode .section-content {
+        width: 100%;
+        min-width: 0;
+        overflow-x: auto;
+      }
+      .engineering-table.show-all-mode .section-content table {
+        width: 100%;
+        min-width: 620px;
+      }
+      .records-toolbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        flex-wrap: wrap;
+        padding: 0 17px 12px;
+      }
+      .records-search {
+        width: min(360px, 100%);
+        height: 34px;
+        font-size: 11px;
+        border: 1px solid #d5dfe6;
+        border-radius: 6px;
+        padding: 0 10px;
+      }
+      .records-toolbar-right {
+        display: flex;
+        gap: 7px;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+      .columns-menu {
+        position: relative;
+      }
+      .columns-popover {
+        display: none;
+        position: absolute;
+        right: 0;
+        top: 36px;
+        z-index: 50;
+        background: #fff;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        box-shadow: 0 8px 22px #071b2d22;
+        padding: 10px 12px;
+        min-width: 205px;
+      }
+      .columns-popover.open {
+        display: block;
+      }
+      .columns-popover label {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        padding: 5px 0;
+        font-size: 11px;
+        white-space: nowrap;
+      }
+      .table-footer {
+        justify-content: flex-end;
+        flex-wrap: wrap;
+        gap: 14px;
+      }
+      .table-footer .record-summary {
+        margin-right: auto;
+      }
+      .pagination {
+        margin-left: 0;
+      }
+      @media (max-width: 700px) {
+        .records-toolbar {
+          align-items: stretch;
+        }
+        .records-search {
+          width: 100%;
+        }
+        .records-toolbar-right {
+          justify-content: flex-end;
+        }
+        .table-footer .record-summary {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="container-fluid px-4">
+        <div
+          class="header-inner d-flex align-items-center justify-content-between gap-3"
+        >
+          <a class="mahindra-logo" href="#"
+            ><img src="mahindra_rise_red.png" alt="Mahindra"
+          /></a>
+          <nav class="top-menu">
+            <a href="mahindra_engineering_dashboard.html"
+              ><i class="bi bi-grid-1x2 me-1"></i>Dashboard</a
+            >
+            <a href="mahindra_engineering_input_bd.html"
+              ><i class="bi bi-folder2-open me-1"></i>Input BD</a
+            >
+            <a href="mahindra_programs.html"
+              ><i class="bi bi-folder2-open me-1"></i>Programs</a
+            >
+            <a href="mahindra_engineering_records.html"
+              ><i class="bi bi-folder2-open me-1"></i>Engineering 1</a
+            >
+            <a href="mahindra_engineering_records_new.html" class="active"
+              ><i class="bi bi-folder2-open me-1"></i>Engineering 2</a
+            >
+            <a href="#"><i class="bi bi-bar-chart-line me-1"></i>Reports</a>
+          </nav>
+          <div class="dropdown">
+            <button
+              class="profile-btn dropdown-toggle"
+              data-bs-toggle="dropdown"
+            >
+              <div>
+                <div class="profile-name">Priyank Jain</div>
+                <div class="profile-role">Engineering User</div>
+              </div>
+              <span class="avatar">PJ</span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end mt-2">
+              <li>
+                <a class="dropdown-item" href="#"
+                  ><i class="bi bi-person me-2"></i>My Profile</a
+                >
+              </li>
+              <li>
+                <a class="dropdown-item" href="#"
+                  ><i class="bi bi-gear me-2"></i>Settings</a
+                >
+              </li>
+              <li><hr class="dropdown-divider" /></li>
+              <li>
+                <a
+                  class="dropdown-item text-danger"
+                  href="mahindra_engineering_login.html"
+                  ><i class="bi bi-box-arrow-right me-2"></i>Logout</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="page">
+      <div class="page-title-row">
+        <div>
+          <h1 class="page-title">Engineering Document Records</h1>
+          <div class="title-accent"></div>
+        </div>
+      </div>
+
+      <section class="filter-card">
+        <div class="filter-grid">
+          <div>
+            <div class="filter-label">Doc No.</div>
+            <input
+              id="docNo"
+              class="form-control filter-control"
+              placeholder="Search document number"
+            />
+          </div>
+          <div>
+            <div class="filter-label">Customer Code</div>
+            <input
+              id="customer"
+              class="form-control filter-control"
+              placeholder="Search customer code"
+            />
+          </div>
+          <div>
+            <div class="filter-label">Project Name</div>
+            <input
+              id="project"
+              class="form-control filter-control"
+              placeholder="Search project name"
+            />
+          </div>
+          <div>
+            <div class="filter-label">Customer Material Code</div>
+            <input
+              id="material"
+              class="form-control filter-control"
+              placeholder="Search material code"
+            />
+          </div>
+          <div>
+            <div class="filter-label">Status</div>
+            <select id="status" class="form-select filter-control">
+              <option value="">All</option>
+              <option>Pending Program Review</option>
+              <option>Approved</option>
+              <option>In Progress</option>
+              <option>Completed</option>
+            </select>
+          </div>
+          <div class="filter-actions">
+            <button class="apply" onclick="applyFilters()">
+              <i class="bi bi-funnel me-1"></i>Apply</button
+            ><button class="clear" onclick="clearFilters()" title="Clear">
+              <i class="bi bi-arrow-counterclockwise"></i>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section class="table-card">
+        <div class="table-head">
+          <div>
+            <div class="table-title">
+              Engineering Records
+              <span class="table-meta">(<span id="recordCount">10</span>)</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="records-toolbar">
+          <input
+            id="globalSearch"
+            class="records-search"
+            type="search"
+            placeholder="Search all engineering records..."
+            aria-label="Search all engineering records"
+            oninput="
+              setPage(1);
+              render();
+            "
+          />
+          <div class="records-toolbar-right">
+            <button class="tool-btn" onclick="exportCSV()">
+              <i class="bi bi-download me-1"></i>Export
+            </button>
+            <button
+              class="tool-btn"
+              onclick="document.getElementById('excelUpload').click()"
+            >
+              <i class="bi bi-upload me-1"></i>Upload Excel
+            </button>
+            <input
+              id="excelUpload"
+              type="file"
+              accept=".xlsx,.xls,.csv"
+              hidden
+              onchange="uploadExcel(event)"
+            />
+            <div class="columns-menu">
+              <button class="tool-btn" onclick="toggleColumnsMenu(event)">
+                <i class="bi bi-columns-gap me-1"></i>Columns
+                <i class="bi bi-chevron-down ms-1"></i>
+              </button>
+              <div id="columnsPopover" class="columns-popover">
+                <label
+                  ><input
+                    type="checkbox"
+                    checked
+                    data-section-toggle="project"
+                    onchange="toggleEngineeringSectionVisibility(this)"
+                  />
+                  Project / Material</label
+                >
+                <label
+                  ><input
+                    type="checkbox"
+                    checked
+                    data-section-toggle="tdp"
+                    onchange="toggleEngineeringSectionVisibility(this)"
+                  />
+                  TDP</label
+                >
+                <label
+                  ><input
+                    type="checkbox"
+                    checked
+                    data-section-toggle="feas"
+                    onchange="toggleEngineeringSectionVisibility(this)"
+                  />
+                  Feasibility Study</label
+                >
+                <label
+                  ><input
+                    type="checkbox"
+                    checked
+                    data-section-toggle="bom"
+                    onchange="toggleEngineeringSectionVisibility(this)"
+                  />
+                  BOM Creation</label
+                >
+                <label
+                  ><input
+                    type="checkbox"
+                    checked
+                    data-section-toggle="sst"
+                    onchange="toggleEngineeringSectionVisibility(this)"
+                  />
+                  SST / Qualification</label
+                >
+                <label
+                  ><input
+                    type="checkbox"
+                    checked
+                    data-section-toggle="eng"
+                    onchange="toggleEngineeringSectionVisibility(this)"
+                  />
+                  Engineering</label
+                >
+              </div>
+            </div>
+            <button
+              class="tool-btn"
+              onclick="expandAllSections()"
+              title="Expand all table sections"
+            >
+              <i class="bi bi-arrows-expand me-1"></i> Show all
+            </button>
+          </div>
+        </div>
+        <div class="engineering-table-wrap">
+          <div class="engineering-table" id="engineeringTable">
+            <!-- PROJECT / MATERIAL -->
+            <div
+              class="engineering-section project-section"
+              data-section="project"
+            >
+              <button
+                class="section-vertical-bar project-bar"
+                onclick="openEngineeringSection('project')"
+              >
+                <span class="vertical-icon">
+                  <i class="bi bi-folder2-open"></i>
+                </span>
+                <span class="vertical-text">PROJECT / MATERIAL</span>
+              </button>
+              <div class="section-content">
+                <div class="section-header project-header">
+                  <span>
+                    <i class="bi bi-folder2-open me-1"></i>
+                    PROJECT / MATERIAL
+                  </span>
+                  <button
+                    class="section-collapse"
+                    onClick="collapseEngineeringSections(event)"
+                  >
+                    <i class="bi bi-chevron-left"></i>
+                  </button>
+                </div>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>SL. NO.</th>
+                      <th>CUSTOMER</th>
+                      <th>PART NUMBER</th>
+                      <th>CUSTOMER MATERIAL CODE</th>
+                    </tr>
+                  </thead>
+                  <tbody id="projectBody"></tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- TDP -->
+            <div class="engineering-section" data-section="tdp">
+              <button
+                class="section-vertical-bar tdp-bar"
+                onclick="openEngineeringSection('tdp')"
+              >
+                <span class="vertical-icon">
+                  <i class="bi bi-file-earmark-text"></i>
+                </span>
+                <span class="vertical-text">TDP</span>
+              </button>
+              <div class="section-content">
+                <div class="section-header tdp-header">
+                  <span>
+                    <i class="bi bi-file-earmark-text me-1"></i>
+                    TDP
+                  </span>
+                  <button
+                    class="section-collapse"
+                    onclick="collapseEngineeringSections(event)"
+                  >
+                    <i class="bi bi-chevron-left"></i>
+                  </button>
+                </div>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>PROCESS</th>
+                      <th>TDP PLAN DATE</th>
+                      <th>TDP AVAILABILITY</th>
+                    </tr>
+                  </thead>
+                  <tbody id="tdpBody"></tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- FEASIBILITY -->
+            <div class="engineering-section" data-section="feas">
+              <button
+                class="section-vertical-bar feas-bar"
+                onclick="openEngineeringSection('feas')"
+              >
+                <span class="vertical-icon">
+                  <i class="bi bi-clipboard-check"></i>
+                </span>
+                <span class="vertical-text"> FEASIBILITY STUDY </span>
+              </button>
+              <div class="section-content">
+                <div class="section-header feas-header">
+                  <span>
+                    <i class="bi bi-clipboard-check me-1"></i>
+                    FEASIBILITY STUDY
+                  </span>
+                  <button
+                    class="section-collapse"
+                    onclick="collapseEngineeringSections(event)"
+                  >
+                    <i class="bi bi-chevron-left"></i>
+                  </button>
+                </div>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>FEASIBILITY PLAN DATE</th>
+                      <th>FEASIBILITY ACTUAL DATE</th>
+                      <th>FEASIBILITY STUDY</th>
+                    </tr>
+                  </thead>
+                  <tbody id="feasBody"></tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- BOM -->
+            <div class="engineering-section" data-section="bom">
+              <button
+                class="section-vertical-bar bom-bar"
+                onclick="openEngineeringSection('bom')"
+              >
+                <span class="vertical-icon">
+                  <i class="bi bi-box-seam"></i>
+                </span>
+                <span class="vertical-text"> BOM CREATION </span>
+              </button>
+              <div class="section-content">
+                <div class="section-header bom-header">
+                  <span>
+                    <i class="bi bi-box-seam me-1"></i>
+                    BOM CREATION
+                  </span>
+                  <button
+                    class="section-collapse"
+                    onclick="collapseEngineeringSections(event)"
+                  >
+                    <i class="bi bi-chevron-left"></i>
+                  </button>
+                </div>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>RM BOM STATUS</th>
+                      <th>CONSUMABLE BOM STATUS</th>
+                      <th>HW BOM STATUS</th>
+                      <th>BOM OVERALL</th>
+                    </tr>
+                  </thead>
+                  <tbody id="bomBody"></tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- SST -->
+            <div class="engineering-section" data-section="sst">
+              <button
+                class="section-vertical-bar sst-bar"
+                onclick="openEngineeringSection('sst')"
+              >
+                <span class="vertical-icon">
+                  <i class="bi bi-shield-check"></i>
+                </span>
+                <span class="vertical-text"> SST / QUALIFICATION </span>
+              </button>
+              <div class="section-content">
+                <div class="section-header sst-header">
+                  <span>
+                    <i class="bi bi-shield-check me-1"></i>
+                    SST / QUALIFICATION
+                  </span>
+                  <button
+                    class="section-collapse"
+                    onclick="collapseEngineeringSections(event)"
+                  >
+                    <i class="bi bi-chevron-left"></i>
+                  </button>
+                </div>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>SST PROCESS QUALIFICATION REQUIREMENTS</th>
+                      <th>SST PROCESS NEEDED QUALIFICATION</th>
+                    </tr>
+                  </thead>
+                  <tbody id="sstBody"></tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- ENGINEERING -->
+            <div class="engineering-section" data-section="eng">
+              <button
+                class="section-vertical-bar eng-bar"
+                onclick="openEngineeringSection('eng')"
+              >
+                <span class="vertical-icon">
+                  <i class="bi bi-gear"></i>
+                </span>
+                <span class="vertical-text"> ENGINEERING </span>
+              </button>
+              <div class="section-content">
+                <div class="section-header eng-header">
+                  <span>
+                    <i class="bi bi-gear me-1"></i>
+                    ENGINEERING
+                  </span>
+                  <button
+                    class="section-collapse"
+                    onclick="collapseEngineeringSections(event)"
+                  >
+                    <i class="bi bi-chevron-left"></i>
+                  </button>
+                </div>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>ENGINEERING STATUS</th>
+                      <th>REMARKS</th>
+                    </tr>
+                  </thead>
+                  <tbody id="engBody"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="table-footer">
+          <div class="record-summary">
+            Showing <strong id="showing">1 to 10</strong> of
+            <strong id="total">10</strong> records
+          </div>
+          <div class="page-size">
+            <span>Rows per page</span
+            ><select id="pageSize" onchange="setPageSize(this.value)">
+              <option value="10" selected>10</option>
+              <option value="25">25</option>
+              <option value="50">50</option>
+              <option value="100">100</option>
+            </select>
+          </div>
+          <nav aria-label="Engineering records pagination">
+            <ul id="pagination" class="pagination pagination-sm mb-0"></ul>
+          </nav>
+        </div>
+      </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+    <script>
+      const records = [
+        {
+          customer: "MSAYZX0005",
+          part: "Z5791303430400",
+          material: "Z579-13034-304-00",
+          process: "ROUTING+PB",
+          tdpPlan: "10/13/2023",
+          tdpAvail: "TDP AVAILABLE",
+          feasPlan: "11/12/2023",
+          feasActual: "11/12/2023",
+          feas: "FEASIBILITY STUDY COMPLETED",
+          rm: "COMPLETED",
+          cons: "COMPLETED",
+          hw: "COMPLETED",
+          bom: "COMPLETED",
+          sstReq: "NO",
+          sstNeed: "NA",
+          eng: "COMPLETED",
+          remarks: "—",
+        },
+        {
+          customer: "MSAYZX0005",
+          part: "Z5791303330400",
+          material: "Z579-13033-304-00",
+          process: "ROUTING",
+          tdpPlan: "10/13/2023",
+          tdpAvail: "TDP AVAILABLE",
+          feasPlan: "11/12/2023",
+          feasActual: "11/12/2023",
+          feas: "FEASIBILITY STUDY COMPLETED",
+          rm: "COMPLETED",
+          cons: "COMPLETED",
+          hw: "COMPLETED",
+          bom: "COMPLETED",
+          sstReq: "NO",
+          sstNeed: "NA",
+          eng: "COMPLETED",
+          remarks: "—",
+        },
+        {
+          customer: "MSAYZX0005",
+          part: "Z5791303730400",
+          material: "Z579-13037-304-00",
+          process: "ROUTING",
+          tdpPlan: "4/24/2025",
+          tdpAvail: "TDP AVAILABLE",
+          feasPlan: "5/24/2025",
+          feasActual: "5/24/2025",
+          feas: "FEASIBILITY STUDY COMPLETED",
+          rm: "COMPLETED",
+          cons: "COMPLETED",
+          hw: "COMPLETED",
+          bom: "COMPLETED",
+          sstReq: "NO",
+          sstNeed: "NA",
+          eng: "COMPLETED",
+          remarks: "—",
+        },
+        {
+          customer: "MSAYZX0005",
+          part: "Z5791303530400",
+          material: "Z579-13035-304-00",
+          process: "LASER+HET+PRESS",
+          tdpPlan: "1/22/2025",
+          tdpAvail: "TDP AVAILABLE",
+          feasPlan: "2/21/2025",
+          feasActual: "2/21/2025",
+          feas: "FEASIBILITY STUDY COMPLETED",
+          rm: "COMPLETED",
+          cons: "COMPLETED",
+          hw: "COMPLETED",
+          bom: "COMPLETED",
+          sstReq: "NO",
+          sstNeed: "NA",
+          eng: "COMPLETED",
+          remarks: "—",
+        },
+        {
+          customer: "MSAYZX0005",
+          part: "Z5791319730300",
+          material: "Z579-13197-303-00",
+          process: "ROUTING+PB",
+          tdpPlan: "1/18/2024",
+          tdpAvail: "TDP AVAILABLE",
+          feasPlan: "2/17/2024",
+          feasActual: "2/17/2024",
+          feas: "FEASIBILITY STUDY COMPLETED",
+          rm: "COMPLETED",
+          cons: "COMPLETED",
+          hw: "COMPLETED",
+          bom: "COMPLETED",
+          sstReq: "NO",
+          sstNeed: "NA",
+          eng: "COMPLETED",
+          remarks: "—",
+        },
+        {
+          customer: "MSAYZX0005",
+          part: "Z5791303130400",
+          material: "Z579-13031-304-00",
+          process: "ROUTING+PB",
+          tdpPlan: "10/8/2023",
+          tdpAvail: "TDP AVAILABLE",
+          feasPlan: "11/7/2023",
+          feasActual: "11/7/2023",
+          feas: "FEASIBILITY STUDY COMPLETED",
+          rm: "COMPLETED",
+          cons: "COMPLETED",
+          hw: "COMPLETED",
+          bom: "COMPLETED",
+          sstReq: "NO",
+          sstNeed: "NA",
+          eng: "COMPLETED",
+          remarks: "—",
+        },
+        {
+          customer: "MSAYZX0005",
+          part: "Z5391064000000",
+          material: "Z539-10640-000-00",
+          process: "ROUTING+PB",
+          tdpPlan: "8/24/2024",
+          tdpAvail: "TDP AVAILABLE",
+          feasPlan: "9/23/2024",
+          feasActual: "9/23/2024",
+          feas: "FEASIBILITY STUDY COMPLETED",
+          rm: "COMPLETED",
+          cons: "COMPLETED",
+          hw: "COMPLETED",
+          bom: "COMPLETED",
+          sstReq: "NO",
+          sstNeed: "NA",
+          eng: "COMPLETED",
+          remarks: "—",
+        },
+        {
+          customer: "MSAYZX0005",
+          part: "X5393680130300",
+          material: "X539-36801-303-00",
+          process: "ROUTING+PB+HF",
+          tdpPlan: "10/11/2024",
+          tdpAvail: "TDP AVAILABLE",
+          feasPlan: "11/10/2024",
+          feasActual: "11/10/2024",
+          feas: "FEASIBILITY STUDY COMPLETED",
+          rm: "COMPLETED",
+          cons: "COMPLETED",
+          hw: "COMPLETED",
+          bom: "COMPLETED",
+          sstReq: "NO",
+          sstNeed: "NA",
+          eng: "COMPLETED",
+          remarks: "—",
+        },
+        {
+          customer: "MSAYZX0005",
+          part: "Z5391067830000",
+          material: "Z539-10678-300-00",
+          process: "",
+          tdpPlan: "11/13/2023",
+          tdpAvail: "TDP AVAILABLE",
+          feasPlan: "12/13/2023",
+          feasActual: "12/13/2023",
+          feas: "FEASIBILITY STUDY COMPLETED",
+          rm: "COMPLETED",
+          cons: "COMPLETED",
+          hw: "COMPLETED",
+          bom: "COMPLETED",
+          sstReq: "NO",
+          sstNeed: "NA",
+          eng: "COMPLETED",
+          remarks: "—",
+        },
+        {
+          customer: "MSAYZX0005",
+          part: "Z5393680130400",
+          material: "Z539-36801-304-00",
+          process: "ROUTING+PB",
+          tdpPlan: "7/1/2023",
+          tdpAvail: "TDP AVAILABLE",
+          feasPlan: "7/31/2023",
+          feasActual: "7/31/2023",
+          feas: "FEASIBILITY STUDY COMPLETED",
+          rm: "COMPLETED",
+          cons: "COMPLETED",
+          hw: "COMPLETED",
+          bom: "COMPLETED",
+          sstReq: "NO",
+          sstNeed: "NA",
+          eng: "COMPLETED",
+          remarks: "—",
+        },
+        {
+          customer: "MSAYZX0005",
+          part: "Z5393680130600",
+          material: "Z539-36801-306-00",
+          process: "ROUTING+CHAMFER-PB",
+          tdpPlan: "9/8/2023",
+          tdpAvail: "TDP AVAILABLE",
+          feasPlan: "10/8/2023",
+          feasActual: "10/8/2023",
+          feas: "FEASIBILITY STUDY COMPLETED",
+          rm: "COMPLETED",
+          cons: "COMPLETED",
+          hw: "COMPLETED",
+          bom: "COMPLETED",
+          sstReq: "NO",
+          sstNeed: "NA",
+          eng: "COMPLETED",
+          remarks: "—",
+        },
+      ];
+
+      function render() {
+        const d = (document.getElementById("docNo")?.value || "")
+          .trim()
+          .toLowerCase();
+
+        const c = (document.getElementById("customer")?.value || "")
+          .trim()
+          .toLowerCase();
+
+        const p = (document.getElementById("project")?.value || "")
+          .trim()
+          .toLowerCase();
+
+        const m = (document.getElementById("material")?.value || "")
+          .trim()
+          .toLowerCase();
+
+        const selectedStatus = (document.getElementById("status")?.value || "")
+          .trim()
+          .toLowerCase();
+
+        /*
+         * Filter records
+         */
+        const rows = records.filter((x) => {
+          const matchesDoc = !d || x.part.toLowerCase().includes(d);
+
+          const matchesCustomer = !c || x.customer.toLowerCase().includes(c);
+
+          /*
+           * Project name does not currently exist
+           * in your record structure.
+           *
+           * Keep this ready for future project data.
+           */
+          const projectName = (x.project || "").toLowerCase();
+
+          const matchesProject = !p || projectName.includes(p);
+
+          const matchesMaterial = !m || x.material.toLowerCase().includes(m);
+
+          const statusValue = (x.eng || "").toLowerCase();
+
+          const matchesStatus =
+            !selectedStatus || statusValue.includes(selectedStatus);
+
+          return (
+            matchesDoc &&
+            matchesCustomer &&
+            matchesProject &&
+            matchesMaterial &&
+            matchesStatus
+          );
+        });
+
+        const globalQuery = (
+          document.getElementById("globalSearch")?.value || ""
+        )
+          .trim()
+          .toLowerCase();
+        const filteredRows = rows.filter(
+          (x) =>
+            !globalQuery ||
+            Object.values(x).some((v) =>
+              String(v ?? "")
+                .toLowerCase()
+                .includes(globalQuery),
+            ),
+        );
+        const pageSize = Number(
+          document.getElementById("pageSize")?.value || 10,
+        );
+        const pageCount = Math.max(
+          1,
+          Math.ceil(filteredRows.length / pageSize),
+        );
+        currentPage = Math.min(Math.max(1, currentPage), pageCount);
+        const pageRows = filteredRows.slice(
+          (currentPage - 1) * pageSize,
+          currentPage * pageSize,
+        );
+
+        /* =========================================================
+    PROJECT / MATERIAL
+    ========================================================= */
+        const projectBody = document.getElementById("projectBody");
+
+        if (projectBody) {
+          projectBody.innerHTML = pageRows
+            .map(
+              (x, i) => `
+<tr>
+<td>${i + 1}</td>
+<td class="customer-code">
+             ${x.customer}
+</td>
+<td class="doc-link">
+             ${x.part}
+</td>
+<td class="material-code">
+             ${x.material}
+</td>
+</tr>
+       `,
+            )
+            .join("");
+        }
+
+        /* =========================================================
+    TDP
+    ========================================================= */
+        const tdpBody = document.getElementById("tdpBody");
+
+        if (tdpBody) {
+          tdpBody.innerHTML = pageRows
+            .map(
+              (x) => `
+<tr>
+<td>
+             ${x.process || "—"}
+</td>
+<td>
+             ${x.tdpPlan}
+</td>
+<td>
+             ${x.tdpAvail}
+</td>
+</tr>
+       `,
+            )
+            .join("");
+        }
+
+        /* =========================================================
+    FEASIBILITY
+    ========================================================= */
+        const feasBody = document.getElementById("feasBody");
+
+        if (feasBody) {
+          feasBody.innerHTML = pageRows
+            .map(
+              (x) => `
+<tr>
+<td>
+             ${x.feasPlan}
+</td>
+<td>
+             ${x.feasActual}
+</td>
+<td>
+             ${x.feas}
+</td>
+</tr>
+       `,
+            )
+            .join("");
+        }
+
+        /* =========================================================
+    BOM
+    ========================================================= */
+        const bomBody = document.getElementById("bomBody");
+
+        if (bomBody) {
+          bomBody.innerHTML = pageRows
+            .map(
+              (x) => `
+<tr>
+<td>
+             ${x.rm}
+</td>
+<td>
+             ${x.cons}
+</td>
+<td>
+             ${x.hw}
+</td>
+<td>
+             ${x.bom}
+</td>
+</tr>
+       `,
+            )
+            .join("");
+        }
+
+        /* =========================================================
+    SST / QUALIFICATION
+    ========================================================= */
+        const sstBody = document.getElementById("sstBody");
+
+        if (sstBody) {
+          sstBody.innerHTML = pageRows
+            .map(
+              (x) => `
+<tr>
+<td>
+             ${x.sstReq}
+</td>
+<td>
+             ${x.sstNeed}
+</td>
+</tr>
+       `,
+            )
+            .join("");
+        }
+
+        /* =========================================================
+    ENGINEERING
+    ========================================================= */
+        const engBody = document.getElementById("engBody");
+
+        if (engBody) {
+          engBody.innerHTML = pageRows
+            .map(
+              (x) => `
+<tr>
+<td>
+             ${x.eng}
+</td>
+<td>
+             ${x.remarks}
+</td>
+</tr>
+       `,
+            )
+            .join("");
+        }
+
+        /* =========================================================
+    RECORD COUNTERS
+    ========================================================= */
+        document.getElementById("recordCount").textContent =
+          filteredRows.length;
+
+        document.getElementById("total").textContent = filteredRows.length;
+
+        const firstShown = filteredRows.length
+          ? (currentPage - 1) * pageSize + 1
+          : 0;
+        const lastShown = Math.min(currentPage * pageSize, filteredRows.length);
+        document.getElementById("showing").textContent = filteredRows.length
+          ? `${firstShown} to ${lastShown}`
+          : "0";
+        renderPagination(pageCount);
+      }
+      function applyFilters() {
+        setPage(1);
+        render();
+      }
+      function clearFilters() {
+        ["docNo", "customer", "project", "material"].forEach((id) => {
+          const element = document.getElementById(id);
+          if (element) {
+            element.value = "";
+          }
+        });
+
+        const status = document.getElementById("status");
+        if (status) {
+          status.value = "";
+        }
+
+        setPage(1);
+        render();
+      }
+
+      /* Vertical accordion controller */
+      let showAllEngineeringSections = false;
+      let currentPage = 1;
+      const engineeringSections = [
+        "project",
+        "tdp",
+        "feas",
+        "bom",
+        "sst",
+        "eng",
+      ];
+      function getEngineeringElements() {
+        return {
+          wrapper: document.querySelector(".engineering-table-wrap"),
+          table: document.getElementById("engineeringTable"),
+          sections: document.querySelectorAll(".engineering-section"),
+        };
+      }
+      function updateEngineeringLayout() {
+        const { table } = getEngineeringElements();
+        if (table) table.classList.remove("show-all-mode");
+      }
+      function openEngineeringSection(sectionName) {
+        const section = document.querySelector(
+          `.engineering-section[data-section="${sectionName}"]`,
+        );
+        if (!section) return;
+        section.classList.toggle("expanded");
+        updateEngineeringLayout();
+      }
+      function collapseEngineeringSections(event) {
+        event?.stopPropagation();
+        const section = event?.currentTarget?.closest(".engineering-section");
+        if (section) section.classList.remove("expanded");
+      }
+      function expandAllSections() {
+        document
+          .querySelectorAll(".engineering-section")
+          .forEach((section) => section.classList.add("expanded"));
+        showAllEngineeringSections = true;
+        updateEngineeringLayout();
+      }
+      function initializeEngineeringSections() {
+        document
+          .querySelectorAll(".engineering-section")
+          .forEach((section) => section.classList.add("expanded"));
+        updateEngineeringLayout();
+        document.querySelectorAll(".section-header").forEach((header) => {
+          header.setAttribute("role", "button");
+          header.setAttribute("tabindex", "0");
+          header.addEventListener("click", (event) => {
+            if (event.target.closest(".section-collapse")) return;
+            const section = header.closest(".engineering-section");
+            if (section) section.classList.toggle("expanded");
+          });
+          header.addEventListener("keydown", (event) => {
+            if (event.key === "Enter" || event.key === " ") {
+              event.preventDefault();
+              header.click();
+            }
+          });
+        });
+      }
+      function setPage(page) {
+        currentPage = Math.max(1, Number(page) || 1);
+      }
+      function setPageSize(value) {
+        setPage(1);
+        render();
+      }
+      function renderPagination(pageCount) {
+        const ul = document.getElementById("pagination");
+        if (!ul) return;
+        let html = `<li class="page-item ${currentPage === 1 ? "disabled" : ""}"><button class="page-link" ${currentPage === 1 ? "disabled" : ""} onclick="setPage(${currentPage - 1});render()">‹</button></li>`;
+        for (let i = 1; i <= pageCount; i++) {
+          html += `<li class="page-item ${i === currentPage ? "active" : ""}"><button class="page-link" onclick="setPage(${i});render()">${i}</button></li>`;
+        }
+        html += `<li class="page-item ${currentPage === pageCount ? "disabled" : ""}"><button class="page-link" ${currentPage === pageCount ? "disabled" : ""} onclick="setPage(${currentPage + 1});render()">›</button></li>`;
+        ul.innerHTML = html;
+      }
+      function toggleColumnsMenu(event) {
+        event?.stopPropagation();
+        document.getElementById("columnsPopover")?.classList.toggle("open");
+      }
+      document.addEventListener("click", (event) => {
+        if (!event.target.closest(".columns-menu"))
+          document.getElementById("columnsPopover")?.classList.remove("open");
+      });
+      function toggleEngineeringSectionVisibility(input) {
+        const section = document.querySelector(
+          `.engineering-section[data-section="${input.dataset.sectionToggle}"]`,
+        );
+        if (section) section.style.display = input.checked ? "block" : "none";
+      }
+      function uploadExcel(event) {
+        const file = event.target.files?.[0];
+        if (!file) return;
+        if (!window.XLSX) {
+          alert(
+            "Excel reader could not load. Please check your internet connection and try again.",
+          );
+          return;
+        }
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          try {
+            const workbook = XLSX.read(e.target.result, { type: "array" });
+            const sheet = workbook.Sheets[workbook.SheetNames[0]];
+            const data = XLSX.utils.sheet_to_json(sheet, { defval: "" });
+            if (!data.length) {
+              alert("The selected file has no data rows.");
+              return;
+            }
+            const key = (obj) =>
+              Object.fromEntries(
+                Object.entries(obj).map(([k, v]) => [
+                  k.toLowerCase().replace(/[^a-z0-9]/g, ""),
+                  v,
+                ]),
+              );
+            const imported = data
+              .map((row) => {
+                const r = key(row);
+                const get = (...names) => {
+                  for (const n of names) {
+                    const k = n.toLowerCase().replace(/[^a-z0-9]/g, "");
+                    if (r[k] !== undefined && r[k] !== "") return String(r[k]);
+                  }
+                  return "";
+                };
+                return {
+                  customer: get("customer", "customer code"),
+                  part: get("part number", "part", "doc no", "document number"),
+                  material: get(
+                    "customer material code",
+                    "material code",
+                    "material",
+                  ),
+                  process: get("process"),
+                  tdpPlan: get("tdp plan date"),
+                  tdpAvail: get("tdp availability"),
+                  feasPlan: get("feasibility plan date"),
+                  feasActual: get("feasibility actual date"),
+                  feas: get("feasibility study"),
+                  rm: get("rm bom status", "rm bom"),
+                  cons: get("consumable bom status", "consumable bom"),
+                  hw: get("hw bom status", "hardware bom status", "hw bom"),
+                  bom: get("bom overall", "bom overall status"),
+                  sstReq: get(
+                    "sst process qualification requirements",
+                    "sst requirements",
+                  ),
+                  sstNeed: get(
+                    "sst process needed qualification",
+                    "sst needed qualification",
+                  ),
+                  eng: get("engineering status", "status"),
+                  remarks: get("remarks"),
+                };
+              })
+              .filter((x) => x.customer || x.part || x.material);
+            if (!imported.length) {
+              alert(
+                "No recognizable records found. Please check the column headings.",
+              );
+              return;
+            }
+            records.splice(0, records.length, ...imported);
+            setPage(1);
+            render();
+            alert(`Imported ${imported.length} records successfully.`);
+          } catch (err) {
+            alert(
+              "Unable to read this file. Please use a valid .xlsx, .xls or .csv file.",
+            );
+          }
+          event.target.value = "";
+        };
+        reader.readAsArrayBuffer(file);
+      }
+
+      function exportCSV() {
+        const q = (document.getElementById("globalSearch")?.value || "")
+          .trim()
+          .toLowerCase();
+        const filtered = records.filter((x) => {
+          const d = (document.getElementById("docNo")?.value || "")
+            .trim()
+            .toLowerCase();
+          const c = (document.getElementById("customer")?.value || "")
+            .trim()
+            .toLowerCase();
+          const p = (document.getElementById("project")?.value || "")
+            .trim()
+            .toLowerCase();
+          const m = (document.getElementById("material")?.value || "")
+            .trim()
+            .toLowerCase();
+          const st = (document.getElementById("status")?.value || "")
+            .trim()
+            .toLowerCase();
+          return (
+            (!d || x.part.toLowerCase().includes(d)) &&
+            (!c || x.customer.toLowerCase().includes(c)) &&
+            (!p || (x.project || "").toLowerCase().includes(p)) &&
+            (!m || x.material.toLowerCase().includes(m)) &&
+            (!st || (x.eng || "").toLowerCase().includes(st)) &&
+            (!q ||
+              Object.values(x).some((v) =>
+                String(v ?? "")
+                  .toLowerCase()
+                  .includes(q),
+              ))
+          );
+        });
+        const headers = [
+          "Customer",
+          "Part Number",
+          "Customer Material Code",
+          "Process",
+          "TDP Plan Date",
+          "TDP Availability",
+          "Feasibility Plan Date",
+          "Feasibility Actual Date",
+          "Feasibility Study",
+          "RM BOM",
+          "Consumable BOM",
+          "HW BOM",
+          "BOM Overall",
+          "SST Requirements",
+          "SST Needed Qualification",
+          "Engineering Status",
+          "Remarks",
+        ];
+        const keys = [
+          "customer",
+          "part",
+          "material",
+          "process",
+          "tdpPlan",
+          "tdpAvail",
+          "feasPlan",
+          "feasActual",
+          "feas",
+          "rm",
+          "cons",
+          "hw",
+          "bom",
+          "sstReq",
+          "sstNeed",
+          "eng",
+          "remarks",
+        ];
+        const esc = (value) => `"${String(value ?? "").replace(/"/g, '""')}"`;
+        const csv = [
+          headers.map(esc).join(","),
+          ...filtered.map((x) => keys.map((k) => esc(x[k])).join(",")),
+        ].join("\r\n");
+        const url = URL.createObjectURL(
+          new Blob(["\ufeff", csv], { type: "text/csv;charset=utf-8;" }),
+        );
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "engineering-records.csv";
+        a.click();
+        URL.revokeObjectURL(url);
+      }
+      render();
+      initializeEngineeringSections();
+    </script>
+  </body>
+</html>
